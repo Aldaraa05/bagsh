@@ -4,6 +4,14 @@
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(233, 233, 233);
+}
+
+/* Navbar Styles */
 nav {
     display: flex;
     flex-direction: row;
@@ -11,15 +19,21 @@ nav {
     width: 100%;
     align-items: center;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    justify-content: space-around;
+    background-color: white;
+    z-index: 2;
 }
+
 nav a {
     display: block;
     color: black;
+    transition: ease 0.3s;
 }
 
-nav a:last-child{
-    margin-left: 50px
+nav a:last-child {
+    margin-left: 50px;
 }
+
 #ded {
     display: flex;
     flex-direction: row;
@@ -33,12 +47,18 @@ nav a:last-child{
     display: block;
     margin-left: 50px;
     color: black;
+    transition: ease 0.3s;
+}
+
+#ded a:hover {
+    transform: scale(1.1);
+    color: #007BFF; /* Blue hover color */
 }
 
 #ded a:nth-child(2) {
     border-radius: 10px;
     padding: 5px 10px;
-    background-color: red;
+    background-color: #007BFF;
     color: white;
 }
 
@@ -46,29 +66,24 @@ nav a:last-child{
     border: 2px solid black;
     border-radius: 10px;
     padding: 5px 10px;
-
 }
 
-#zar{
-    border: 2px solid gray;
+#zar {
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 5px;
     padding: 10px;
     color: black;
+    margin-right: 10px;
+    transition: ease 0.2s;
 }
 
-#zar:hover{
+#zar:hover {
     border: 2px solid red;
     color: red;
-    transition: ease 0.2s ;
 }
 
-/* ////////////////////////////////////////////////////////// */
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-#eh{
+/* Aside Section Styles */
+#eh {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -76,9 +91,110 @@ body {
 }
 
 aside {
-    width: 26%;
-    height: 100vh;
+    width: 20%;
+    height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    background-color: white;
+    border-bottom-right-radius: 50px;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+aside div {
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+aside div a {
+    color: black;
+    transition: ease 0.3s;
+    display: block;
+    margin-bottom: 10px;
+}
+
+aside div a:hover {
+    font-size: 18px; 
+    color: #007BFF; 
+}
+
+aside form {
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+aside form input {
+    padding: 10px;
+    border-radius: 5px;
+    width: 70%;
+    border: 1px solid #ddd;
+    transition: ease 0.3s;
+}
+
+aside form input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+#angilal {
+    margin-bottom: -10%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Main ddsdsdsd */
+#main {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.bagsh {
+    display: flex;
+    width: 350px;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+    margin: 20px;
+    align-items: center;
+    border-radius: 10px;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: ease 0.3s;
+}
+
+.bagsh:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.bagsh img {
+    display: flex;
+    margin-top: 10%;
+    width: 50%;
+    height: 50%;
+    border-radius: 10px; 
+}
+
+.bagsh span {
+    display: block;
+    margin: 20px 10%;
+    text-align: center;
+    color: #333;
+}
+
+.bagsh button {
+    padding: 10px 20px;
+    background-color: #5783db;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    transition: ease 0.3s;
+    cursor: pointer;
+}
+
+.bagsh button:hover {
+    transform: scale(1.1);
+    background-color: #007BFF; 
 }

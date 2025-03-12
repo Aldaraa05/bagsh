@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(233, 233, 233);
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    height: 75px;
+    width: 100%;
+    align-items: center;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    justify-content: space-around;
+    background-color: white;
+    z-index: 2; 
+}
+nav a {
+    display: block;
+    color: black;
+}
+
+nav a:last-child{
+    margin-left: 50px
+}
+#ded {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+}
+
+#ded a {
+    display: block;
+    margin-left: 50px;
+    color: black;
+    transition: ease 0.3s;
+
+}
+#ded a:hover{
+    transform: scale(1.1);
+}
+
+#ded a:nth-child(2) {
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+}
+
+#ded a:nth-child(3) {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px 10px;
+
+}
+
+#zar{
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 10px;
+    color: black;
+    margin-right: 10px;
+}
+
+#zar:hover{
+    border: 2px solid red;
+    color: red;
+    transition: ease 0.2s ;
+}
+/* side */
+
+#eh{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+}
+
+aside {
+    width: 20%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-bottom-right-radius: 50px;
+}
+
+#pro {
+    display: flex;
+    justify-content: center;
+}
+#pro img{
+    display: block;
+    margin-top: 10%;
+    width: 70%;
+}
+
+/* Table ббббббббббббббб */
+#info {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007BFF;
+    color: white; 
+    font-weight: bold;
+    font-size: 16px;
+}
+
+td {
+    color: #333;
+    font-size: 14px;
+}
+
+tr:hover {
+    background-color: #f1f1f1; 
+}
+
+tr:first-child th {
+    background-color: #0056b3;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* tr.spacer td {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #f9f9f9; 
+} */
