@@ -11,8 +11,9 @@ body {
     background-color: rgb(233, 233, 233);
 }
 
-/* Navbar Styles */
+/* Nav  */
 nav {
+    position: fixed;
     display: flex;
     flex-direction: row;
     height: 75px;
@@ -52,7 +53,7 @@ nav a:last-child {
 
 #ded a:hover {
     transform: scale(1.1);
-    color: #007BFF; /* Blue hover color */
+    color: #007BFF;
 }
 
 #ded a:nth-child(2) {
@@ -82,22 +83,38 @@ nav a:last-child {
     color: red;
 }
 
-/* Aside Section Styles */
+/* Main container */
 #eh {
     display: flex;
-    flex-direction: row;
+    flex-direction: column; 
     width: 100%;
     height: 100vh;
+    padding-top: 75px; 
 }
 
+/* Profile at the top */
+#profile {
+    height: 55%; 
+    width: 100%;
+    background-color: antiquewhite;
+}
+
+/* Real Main */
+#realMain {
+    display: flex;
+    flex-direction: row; 
+    height: 45%; 
+    width: 100%;
+}
+
+/* Aside */
 aside {
     width: 20%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
+    height: 100%;
     background-color: white;
     border-bottom-right-radius: 50px;
-    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1); 
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
 }
 
 aside div {
@@ -113,8 +130,8 @@ aside div a {
 }
 
 aside div a:hover {
-    font-size: 18px; 
-    color: #007BFF; 
+    font-size: 18px;
+    color: #007BFF;
 }
 
 aside form {
@@ -142,26 +159,28 @@ aside form input:focus {
     color: #333;
 }
 
-/* Main ddsdsdsd */
+/* Main */
 #main {
-    display: flex;
-    flex-wrap: wrap;
     width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+    height: 100%;
+    overflow-y: auto; 
+    padding: 20px; 
+    background-color: rgb(233, 233, 233);
 }
 
+/* Bagsh  */
 .bagsh {
-    display: flex;
-    width: 350px;
-    height: 400px;
+    display: inline-flex;
+    width: 250px;
+    height: 300px;
     background-color: rgb(255, 255, 255);
     margin: 20px;
     align-items: center;
     border-radius: 10px;
     flex-direction: column;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: ease 0.3s;
+    flex-shrink: 0;
 }
 
 .bagsh:hover {
@@ -174,14 +193,16 @@ aside form input:focus {
     margin-top: 10%;
     width: 50%;
     height: 50%;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 .bagsh span {
     display: block;
+    max-width: 100%;
     margin: 20px 10%;
     text-align: center;
     color: #333;
+    white-space: normal;
 }
 
 .bagsh button {
@@ -196,5 +217,5 @@ aside form input:focus {
 
 .bagsh button:hover {
     transform: scale(1.1);
-    background-color: #007BFF; 
+    background-color: #007BFF;
 }
