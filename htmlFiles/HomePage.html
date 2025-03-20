@@ -18,7 +18,7 @@
             <li><a href="#" class="text1">Цагийн багш нар</a></li>
             <li><a href="#" class="text1">Үндсэн багш нар</a></li>
           </div>
-          <li><a href="#" class="text1">Нэвтрэх</a></li>
+          <li><a href="#" class="text1" id="nevtreh">Нэвтрэх</a></li>
         </ul>
       </nav>
     </header>
@@ -34,7 +34,7 @@
         </div>
       </div>
       <img src="../images/teacher.png" class="teacherImg" />
-      <p class="abtTchr">
+      <!-- <p class="abtTchr">
         Ажилласан байдал: <br />
         🏫 2001 - 2008: Улаанбаатар хотын 45-р сургуульд математикийн багш
         <br />
@@ -46,15 +46,94 @@
         бичсэн Оюутнуудын судалгааны төсөл удирдсан<br />
         🔥 Онцлох үйл явдал: 2019 онд олон улсын математикийн хуралд "Дээд
         түвшний тооцооллын арга" сэдвээр илтгэл тавьсан.
-      </p>
+      </p> -->
+      <table class="abtTchr">
+        <thead>
+          <tr>
+            <th colspan="2">Ажилласан байдал</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🏫 2001 - 2008</td>
+            <td>Улаанбаатар хотын 45-р сургуульд математикийн багш</td>
+          </tr>
+          <tr>
+            <td>🏫 2008 - 2015</td>
+            <td>Монгол Улсын Их Сургууль, Боловсролын сургуульд ахлах багш</td>
+          </tr>
+          <tr>
+            <td>🏫 2015 - 2023</td>
+            <td>Шинжлэх Ухаан Технологийн Их Сургууль, Докторын зэрэг хамгаалж, профессор</td>
+          </tr>
+          <tr>
+            <td>🏫 2023 - одоо</td>
+            <td>Математикийн хичээлийн сургалтын контент хөгжүүлэх судлаач</td>
+          </tr>
+          <tr>
+            <td>🔹 Тусгай ур чадвар</td>
+            <td>Олимпиадын бэлтгэл хөтөлбөр боловсруулсан "Өндөр түвшний математик" ном бичсэн Оюутнуудын судалгааны төсөл удирдсан</td>
+          </tr>
+          <tr>
+            <td>🔥 Онцлох үйл явдал</td>
+            <td>2019 онд олон улсын математикийн хуралд "Дээд түвшний тооцооллын арга" сэдвээр илтгэл тавьсан.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div id="realMain">
       <aside>
         <form action="">
-          <input type="text" placeholder="Хайлт хийх" />
+          <div id="search">
+            <svg viewBox="0 0 420 60" xmlns="http://www.w3.org/2000/svg">
+              <rect class="bar"/>
+              
+              <g class="magnifier">
+                <circle class="glass"/>
+                <line class="handle" x1="32" y1="32" x2="44" y2="44"></line>
+              </g>
+          
+              <g class="sparks">
+                <circle class="spark"/>
+                <circle class="spark"/>
+                <circle class="spark"/>
+              </g>
+          
+              <g class="burst pattern-one">
+                <circle class="particle circle"/>
+                <path class="particle triangle"/>
+                <circle class="particle circle"/>
+                <path class="particle plus"/>
+                <rect class="particle rect"/>
+                <path class="particle triangle"/>
+              </g>
+              <g class="burst pattern-two">
+                <path class="particle plus"/>
+                <circle class="particle circle"/>
+                <path class="particle triangle"/>
+                <rect class="particle rect"/>
+                <circle class="particle circle"/>
+                <path class="particle plus"/>
+              </g>
+              <g class="burst pattern-three">
+                <circle class="particle circle"/>
+                <rect class="particle rect"/>
+                <path class="particle plus"/>
+                <path class="particle triangle"/>
+                <rect class="particle rect"/>
+                <path class="particle plus"/>
+              </g>
+            </svg>
+            <input type=search name=q aria-label="Search for inspiration"/>
+          </div>
+          
+          <div id="results">
+            
+          </div>
         </form>
         <div id="angilal">Бүх ангилал</div>
         <div>
+          <br>
           <div><a href="">Физик</a></div>
           <div><a href="">Байгалийн ухаан</a></div>
           <div><a href="">Хэл</a></div>
@@ -64,114 +143,143 @@
           <div><a href="">Уран сайхан</a></div>
           <div><a href="">Хөгжим</a></div>
           <div><a href="">Технологи</a></div>
+          <br>
         </div>
       </aside>
       <div id="main">
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button><a href="./bagsh.html">Дэлгэрэнгүй</a></button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
         <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
+          <img src="../pro.png" alt="" />
+          <div id="medeelel">
+            <h2 style="color: black;">Дорж</h2>
+            <span>Математикийн багш</span>
+          </div>
         </div>
-        <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
-        </div>
-        <div class="bagsh">
-          <img src="./pro.png" alt="" />
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae,
-            distinctio.</span
-          >
-          <button>Дэлгэрэнгүй</button>
-        </div>
+          <div class="bagsh">
+            <img src="../pro.png" alt="" />
+            <div id="medeelel">
+              <h2 style="color: black;">Дорж</h2>
+              <span>Математикийн багш</span>
+            </div>
+          </div>
+          <div class="bagsh">
+            <img src="../pro.png" alt="" />
+            <div id="medeelel">
+              <h2 style="color: black;">Дорж</h2>
+              <span>Математикийн багш</span>
+            </div>
+          </div>
+          <div class="bagsh">
+            <img src="../pro.png" alt="" />
+            <div id="medeelel">
+              <h2 style="color: black;">Дорж</h2>
+              <span>Математикийн багш</span>
+            </div>
+          </div>
+          <div class="bagsh">
+            <img src="../pro.png" alt="" />
+            <div id="medeelel">
+              <h2 style="color: black;">Дорж</h2>
+              <span>Математикийн багш</span>
+            </div>
+          </div>
+          <div class="bagsh">
+            <img src="../pro.png" alt="" />
+            <div id="medeelel">
+              <h2 style="color: black;">Дорж</h2>
+              <span>Математикийн багш</span>
+            </div>
+          </div>
+          <div class="bagsh">
+            <img src="../pro.png" alt="" />
+            <div id="medeelel">
+              <h2 style="color: black;">Дорж</h2>
+              <span>Математикийн багш</span>
+            </div>
+          </div>
+          <div class="bagsh">
+            <img src="../pro.png" alt="" />
+            <div id="medeelel">
+              <h2 style="color: black;">Дорж</h2>
+              <span>Математикийн багш</span>
+            </div>
+          </div>
+      </div>
+      <div id="scroll">
+
       </div>
     </div>
+    <footer>
+      
+    </footer>
   </body>
 </html>
