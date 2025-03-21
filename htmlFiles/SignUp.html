@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Багш бүртгүүлэх</title>
+    <link rel="stylesheet" href="../cssFiles/SignUp.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Багш бүртгүүлэх</h2>
+        <p>Та мэдээллээ үнэн зөв оруулна уу</p>
+      </div>
+
+      <form id="signup-form">
+        <div class="form-group">
+          <label for="fullname">Овог нэр</label>
+          <div class="input-with-icon">
+            <input
+              type="text"
+              id="fullname"
+              name="fullname"
+              placeholder="Овог нэрээ оруулна уу"
+              required
+            />
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="error" id="fullname-error">Овог нэрээ оруулна уу</div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">И-мэйл</label>
+          <div class="input-with-icon">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="И-мэйл хаягаа оруулна уу"
+              required
+            />
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="error" id="email-error">Зөв и-мэйл хаяг оруулна уу</div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Утасны дугаар</label>
+          <div class="input-with-icon">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Утасны дугаараа оруулна уу"
+              required
+            />
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="error" id="phone-error">Зөв утасны дугаар оруулна уу</div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Заах хичээл</label>
+          <div class="input-with-icon">
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="Заах хичээлээ оруулна уу"
+              required
+            />
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="error" id="subject-error">Заах хичээлээ оруулна уу</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Нууц үг</label>
+          <div class="input-with-icon">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Нууц үгээ оруулна уу"
+              required
+            />
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="error" id="password-error">
+            Нууц үг доод тал нь 8 тэмдэгт байх ёстой
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Нууц үг баталгаажуулах</label>
+          <div class="input-with-icon">
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              placeholder="Нууц үгээ дахин оруулна уу"
+              required
+            />
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="error" id="confirm-password-error">
+            Нууц үг таарахгүй байна
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox-container">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms">Үйлчилгээний нөхцөл зөвшөөрөх</label>
+          </div>
+          <div class="error" id="terms-error">
+            Үйлчилгээний нөхцөлийг зөвшөөрнө үү
+          </div>
+        </div>
+
+        <button type="submit" class="btn">Бүртгүүлэх</button>
+      </form>
+
+      <div class="login-link">
+        Бүртгэлтэй юу? <a href="/htmlFiles/SignIn.html">Нэвтрэх</a>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          document.querySelectorAll(".error").forEach((error) => {
+            error.style.display = "none";
+          });
+
+          let hasError = false;
+
+          const fullname = document.getElementById("fullname").value.trim();
+          if (fullname === "") {
+            document.getElementById("fullname-error").style.display = "block";
+            hasError = true;
+          }
+
+          const email = document.getElementById("email").value.trim();
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            document.getElementById("email-error").style.display = "block";
+            hasError = true;
+          }
+
+          const phone = document.getElementById("phone").value.trim();
+          const phoneRegex = /^[0-9]{8}$/;
+          if (!phoneRegex.test(phone)) {
+            document.getElementById("phone-error").style.display = "block";
+            hasError = true;
+          }
+
+          const subject = document.getElementById("subject").value.trim();
+          if (subject === "") {
+            document.getElementById("subject-error").style.display = "block";
+            hasError = true;
+          }
+
+          const password = document.getElementById("password").value;
+          if (password.length < 8) {
+            document.getElementById("password-error").style.display = "block";
+            hasError = true;
+          }
+
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+          if (password !== confirmPassword) {
+            document.getElementById("confirm-password-error").style.display =
+              "block";
+            hasError = true;
+          }
+
+          const terms = document.getElementById("terms").checked;
+          if (!terms) {
+            document.getElementById("terms-error").style.display = "block";
+            hasError = true;
+          }
+
+          if (!hasError) {
+            alert("Бүртгэл амжилттай! Таны мэдээллийг хүлээн авлаа.");
+          }
+        });
+    </script>
+  </body>
+</html>
