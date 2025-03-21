@@ -1,24 +1,71 @@
-/* Scrollbar Track */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 12px; /* Width of the scrollbar */
+  width: 12px;
 }
-
-/* Scrollbar Handle (Thumb) */
 ::-webkit-scrollbar-thumb {
-  background: #5ec4c6; /* Color of the scrollbar handle */
-  border-radius: 6px; /* Rounded corners */
-  border: 3px solid #213842; /* Border around the handle */
+  background: #5ec4c6; 
+  border-radius: 6px; 
+  border: 3px solid #213842; 
 }
 
-/* Scrollbar Track */
 ::-webkit-scrollbar-track {
-  background: #213842; /* Color of the track */
-  border-radius: 6px; /* Rounded corners */
+  background: #213842; 
+  border-radius: 6px; 
 }
 
-/* Scrollbar Handle on Hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #57b0c2; /* Color on hover */
+  background: #57b0c2; 
+}
+/* searchbar */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+.search-input {
+  width: 300px;
+  padding: 12px 20px;
+  border: 2px solid #5ec4c6;
+  border-radius: 25px 0 0 25px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #fcfdea;
+  color: #213842;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.search-input:focus {
+  border-color: #57b0c2;
+  box-shadow: 0 0 8px rgba(94, 196, 198, 0.5);
+}
+
+.search-button {
+  padding: 12px 20px;
+  border: 2px solid #5ec4c6;
+  border-radius: 0 25px 25px 0;
+  background-color: #5ec4c6;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button:hover {
+  background-color: #57b0c2;
+  border-color: #57b0c2;
+}
+
+.search-button svg {
+  width: 20px;
+  height: 20px;
 }
 p {
   margin-block: 10px;
@@ -217,7 +264,7 @@ h1 {
   padding-top: 75px;
 }
 
-/* Profile at the top */
+/* Profile */
 /* #profile {
   height: 55%;
   width: 100%;
@@ -365,11 +412,11 @@ aside form {
   background-color: #007bff;
 }
 
-/* .abtTchr {
+.abtTchr {
   display: block;
   font-size: 12px;
-  width: 40%;
-  max-width: 500px;
+  width: 50%;
+  max-width: 600px;
   margin: 0 auto;
   border-collapse: collapse;
   margin-block: 20px;
@@ -381,6 +428,8 @@ aside form {
   padding: 10px;
   text-align: left;
   border-bottom: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .abtTchr th {
@@ -394,7 +443,8 @@ aside form {
 
 .abtTchr tr:hover {
   background-color: #f1f1f1;
-}  */
+  color: black;
+} 
 
 footer{
 height: 400px;
@@ -402,10 +452,27 @@ height: 400px;
 
 /* media query gar utas  */
 @media screen and (max-width: 600px) {
+  .btn1 {
+    height: 40px;
+    font-size: 12px;
+  }
+  .btn2 {
+    height: 40px;
+    font-size: 12px;
+  }
+  .search-input {
+    width: 100px;
+    height: 20px;
+  }
+  .search-button{
+    height: 20px;
+  }
+  .column{
+    width: 50%;
+  }
   header nav ul{
     display: flex;
     flex-direction: column;
-
     align-items: flex-start;
     padding-left: 10%;
     padding-top: 3%;
@@ -472,6 +539,7 @@ height: 400px;
 
 #realMain aside {
   width: 40%;
+  font-size: 12px;
 }
 .bagsh {
   display: inline-flex;
@@ -491,14 +559,84 @@ height: 400px;
 
 #main {
   display: inline-block;
-  width: 70%;
+  width: 40%;
   height: 400px;
   overflow-y: auto;
   background: linear-gradient(to bottom, #213842, #1b2c36, #121a1f);
   flex-wrap: wrap;
-}
+  border-bottom-left-radius: 50%;
 }
 
+}
+/* foooter */
+footer {
+  background-color: #1b2c36;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: 200px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin: 20px;
+  text-align: left;
+}
+
+.footer-section h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #5ec4c6;
+}
+
+.footer-section p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 5px 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icon img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.social-icon img:hover {
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  margin-top: 30px;
+  border-top: 1px solid #2c3e50;
+  padding-top: 20px;
+  font-size: 14px;
+}
+
+/* Responsive Footer */
+@media screen and (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
+}
 /* media query tablet  */
 @media screen and (min-width: 601px) and (max-width: 1024px) {
   /* header nav ul{

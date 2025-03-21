@@ -75,60 +75,40 @@
             <td>Олимпиадын бэлтгэл хөтөлбөр боловсруулсан "Өндөр түвшний математик" ном бичсэн Оюутнуудын судалгааны төсөл удирдсан</td>
           </tr>
           <tr>
-            <td>🔥 Онцлох үйл явдал</td>
-            <td>2019 онд олон улсын математикийн хуралд "Дээд түвшний тооцооллын арга" сэдвээр илтгэл тавьсан.</td>
+            <td>🔥 Заах сэдэв</td>
+            <td>Уламжлал, Матрикс, Дээд математик, Дискрит математик</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div id="realMain">
       <aside>
-        <form action="">
-          <div id="search">
-            <svg viewBox="0 0 420 60" xmlns="http://www.w3.org/2000/svg">
-              <rect class="bar"/>
-              
-              <g class="magnifier">
-                <circle class="glass"/>
-                <line class="handle" x1="32" y1="32" x2="44" y2="44"></line>
-              </g>
-          
-              <g class="sparks">
-                <circle class="spark"/>
-                <circle class="spark"/>
-                <circle class="spark"/>
-              </g>
-          
-              <g class="burst pattern-one">
-                <circle class="particle circle"/>
-                <path class="particle triangle"/>
-                <circle class="particle circle"/>
-                <path class="particle plus"/>
-                <rect class="particle rect"/>
-                <path class="particle triangle"/>
-              </g>
-              <g class="burst pattern-two">
-                <path class="particle plus"/>
-                <circle class="particle circle"/>
-                <path class="particle triangle"/>
-                <rect class="particle rect"/>
-                <circle class="particle circle"/>
-                <path class="particle plus"/>
-              </g>
-              <g class="burst pattern-three">
-                <circle class="particle circle"/>
-                <rect class="particle rect"/>
-                <path class="particle plus"/>
-                <path class="particle triangle"/>
-                <rect class="particle rect"/>
-                <path class="particle plus"/>
-              </g>
-            </svg>
-            <input type=search name=q aria-label="Search for inspiration"/>
+        <form action="#" method="get" role="search">
+          <div class="search-container">
+            <input
+              type="search"
+              name="q"
+              placeholder="Search for inspiration..."
+              aria-label="Search for inspiration"
+              class="search-input"
+            />
+            <button type="submit" class="search-button" aria-label="Submit search">
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
           </div>
-          
-          <div id="results">
-            
+          <div id="results" aria-live="polite">
           </div>
         </form>
         <div id="angilal">Бүх ангилал</div>
@@ -279,7 +259,30 @@
       </div>
     </div>
     <footer>
-      
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum illum voluptate nihil nam quam debitis?</p>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>Email: aachka8@example.com</p>
+          <p>Phone: +976 80913009</p>
+          <p>Address: Ulaanbaatar, Mongolia</p>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><img src="../images/communication.png" alt="Facebook"></a>
+            <a href="#" class="social-icon"><img src="../images/twitter.png" alt="Twitter"></a>
+            <a href="#" class="social-icon"><img src="../images/instagram.png" alt="Instagram"></a>
+            <a href="#" class="social-icon"><img src="../images/linkedin.png" alt="LinkedIn"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 TeachLink.</p>
+      </div>
     </footer>
   </body>
 </html>
