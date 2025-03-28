@@ -3,18 +3,18 @@
   width: 12px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #5ec4c6; 
-  border-radius: 6px; 
-  border: 3px solid #213842; 
+  background: #5ec4c6;
+  border-radius: 6px;
+  border: 3px solid #213842;
 }
 
 ::-webkit-scrollbar-track {
-  background: #213842; 
-  border-radius: 6px; 
+  background: #213842;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #57b0c2; 
+  background: #57b0c2;
 }
 /* searchbar */
 .search-container {
@@ -391,6 +391,7 @@ aside form input:focus {
   height: 60%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  background-color: #76c2c1;
 }
 
 .bagsh span {
@@ -429,7 +430,8 @@ aside form input:focus {
   border-radius: 10%;
 }
 
-.abtTchr th, .abtTchr td {
+.abtTchr th,
+.abtTchr td {
   padding: 10px;
   text-align: left;
   border-bottom: none;
@@ -449,7 +451,7 @@ aside form input:focus {
 .abtTchr tr:hover {
   background-color: #f1f1f1;
   color: black;
-} 
+}
 
 footer {
   display: flex;
@@ -529,13 +531,13 @@ footer {
     width: 100px;
     height: 20px;
   }
-  .search-button{
+  .search-button {
     height: 20px;
   }
-  .column{
+  .column {
     width: 50%;
   }
-  header nav ul{
+  header nav ul {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -603,95 +605,94 @@ footer {
     background-color: #f1f1f1;
   }
 
+  #realMain aside {
+    width: 40%;
+    font-size: 12px;
+  }
+  .bagsh {
+    display: inline-flex;
+    width: 100px;
+    height: 130px;
+    background-color: #76c2c1;
+    margin: 10px;
+    align-items: center;
+    border-radius: 10px;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: ease 0.3s;
+    flex-shrink: 0;
+    margin-bottom: 80px;
+    font-size: 10px;
+  }
 
-#realMain aside {
-  width: 40%;
-  font-size: 12px;
-}
-.bagsh {
-  display: inline-flex;
-  width: 100px;
-  height: 130px;
-  background-color: #76c2c1;
-  margin: 10px;
-  align-items: center;
-  border-radius: 10px;
-  flex-direction: column;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: ease 0.3s;
-  flex-shrink: 0;
-  margin-bottom: 80px;
-  font-size: 10px;
-}
-
-#main {
-  display: inline-block;
-  width: 40%;
-  height: 400px;
-  overflow-y: auto;
-  background: linear-gradient(to bottom, #213842, #1b2c36, #121a1f);
-  flex-wrap: wrap;
-  border-bottom-left-radius: 50%;
-}
+  #main {
+    display: inline-block;
+    width: 40%;
+    height: 400px;
+    overflow-y: auto;
+    background: linear-gradient(to bottom, #213842, #1b2c36, #121a1f);
+    flex-wrap: wrap;
+    border-bottom-left-radius: 50%;
+  }
   #realMain aside {
     width: 40%;
   }
-footer {
-  background-color: #1b2c36;
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-  margin-top: 200px;
-}
+  footer {
+    background-color: #1b2c36;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 200px;
+  }
 
-.footer-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-.footer-section {
-  flex: 1;
-  min-width: 250px;
-  margin: 20px;
-  text-align: left;
-}
+  .footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin: 20px;
+    text-align: left;
+  }
 
-.footer-section h3 {
-  font-size: 18px;
-  margin-bottom: 15px;
-  color: #5ec4c6;
-}
+  .footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #5ec4c6;
+  }
 
-.footer-section p {
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 5px 0;
-}
+  .footer-section p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 5px 0;
+  }
 
-.social-icons {
-  display: flex;
-  gap: 10px;
-}
+  .social-icons {
+    display: flex;
+    gap: 10px;
+  }
 
-.social-icon img {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.3s ease;
-}
+  .social-icon img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+  }
 
-.social-icon img:hover {
-  transform: scale(1.2);
-}
+  .social-icon img:hover {
+    transform: scale(1.2);
+  }
 
-.footer-bottom {
-  margin-top: 30px;
-  border-top: 1px solid #2c3e50;
-  padding-top: 20px;
-  font-size: 14px;
-}
+  .footer-bottom {
+    margin-top: 30px;
+    border-top: 1px solid #2c3e50;
+    padding-top: 20px;
+    font-size: 14px;
+  }
 }
 /* Responsive Footer */
 @media screen and (max-width: 768px) {
