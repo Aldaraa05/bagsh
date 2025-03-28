@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Title of document</title>
+  <link rel="stylesheet" type="text/css" href="TeacherPage.css">
+</head>
+<body>
+<div class="Container"><nav class="Nav">nav</nav>
+
+<section class="mainIntro">
+<div class="intro">
+    <p class="Name">Сүхбаатар</p>
+    <p class="subject">Математикийн багш</p>
+    <div class="stars">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span>
+<span class="fa fa-star"></span>
+    </div>
+</div>
+<div class="profile"><img src="profile.jpg"></div>
+<div class="shortIntro"><p class="taniltsuulga">Сайн байна уу, Би та бүхний Математикийн хичээлийг заах болно. Би энэ чиглэлээр 10 жил ажиллаж байгаа бөгөөд Манай хичээл сонирхолтой, үр өгөөжтэй байх болно гэж найдаж байна.</p>
+</div>
+</div>
+</section>
+<hr>
+<section class="surgalt">
+    <p class="surgaltinfo">Сургалтын мэдээлэл</p>
+    <p><strong>Сургалт:</strong> “Математикийн үндсэн ойлголт”</p>
+<p><strong>Зорилго:</strong> “Математикийн үндсэн ойлголтуудыг суралцах бөгөөд, алгебр, геометрийн мэдлэгийг гүнзгийрүүлж, бодлого шийдэх чадварыг хөгжүүлэх.”</p>
+<p><strong>Цагийн хуваарь:</strong> “Даваа, Лхагва гаригт 10:00-12:00”</p>
+<p><strong>Сэдэв:</strong></p>
+<ul>
+    <li>Тооны үйлдлүүд, тэгшитгэлүүд</li>
+    <li>Геометрийн үндэс</li>
+    <li>Тэгш бусууд, бодлого шийдэл</li>
+</ul>
+<p><strong>Шаардлагатай материал:</strong> “Калькулятор, тооны дэвтэр”</p>
+<p><strong>Үнэлгээ:</strong></p>
+<ul>
+    <li>Шалгалт: 40%</li>
+    <li>Гэрийн даалгавар: 30%</li>
+    <li>Хичээлд оролцоо: 30%</li>
+</ul>
+</section>
+<section class="Contact">
+    <p class="ContactText">Холбоо барих</p>
+    <div class="buttons"><button>Phone</button>
+    <button>Mail</button>
+    <button>Facebook</button>
+    <button>Instagram</button></div>
+</section>
+<section class="namtar">
+    <p class="namtartext">Намтар</p>      
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">Lorem Ipsum is simply dummy text of the printing and typeset</div>
+            <div class="divider"></div>
+            <div class="slide">Lorem Ipsum is simply dummy text of the printing and typeset</div>
+            <div class="divider"></div>
+            <div class="slide">Lorem Ipsum is simply dummy text of the printing and typeset</div>
+            <div class="divider"></div>
+            <div class="slide">Lorem Ipsum is simply dummy text of the printing and typeset</div>
+            <div class="divider"></div>
+            <div class="slide">Lorem Ipsum is simply dummy text of the printing and typeset</div>
+            <div class="divider"></div>
+            <div class="slide">Lorem Ipsum is simply dummy text of the printing and typeset</div>
+            <div class="divider"></div>
+            <div class="slide">Lorem Ipsum is simply dummy text of the printing and typeset</div>
+            <div class="divider"></div>
+            <div class="slide">Lorem Ipsum is simply dummy text of the printing and typeset</div>
+            <div class="divider"></div>
+            <div class="slide">Lorem Ipsum is simply dummy text of the printing and typeset</div>
+        </div>
+        <button class="prev">&#8249;</button>
+        <button class="next">&#8250;</button>
+    </div>
+</section>
+  
+
+<script>
+    const slider = document.querySelector(".slider");
+    const slides = document.querySelectorAll(".slide");
+    const nextBtn = document.querySelector(".next");
+    const prevBtn = document.querySelector(".prev");
+
+    let index = 0;
+
+    nextBtn.addEventListener("click", () => {
+        index = (index + 1) % slides.length;
+        slider.style.transform = `translateX(-${index * (slides[0].offsetWidth + 20)}px)`;
+    });
+
+    prevBtn.addEventListener("click", () => {
+        index = (index - 1 + slides.length) % slides.length;
+        slider.style.transform = `translateX(-${index * (slides[0].offsetWidth + 20)}px)`;
+    });
+</script>
+</div>
+</body>
+</html>
