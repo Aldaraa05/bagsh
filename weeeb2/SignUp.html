@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Багш бүртгүүлэх</title>
-    <link rel="stylesheet" href="../cssFiles/SignUp.css" />
+    <link rel="stylesheet" href="./SignUp.css" />
   </head>
   <body>
-    <a class="back" href="./index.html"><img src="/weeeb2/backIcon.png" /></a>
+    <a class="back" href="./index.html"><img src="./backIcon.png" /></a>
     <div class="container">
       <div class="header">
         <h2>Багш бүртгүүлэх</h2>
@@ -127,68 +127,6 @@
       </div>
     </div>
 
-    <script>
-      document
-        .getElementById("signup-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-
-          document.querySelectorAll(".error").forEach((error) => {
-            error.style.display = "none";
-          });
-
-          let hasError = false;
-
-          const fullname = document.getElementById("fullname").value.trim();
-          if (fullname === "") {
-            document.getElementById("fullname-error").style.display = "block";
-            hasError = true;
-          }
-
-          const email = document.getElementById("email").value.trim();
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            document.getElementById("email-error").style.display = "block";
-            hasError = true;
-          }
-
-          const phone = document.getElementById("phone").value.trim();
-          const phoneRegex = /^[0-9]{8}$/;
-          if (!phoneRegex.test(phone)) {
-            document.getElementById("phone-error").style.display = "block";
-            hasError = true;
-          }
-
-          const subject = document.getElementById("subject").value.trim();
-          if (subject === "") {
-            document.getElementById("subject-error").style.display = "block";
-            hasError = true;
-          }
-
-          const password = document.getElementById("password").value;
-          if (password.length < 8) {
-            document.getElementById("password-error").style.display = "block";
-            hasError = true;
-          }
-
-          const confirmPassword =
-            document.getElementById("confirm-password").value;
-          if (password !== confirmPassword) {
-            document.getElementById("confirm-password-error").style.display =
-              "block";
-            hasError = true;
-          }
-
-          const terms = document.getElementById("terms").checked;
-          if (!terms) {
-            document.getElementById("terms-error").style.display = "block";
-            hasError = true;
-          }
-
-          if (!hasError) {
-            alert("Бүртгэл амжилттай! Таны мэдээллийг хүлээн авлаа.");
-          }
-        });
-    </script>
+    <script src="/weeeb2/auth.js"></script>
   </body>
 </html>

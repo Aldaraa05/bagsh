@@ -1,0 +1,75 @@
+:root {
+    --white: #ffffff;
+    --primary-color: #5833f1;
+    --primary-hover: #472ed9;
+    --transition: all 0.3s ease;
+  }
+  
+  #navv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 70px;
+    width: 100%;
+    background-color: var(--white);
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); 
+    transition: var(--transition);
+  }
+  
+  #navv:hover {
+    box-shadow: 0 4px 20px rgba(88, 51, 241, 0.15); 
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .linkContainer {
+    width: 15rem;
+    height: 5rem;
+    background-image: url("../zurag/teachlink.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  #golNav {
+    display: flex;
+    gap: 3rem;
+    margin: 0 auto;
+  }
+  
+  #golNav div a {
+    font-size: 1.6rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    transition: var(--transition);
+  }
+  
+  #golNav div a:hover {
+    color: var(--primary-color);
+  }
+  
+  .sign {
+    padding: 1rem 2rem;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    font-size: 1.6rem;
+    color: var(--white);
+    border-radius: 0.8rem;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+  
+  .sign:hover {
+    background-color: var(--primary-hover);
+  }
+  

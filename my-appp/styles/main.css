@@ -1,0 +1,370 @@
+
+/* Hero Section */
+.nuur {
+    display: flex;
+    padding: 5rem 5%;
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  .zurag1 {
+    width: 50%;
+    min-height: 50rem;
+    background-image: url(../zurag/1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  
+  #info1 {
+    width: 45%;
+    padding-left: 5%;
+  }
+  
+  #info1 h1 {
+    font-family: "Noto Sans", sans-serif;
+    font-size: clamp(3rem, 5vw, 6rem);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+  
+  #info1 h1:last-child {
+    color: var(--primary-color);
+  }
+  
+  .loremm {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+  }
+  
+  #infoB {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .infoBtn {
+    font-size: 1.6rem;
+    padding: 1.2rem 3rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 0.8rem;
+    border: none;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  
+  .infoBtn:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .infoBtn:last-child {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+  }
+  
+  .infoBtn:last-child:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+  }
+  
+  /* Info Sections */
+  .lilinfo {
+    background-color: var(--light-bg);
+    padding: 6rem 5%;
+  }
+  
+  .lilinfo_1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 5rem;
+    align-items: center;
+  }
+  
+  .zurag1:nth-child(2) {
+    width: 50%;
+    order: 2;
+  }
+  
+  #info2 {
+    width: 45%;
+  }
+  
+  #info2 h1 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    margin-bottom: 3rem;
+  }
+  
+  #info2 span {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 4rem;
+  }
+  
+  #info2_2 {
+    display: flex;
+    gap: 3rem;
+  }
+  
+  #info2_2 > div {
+    flex: 1;
+  }
+  
+  #info2_2 h2 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  #info2_2 span {
+    font-size: 1.4rem;
+    margin-bottom: 0;
+  }
+  
+  /* Lil Info 2 */
+  .lilinfo2 {
+    background-color: var(--white);
+    padding: 4rem 5%;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 15px rgba(88, 51, 241, 0.1);
+    transition: var(--transition);
+  }
+  
+  .lilinfo2:hover {
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.1), 
+                0 8px 25px rgba(88, 51, 241, 0.2);
+    transform: translateY(-2px);
+  }
+  .lilinfo2_1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 5rem;
+  }
+  
+  .lilinfo2_1 > div {
+    flex: 1;
+  }
+  
+  .lilinfo2_1 h1 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    margin-bottom: 2rem;
+  }
+  
+  .lilinfo2_1 span {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 2rem;
+  }
+  
+  .lilinfo2_1 ul {
+    padding-left: 2rem;
+  }
+  
+  .lilinfo2_1 li {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Teacher Info */
+  .teacherInfo {
+    background-color: var(--white);
+    padding: 6rem 5%;
+  }
+  
+  .teacherInfo_1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  
+  .zurag2 {
+    height: 50rem;
+    background-image: url(../zurag/3.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  
+  .info3 {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  .info3_1 h1 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+  }
+  
+  .info3_1 span {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  
+  .info3_1 span:not(:first-of-type) {
+    position: relative;
+    padding-left: 3rem;
+  }
+  
+  .info3_1 span:not(:first-of-type)::before {
+    content: "#";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+  
+  .info3_2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  .info3_2 > div {
+    background-color: var(--light-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    transition: var(--transition);
+  }
+  
+  .info3_2 > div:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: var(--shadow);
+  }
+  
+  .info3_2 h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .info3_2 span {
+    font-size: 1.4rem;
+  }
+  
+  /* Teacher Info 2 */
+  .teacherInfo2 {
+    background-color: var(--light-bg);
+    padding: 6rem 5%;
+  }
+  
+  .teacherInfo2_1 {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .teacherInfo2_1 h1 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    margin-bottom: 2rem;
+  }
+  
+  .teacherInfo2_1 span {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 4rem;
+  }
+  
+  .scroll {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+    overflow-x: auto;
+  }
+  
+  .spro {
+    min-width: 30rem;
+    height: 30rem;
+    background-image: url(../zurag/suragch.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+    flex-shrink: 0;
+  }
+  
+  /* FAQ */
+  .faq {
+    background-color: var(--white);
+    padding: 6rem 5%;
+  }
+  
+  .faq_1 {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .faq_1 h1 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    margin-bottom: 1rem;
+  }
+  
+  .faq_1 span {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 4rem;
+  }
+  
+  .faq-table {
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+  
+  .faq-table table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: var(--shadow);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  
+  .faq-table td {
+    padding: 2rem;
+    border-bottom: 1px solid var(--light-bg);
+    font-size: 1.6rem;
+    transition: var(--transition);
+    background-color: var(--white);
+  }
+  
+  .faq-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .faq-table tr:hover td {
+    background-color: #faf9ff;
+    transform: translateX(0.8rem);
+  }
+  
+  .faq-table tr td:before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-right: 1.5rem;
+  }
+  
+  .faq_1 button {
+    font-size: 1.6rem;
+    padding: 1.2rem 3rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 0.8rem;
+    border: none;
+    transition: var(--transition);
+    cursor: pointer;
+    margin-top: 2rem;
+  }
+  
+  .faq_1 button:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  /* Featured Teachers */
+  

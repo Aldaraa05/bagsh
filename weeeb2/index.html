@@ -17,7 +17,7 @@
         <div id="golNav">
           <div>About Us</div>
           <div>How it Works</div>
-          <div>Teachers</div>
+          <div><a href="../htmlFiles/HomePage.html">Teachers</a></div>
           <div>Student</div>
         </div>
         <a class="sign" href="./SignUp.html">Get started</a>
@@ -38,7 +38,7 @@
           reprehenderit tempore veritatis delectus.
         </div>
         <div id="infoB">
-          <button class="infoBtn">Find Teacher</button>
+          <button class="infoBtn"><a href="../htmlFiles/HomePage.html" style="text-decoration: none; color: white;">Find Teacher</a></button>
           <button class="infoBtn">Learn More</button>
         </div>
       </div>
@@ -335,5 +335,34 @@
         </div>
       </div>
     </div>
+    <script>
+      // Check if user is logged in when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        const signLink = document.querySelector('.sign');
+        
+        if (currentUser) {
+            // Change "Get started" to user's name or "Profile"
+            if (signLink) {
+                signLink.textContent = currentUser.fullname.split(' ')[0]; // Show first name
+                signLink.href = '#';
+                signLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Show user dropdown or redirect to profile
+                    if (confirm('Системээс гарах уу?')) {
+                        sessionStorage.removeItem('currentUser');
+                        window.location.reload();
+                    }
+                });
+            }
+        } else {
+            // Ensure sign in link is correct
+            if (signLink) {
+                signLink.textContent = 'Get started';
+                signLink.href = './SignIn.html';
+            }
+        }
+    });
+    </script>
   </body>
 </html>

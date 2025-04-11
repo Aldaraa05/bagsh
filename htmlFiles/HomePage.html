@@ -3,300 +3,334 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HomePage</title>
+    <title>TeachLink - Find Your Perfect Tutor</title>
     <link rel="stylesheet" href="../cssFiles/HomePage.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header>
+    <div id="navv">
       <nav>
-        <ul>
-          <div>
-            <a href="/htmlFiles/HomePage.html">
-              <img src="../images/logo.webp" alt="logo" class="logo"
-            /></a>
-            <li><a href="/HomePage.html" class="text1">Нүүр хуудас</a></li>
-            <li><a href="#" class="text1">Цагийн багш нар</a></li>
-            <li><a href="#" class="text1">Үндсэн багш нар</a></li>
-          </div>
-          <li>
-            <a href="/htmlFiles/SignIn.html" class="text1" id="nevtreh"
-              >Нэвтрэх</a
-            >
-          </li>
-        </ul>
+        <div class="linkContainer">
+          <a href="/htmlFiles/HomePage.html">
+            <img src="../weeeb2//teachlink.png" alt="TeachLink Logo" />
+          </a>
+        </div>
+        <div id="golNav">
+          <div><a href="../weeeb2/index.html">Home</a></div>
+          <div><a href="#">Teachers</a></div>
+        </div>
+        <a class="sign" href="../weeeb2/SignIn.html" id="nevtreh">Нэвтрэх</a>
       </nav>
-    </header>
-    <div class="mainContainer">
-      <div class="column">
-        <h1>О.Мөнх-Алдар</h1>
-        <p>Математикын багш</p>
+    </div>
 
-        <img src="../images/star.webp" class="star" />
-        <div class="row">
-          <a href="/htmlFiles/SignUp.html">
-            <button class="btn1">Багш болох</button></a
-          >
-
-          <button class="btn2">Сурагч болох</button>
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1>Монголын шилдэг багш нартай танилцах</h1>
+        <p>Танд тохирох чанартай боловсролыг бидэнтэй хамт бүтээцгээе</p>
+        <div class="hero-buttons">
+          <a href="/htmlFiles/SignUp.html" class="primary-btn">Багш болох</a>
+          <button class="secondary-btn">Сурагч болох</button>
         </div>
       </div>
-      <img src="../images/teacher.png" class="teacherImg" />
-      <table class="abtTchr">
-        <thead>
-          <tr>
-            <th colspan="2">Ажилласан байдал</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>🏫 2001 - 2008</td>
-            <td>Улаанбаатар хотын 45-р сургуульд математикийн багш</td>
-          </tr>
-          <tr>
-            <td>🏫 2008 - 2015</td>
-            <td>Монгол Улсын Их Сургууль, Боловсролын сургуульд ахлах багш</td>
-          </tr>
-          <tr>
-            <td>🏫 2015 - 2023</td>
-            <td>
-              Шинжлэх Ухаан Технологийн Их Сургууль, Докторын зэрэг хамгаалж,
-              профессор
-            </td>
-          </tr>
-          <tr>
-            <td>🏫 2023 - одоо</td>
-            <td>Математикийн хичээлийн сургалтын контент хөгжүүлэх судлаач</td>
-          </tr>
-          <tr>
-            <td>🔹 Тусгай ур чадвар</td>
-            <td>
-              Олимпиадын бэлтгэл хөтөлбөр боловсруулсан "Өндөр түвшний
-              математик" ном бичсэн Оюутнуудын судалгааны төсөл удирдсан
-            </td>
-          </tr>
-          <tr>
-            <td>🔥 Заах сэдэв</td>
-            <td>Уламжлал, Матрикс, Дээд математик, Дискрит математик</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="hero-image">
+        <img src="../images/teacher.png" alt="Featured Teacher" />
+      </div>
     </div>
-    <div id="realMain">
-      <aside>
-        <form action="#" method="get" role="search">
-          <div class="search-container">
-            <input
-              type="search"
-              name="q"
-              placeholder="Search for inspiration..."
-              aria-label="Search for inspiration"
-              class="search-input"
-            />
-            <button
-              type="submit"
-              class="search-button"
-              aria-label="Submit search"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
-          </div>
-          <div id="results" aria-live="polite"></div>
 
-          <div id="results"></div>
-        </form>
-        <div id="angilal">Бүх ангилал</div>
-        <div>
-          <br />
-          <div><a href="">Физик</a></div>
-          <div><a href="">Байгалийн ухаан</a></div>
-          <div><a href="">Хэл</a></div>
-          <div><a href="">Спорт</a></div>
-          <div><a href="">Тулааны урлаг</a></div>
-          <div><a href="">Урлаг</a></div>
-          <div><a href="">Уран сайхан</a></div>
-          <div><a href="">Хөгжим</a></div>
-          <div><a href="">Технологи</a></div>
-          <br />
-        </div>
-      </aside>
-      <div id="main">
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
+    <div class="featured-teacher">
+      <div class="teacher-card">
+        <div class="teacher-profile">
+          <img src="../images/pro.png" alt="Teacher Profile" />
+          <div class="teacher-rating">
+            <span>4.9</span>
+            <img src="../images/star.webp" alt="Star Rating" />
           </div>
         </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
+        <div class="teacher-info">
+          <h2>О.Мөнх-Алдар</h2>
+          <p class="subject">Математикийн багш</p>
+          <p class="bio">10+ жилийн туршлагатай математикийн мэргэжилтэн</p>
+          
+          <div class="teacher-stats">
+            <div class="stat">
+              <h3>200+</h3>
+              <p>Сурагчид</p>
+            </div>
+            <div class="stat">
+              <h3>95%</h3>
+              <p>Амжилт</p>
+            </div>
+            <div class="stat">
+              <h3>10+</h3>
+              <p>Жил</p>
+            </div>
           </div>
+          
+          <button class="view-profile-btn"><a href="./profile.html" style="text-decoration: none; color: white;">Профайл харах</a></button>
         </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
+      </div>
+      
+      <div class="teacher-experience">
+        <h2>Ажилласан байдал</h2>
+        <div class="experience-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>2001 - 2008</h3>
+              <p>Улаанбаатар хотын 45-р сургуульд математикийн багш</p>
+            </div>
           </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>2008 - 2015</h3>
+              <p>Монгол Улсын Их Сургууль, Боловсролын сургуульд ахлах багш</p>
+            </div>
           </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>2015 - 2023</h3>
+              <p>ШУТИС-д Докторын зэрэг хамгаалж, профессор</p>
+            </div>
           </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
-          </div>
-        </div>
-        <div class="bagsh">
-          <img src="../images/pro.png" alt="" />
-          <div id="medeelel">
-            <h2 style="color: black">Дорж</h2>
-            <span>Математикийн багш</span>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>2023 - одоо</h3>
+              <p>Математикийн хичээлийн сургалтын контент хөгжүүлэх судлаач</p>
+            </div>
           </div>
         </div>
       </div>
-      <div id="scroll"></div>
     </div>
-    <footer>
+
+    <div class="search-section">
+      <div class="search-container">
+        <input type="text" placeholder="Хайх... (жишээ нь: Математик, Физик)" />
+        <button>
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="filter-section">
+        <h3>Ангилалаар хайх</h3>
+        <div class="filter-tags">
+          <button class="filter-tag active">Бүгд</button>
+          <button class="filter-tag">Математик</button>
+          <button class="filter-tag">Физик</button>
+          <button class="filter-tag">Хими</button>
+          <button class="filter-tag">Англи хэл</button>
+          <button class="filter-tag">Програмчлал</button>
+          <button class="filter-tag">Уран зураг</button>
+          <button class="filter-tag">Хөгжим</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="teachers-grid">
+      <h2>Шилдэг багш нар</h2>
+      <p>Манай платформ дээр бүртгэлтэй мэргэжлийн багш нар</p>
+      
+      <div class="grid-container">
+        <!-- Teacher Card 1 -->
+        <div class="teacher-card-small">
+          <div class="card-image">
+            <img src="../images/pro.png" alt="Teacher" />
+            <div class="rating-badge">4.8</div>
+          </div>
+          <div class="card-content">
+            <h3>Б.Бат-Эрдэнэ</h3>
+            <p class="subject">Физикийн багш</p>
+            <p class="experience">8+ жилийн туршлага</p>
+            <div class="card-footer">
+              <span class="price">₮25,000/цаг</span>
+              <button class="view-btn">Дэлгэрэнгүй</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Teacher Card 2 -->
+        <div class="teacher-card-small">
+          <div class="card-image">
+            <img src="../images/pro.png" alt="Teacher" />
+            <div class="rating-badge">4.9</div>
+          </div>
+          <div class="card-content">
+            <h3>Ц.Гэрэлмаа</h3>
+            <p class="subject">Англи хэлний багш</p>
+            <p class="experience">5+ жилийн туршлага</p>
+            <div class="card-footer">
+              <span class="price">₮20,000/цаг</span>
+              <button class="view-btn">Дэлгэрэнгүй</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Teacher Card 3 -->
+        <div class="teacher-card-small">
+          <div class="card-image">
+            <img src="../images/pro.png" alt="Teacher" />
+            <div class="rating-badge">4.7</div>
+          </div>
+          <div class="card-content">
+            <h3>Д.Энхтайван</h3>
+            <p class="subject">Програмчлалын багш</p>
+            <p class="experience">6+ жилийн туршлага</p>
+            <div class="card-footer">
+              <span class="price">₮30,000/цаг</span>
+              <button class="view-btn">Дэлгэрэнгүй</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Teacher Card 4 -->
+        <div class="teacher-card-small">
+          <div class="card-image">
+            <img src="../images/pro.png" alt="Teacher" />
+            <div class="rating-badge">4.8</div>
+          </div>
+          <div class="card-content">
+            <h3>Л.Номин</h3>
+            <p class="subject">Химийн багш</p>
+            <p class="experience">7+ жилийн туршлага</p>
+            <div class="card-footer">
+              <span class="price">₮22,000/цаг</span>
+              <button class="view-btn">Дэлгэрэнгүй</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Teacher Card 5 -->
+        <div class="teacher-card-small">
+          <div class="card-image">
+            <img src="../images/pro.png" alt="Teacher" />
+            <div class="rating-badge">4.9</div>
+          </div>
+          <div class="card-content">
+            <h3>С.Ариунболд</h3>
+            <p class="subject">Математикийн багш</p>
+            <p class="experience">12+ жилийн туршлага</p>
+            <div class="card-footer">
+              <span class="price">₮28,000/цаг</span>
+              <button class="view-btn">Дэлгэрэнгүй</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Teacher Card 6 -->
+        <div class="teacher-card-small">
+          <div class="card-image">
+            <img src="../images/pro.png" alt="Teacher" />
+            <div class="rating-badge">4.6</div>
+          </div>
+          <div class="card-content">
+            <h3>П.Сүхбат</h3>
+            <p class="subject">Биологийн багш</p>
+            <p class="experience">4+ жилийн туршлага</p>
+            <div class="card-footer">
+              <span class="price">₮18,000/цаг</span>
+              <button class="view-btn">Дэлгэрэнгүй</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button class="load-more-btn">Цааш үзэх</button>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-content">
+        <h2>Багш болох хүсэлт илгээх</h2>
+        <p>Манай багшийн сандраа бүртгүүлэх бол доорх товч дарна уу</p>
+        <button class="cta-btn">Бүртгүүлэх</button>
+      </div>
+    </div>
+
+    <div class="footer">
       <div class="footer-container">
-        <div class="footer-section">
-          <h3>About Us</h3>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum illum
-            voluptate nihil nam quam debitis?
-          </p>
+        <div class="footer-row">
+          <div class="footer-column">
+            <h3>Холбоос</h3>
+            <ul>
+              <li><a href="#">Нүүр хуудас</a></li>
+              <li><a href="#">Багш нар</a></li>
+              <li><a href="#">Үйлчилгээний нөхцөл</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Холбоо барих</h3>
+            <ul>
+              <li><a href="#">Холбоо барих</a></li>
+              <li><a href="#">Тусламж</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Нэмэлт</h3>
+            <ul>
+              <li><a href="#">Блог</a></li>
+              <li><a href="#">Төлбөрийн нөхцөл</a></li>
+            </ul>
+          </div>
+          <div class="footer-column newsletter">
+            <h3>Мэдээлэл авах</h3>
+            <p>Шинэ мэдээ, сургалтын төлөвлөгөөг цаг тухайд нь авахыг хүсвэл</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Имэйл хаяг" required />
+              <button type="submit">Бүртгүүлэх</button>
+            </form>
+          </div>
         </div>
-        <div class="footer-section">
-          <h3>Contact Us</h3>
-          <p>Email: aachka8@example.com</p>
-          <p>Phone: +976 80913009</p>
-          <p>Address: Ulaanbaatar, Mongolia</p>
-        </div>
-        <div class="footer-section">
-          <h3>Follow Us</h3>
-          <div class="social-icons">
-            <a href="#" class="social-icon"
-              ><img src="../images/communication.png" alt="Facebook"
-            /></a>
-            <a href="#" class="social-icon"
-              ><img src="../images/twitter.png" alt="Twitter"
-            /></a>
-            <a href="#" class="social-icon"
-              ><img src="../images/instagram.png" alt="Instagram"
-            /></a>
-            <a href="#" class="social-icon"
-              ><img src="../images/linkedin.png" alt="LinkedIn"
-            /></a>
+        <div class="footer-row bottom-row">
+          <div class="copyright">
+            © 2025 TeachLink. Бүх эрх хуулиар хамгаалагдсан.
+            <a href="#">Нууцлалын бодлого</a>
+            <a href="#">Үйлчилгээний нөхцөл</a>
+          </div>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="LinkedIn">IN</a>
+            <a href="#" aria-label="Twitter">TW</a>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 TeachLink.</p>
-      </div>
-    </footer>
+    </div>
+
+    <script>
+      // Check if user is logged in when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+          const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+          const signLink = document.getElementById('nevtreh');
+          
+          if (currentUser) {
+              // Change "Get started" to user's name or "Profile"
+              if (signLink) {
+                  signLink.textContent = currentUser.fullname.split(' ')[0]; // Show first name
+                  signLink.href = '#';
+                  signLink.addEventListener('click', function(e) {
+                      e.preventDefault();
+                      // Show user dropdown or redirect to profile
+                      if (confirm('Системээс гарах уу?')) {
+                          sessionStorage.removeItem('currentUser');
+                          window.location.reload();
+                      }
+                  });
+              }
+          } else {
+              // Ensure sign in link is correct
+              if (signLink) {
+                  signLink.textContent = 'Нэвтрэх';
+                  signLink.href = './SignIn.html';
+              }
+          }
+      });
+    </script>
   </body>
 </html>

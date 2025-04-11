@@ -1,0 +1,106 @@
+.footer {
+    background-color: var(--white);
+    color: var(--text-color);
+    padding: 6rem 5% 3rem;
+    margin-top: auto;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  
+  .footer-column h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 1.2rem;
+  }
+  
+  .footer-column a {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: var(--transition);
+  }
+  
+  .footer-column a:hover {
+    color: var(--primary-hover);
+  }
+  
+  .newsletter p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
+  
+  .newsletter-form input {
+    padding: 1.2rem 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.6rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    width: 100%;
+  }
+  
+  .newsletter-form button {
+    background-color: var(--text-color);
+    color: var(--white);
+    border: none;
+    padding: 1.2rem 2rem;
+    border-radius: 0.6rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+  }
+  
+  .newsletter-form button:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .bottom-row {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .copyright {
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .copyright a {
+    margin-left: 2rem;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.2rem;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .social-links a {
+    color: var(--text-color);
+    font-size: 1.4rem;
+    transition: var(--transition);
+  }
+  
+  .social-links a:hover {
+    color: var(--primary-hover);
+    transform: translateY(-0.3rem);
+  }
