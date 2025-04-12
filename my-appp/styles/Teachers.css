@@ -1,0 +1,774 @@
+/* Base Styles */
+:root {
+    --primary-color: #5833f1;
+    --primary-hover: #704ff5;
+    --text-color: #333;
+    --light-bg: #f5f5f5;
+    --white: #ffffff;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 62.5%; /* 1rem = 10px */
+  }
+  
+  body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: 8rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+  }
+  
+  /* Navigation */
+  #navv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .linkContainer {
+    width: 15rem;
+    height: 5rem;
+  }
+  
+  .linkContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  #golNav {
+    display: flex;
+    gap: 3rem;
+    margin: 0 auto;
+  }
+  
+  #golNav div a {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: var(--transition);
+  }
+  
+  #golNav div a:hover {
+    color: var(--primary-color);
+  }
+  
+  .sign {
+    padding: 1rem 2rem;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    font-size: 1.6rem;
+    color: var(--white);
+    border-radius: 0.8rem;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+  
+  .sign:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    display: flex;
+    padding: 5rem 5%;
+    align-items: center;
+    min-height: 80vh;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .hero-content {
+    width: 50%;
+    padding-right: 5%;
+  }
+  
+  .hero-content h1 {
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+  }
+  
+  .hero-content p {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    color: #666;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .primary-btn, .secondary-btn {
+    font-size: 1.6rem;
+    padding: 1.2rem 3rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .primary-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .secondary-btn {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+  }
+  
+  .secondary-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+  }
+  
+  .hero-image {
+    width: 50%;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+  }
+  
+  /* Featured Teacher */
+  .featured-teacher {
+    display: flex;
+    padding: 6rem 5%;
+    gap: 5rem;
+    background-color: var(--light-bg);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .teacher-card {
+    width: 40%;
+    background-color: var(--white);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    padding: 3rem;
+  }
+  
+  .teacher-profile {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  
+  .teacher-profile img {
+    width: 100%;
+    height: 30rem;
+    object-fit: cover;
+    border-radius: 0.8rem;
+  }
+  
+  .teacher-rating {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .teacher-rating span {
+    font-weight: 500;
+  }
+  
+  .teacher-rating img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .teacher-info h2 {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subject {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+  }
+  
+  .bio {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    color: #666;
+  }
+  
+  .teacher-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat h3 {
+    font-size: 2rem;
+    color: var(--primary-color);
+  }
+  
+  .stat p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .view-profile-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .view-profile-btn:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .teacher-experience {
+    width: 60%;
+  }
+  
+  .teacher-experience h2 {
+    font-size: 2.4rem;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+  }
+  
+  .experience-timeline {
+    position: relative;
+    padding-left: 3rem;
+  }
+  
+  .experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--primary-color);
+  }
+  
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  
+  .timeline-dot {
+    position: absolute;
+    left: -3.3rem;
+    top: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    border: 3px solid var(--white);
+  }
+  
+  .timeline-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .timeline-content p {
+    font-size: 1.4rem;
+    color: #666;
+  }
+  
+  /* Search Section */
+  .search-section {
+    padding: 4rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .search-container {
+    display: flex;
+    margin-bottom: 3rem;
+    max-width: 800px;
+  }
+  
+  .search-container input {
+    flex: 1;
+    padding: 1.5rem 2rem;
+    border: 1px solid #ddd;
+    border-radius: 0.8rem 0 0 0.8rem;
+    font-size: 1.6rem;
+    outline: none;
+  }
+  
+  .search-container button {
+    padding: 1.5rem 2rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0 0.8rem 0.8rem 0;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .search-container button:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .search-container svg {
+    display: block;
+  }
+  
+  .filter-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .filter-tag {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--white);
+    border: 1px solid #ddd;
+    border-radius: 2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .filter-tag:hover, .filter-tag.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+  }
+  
+  /* Teachers Grid */
+  .teachers-grid {
+    padding: 6rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .teachers-grid h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    text-align: center;
+  }
+  
+  .teachers-grid p {
+    font-size: 1.6rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  
+  .teacher-card-small {
+    background-color: var(--white);
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .teacher-card-small:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-image {
+    position: relative;
+    height: 20rem;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .rating-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  .card-content {
+    padding: 2rem;
+  }
+  
+  .card-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subject {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .experience {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .price {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+  
+  .view-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .view-btn:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .load-more-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 1.2rem 3rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .load-more-btn:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    padding: 6rem 5%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+  }
+  
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cta-content h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-content p {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+  }
+  
+  .cta-btn {
+    padding: 1.2rem 3rem;
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .cta-btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: var(--white);
+    color: var(--text-color);
+    padding: 6rem 5% 3rem;
+    margin-top: auto;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  
+  .footer-column h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 1.2rem;
+    list-style: none;
+  }
+  
+  .footer-column a {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: var(--transition);
+  }
+  
+  .footer-column a:hover {
+    color: var(--primary-hover);
+  }
+  
+  .newsletter p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
+  
+  .newsletter-form input {
+    padding: 1.2rem 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.6rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    width: 100%;
+  }
+  
+  .newsletter-form button {
+    background-color: var(--text-color);
+    color: var(--white);
+    border: none;
+    padding: 1.2rem 2rem;
+    border-radius: 0.6rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+  }
+  
+  .newsletter-form button:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .bottom-row {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .copyright {
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .copyright a {
+    margin-left: 2rem;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.2rem;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .social-links a {
+    color: var(--text-color);
+    font-size: 1.4rem;
+    transition: var(--transition);
+  }
+  
+  .social-links a:hover {
+    color: var(--primary-hover);
+    transform: translateY(-0.3rem);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .hero-section, .featured-teacher {
+      flex-direction: column;
+    }
+    
+    .hero-content, .hero-image, 
+    .teacher-card, .teacher-experience {
+      width: 100%;
+    }
+    
+    .hero-content {
+      padding-right: 0;
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    
+    .hero-buttons {
+      justify-content: center;
+    }
+    
+    .teacher-card {
+      margin-bottom: 4rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      padding-top: 7rem;
+    }
+    
+    nav {
+      padding: 1rem 3%;
+    }
+    
+    .linkContainer {
+      width: 12rem;
+      height: 4rem;
+    }
+    
+    #golNav {
+      gap: 1.5rem;
+    }
+    
+    #golNav div a {
+      font-size: 1.4rem;
+    }
+    
+    .sign {
+      padding: 0.8rem 1.5rem;
+      font-size: 1.4rem;
+    }
+    
+    .hero-content h1 {
+      font-size: 2.8rem;
+    }
+    
+    .grid-container {
+      grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    }
+  }
+  
+  @media (max-width: 576px) {
+    body {
+      padding-top: 6rem;
+    }
+    
+    .hero-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .primary-btn, .secondary-btn {
+      width: 100%;
+    }
+    
+    .teacher-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .filter-tags {
+      justify-content: center;
+    }
+    
+    .footer-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .bottom-row {
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    
+    .copyright a {
+      margin: 0 1rem;
+    }
+  }

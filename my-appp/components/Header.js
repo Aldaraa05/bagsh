@@ -14,7 +14,7 @@ export default function Navbar() {
           <div><Link href="/students">Student</Link></div>
         </div>
 
-        <Link className="sign" href="/signup">Get started</Link>
+        <Link className="sign" href="/Signup">Get started</Link>
       </nav>
     </div>
   );

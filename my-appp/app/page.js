@@ -2,11 +2,12 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Header";
 import TInfo from "@/components/teacherTest";
+import Link from "next/link";
 import '../styles/global.css';
 import '../styles/main.css';
 export default function Home() {
   return (
-    <div>
+    <div className="main">
       <div className="nuur">
         <div className="zurag1"></div>
         <div id="info1">
@@ -20,11 +21,11 @@ export default function Home() {
             dolore eum quasi facere reprehenderit tempore veritatis delectus.
           </div>
           <div id="infoB">
+          <Link href="/Teachers" passHref>
             <button className="infoBtn">
-              <a href="../htmlFiles/HomePage.html" style={{ textDecoration: 'none', color: 'white' }}>
-                Find Teacher
-              </a>
+              Find Teacher
             </button>
+          </Link>
             <button className="infoBtn">Learn More</button>
           </div>
         </div>

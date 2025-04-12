@@ -1,5 +1,8 @@
 
 /* Hero Section */
+.main {
+  font-size: 62.5%;
+}
 .nuur {
     display: flex;
     padding: 5rem 5%;
@@ -67,6 +70,18 @@
     background-color: var(--primary-color);
     color: var(--white);
     border: none;
+  }
+  
+  .infoBtn:first-child {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: 1px solid var(--primary-color);
+  }
+  
+  .infoBtn:first-child:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
   }
   
   /* Info Sections */
