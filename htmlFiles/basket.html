@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeachLink - Сагс</title>
+    <link rel="stylesheet" href="../cssFiles/profile.css" />
+    <link rel="stylesheet" href="../cssFiles/HomePage.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../cssFiles/basket.css
+    ">
+</head>
+<body>
+    <div id="navv">
+      <nav>
+        <div class="linkContainer">
+          <a href="/htmlFiles/HomePage.html">
+            <img src="../weeeb2//teachlink.png" alt="TeachLink Logo" />
+          </a>
+        </div>
+        <div id="golNav">
+          <div><a href="../weeeb2/index.html">Home</a></div>
+          <div><a href="../htmlFiles/HomePage.html">Teachers</a></div>
+          <div><a href="../htmlFiles/Basket.html" class="active">Сагс</a></div>
+        </div>
+        <a class="sign" href="/htmlFiles/SignIn.html" id="nevtreh">Нэвтрэх</a>
+      </nav>
+    </div>
+
+    <div class="basket-container">
+        <h1><i class="fas fa-shopping-cart"></i> Миний сагс</h1>
+        
+        <!-- Basket Items -->
+        <div class="basket-items">
+            <!-- Example Basket Item -->
+            <div class="basket-item">
+                <div class="item-teacher">
+                    <img src="../images/pro.png" alt="Teacher" class="teacher-thumbnail">
+                    <div class="teacher-details">
+                        <h3>А.Балданпүрэв</h3>
+                        <p class="subject">Математикийн багш</p>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-schedule">
+                    <h4>Хуваарь:</h4>
+                    <div class="schedule-options">
+                        <select class="day-select">
+                            <option>Даваа</option>
+                            <option>Мягмар</option>
+                            <option>Лхагва</option>
+                            <option>Пүрэв</option>
+                            <option>Баасан</option>
+                        </select>
+                        <select class="time-select">
+                            <option>09:00 - 12:00</option>
+                            <option>14:00 - 18:00</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="price">₮25,000/цаг</span>
+                    <div class="quantity-controls">
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="remove-btn"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+            
+            <!-- You can add more basket items here -->
+        </div>
+        
+        <!-- Basket Summary -->
+        <div class="basket-summary">
+            <div class="summary-details">
+                <h3>Захиалгын дэлгэрэнгүй</h3>
+                <div class="summary-row">
+                    <span>Багш:</span>
+                    <span>О.Мөнх-Алдар</span>
+                </div>
+                <div class="summary-row">
+                    <span>Хуваарь:</span>
+                    <span>Даваа, 09:00 - 12:00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Тоо ширхэг:</span>
+                    <span>1 цаг</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Нийт дүн:</span>
+                    <span>₮25,000</span>
+                </div>
+            </div>
+            <button class="checkout-btn">Захиалах</button>
+        </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-container">
+        <div class="footer-row">
+          <div class="footer-column">
+            <h3>Холбоос</h3>
+            <ul>
+              <li><a href="#">Нүүр хуудас</a></li>
+              <li><a href="#">Багш нар</a></li>
+              <li><a href="#">Үйлчилгээний нөхцөл</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Холбоо барих</h3>
+            <ul>
+              <li><a href="#">Холбоо барих</a></li>
+              <li><a href="#">Тусламж</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Нэмэлт</h3>
+            <ul>
+              <li><a href="#">Блог</a></li>
+              <li><a href="#">Төлбөрийн нөхцөл</a></li>
+            </ul>
+          </div>
+          <div class="footer-column newsletter">
+            <h3>Мэдээлэл авах</h3>
+            <p>Шинэ мэдээ, сургалтын төлөвлөгөөг цаг тухайд нь авахыг хүсвэл</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Имэйл хаяг" required />
+              <button type="submit">Бүртгүүлэх</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-row bottom-row">
+          <div class="copyright">
+            © 2025 TeachLink. Бүх эрх хуулиар хамгаалагдсан.
+            <a href="#">Нууцлалын бодлого</a>
+            <a href="#">Үйлчилгээний нөхцөл</a>
+          </div>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="LinkedIn">IN</a>
+            <a href="#" aria-label="Twitter">TW</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Check if user is logged in when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+          const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+          const signLink = document.getElementById('nevtreh');
+          
+          if (currentUser) {
+              // Change "Get started" to user's name or "Profile"
+              if (signLink) {
+                  signLink.textContent = currentUser.fullname.split(' ')[0]; // Show first name
+                  signLink.href = '#';
+                  signLink.addEventListener('click', function(e) {
+                      e.preventDefault();
+                      // Show user dropdown or redirect to profile
+                      if (confirm('Системээс гарах уу?')) {
+                          sessionStorage.removeItem('currentUser');
+                          window.location.reload();
+                      }
+                  });
+              }
+          } else {
+              // Ensure sign in link is correct
+              if (signLink) {
+                  signLink.textContent = 'Нэвтрэх';
+                  signLink.href = './SignIn.html';
+              }
+          }
+
+          // Quantity controls
+          const minusBtns = document.querySelectorAll('.quantity-btn.minus');
+          const plusBtns = document.querySelectorAll('.quantity-btn.plus');
+          
+          minusBtns.forEach(btn => {
+              btn.addEventListener('click', function() {
+                  const quantityElement = this.nextElementSibling;
+                  let quantity = parseInt(quantityElement.textContent);
+                  if (quantity > 1) {
+                      quantity--;
+                      quantityElement.textContent = quantity;
+                      updateTotalPrice();
+                  }
+              });
+          });
+          
+          plusBtns.forEach(btn => {
+              btn.addEventListener('click', function() {
+                  const quantityElement = this.previousElementSibling;
+                  let quantity = parseInt(quantityElement.textContent);
+                  quantity++;
+                  quantityElement.textContent = quantity;
+                  updateTotalPrice();
+              });
+          });
+          
+          // Remove item
+          const removeBtns = document.querySelectorAll('.remove-btn');
+          removeBtns.forEach(btn => {
+              btn.addEventListener('click', function() {
+                  if (confirm('Энэ багшийг сагснаас устгах уу?')) {
+                      this.closest('.basket-item').remove();
+                      updateTotalPrice();
+                  }
+              });
+          });
+          
+          // Update total price function
+          function updateTotalPrice() {
+              // In a real app, you would calculate based on all items in the basket
+              const quantity = parseInt(document.querySelector('.quantity').textContent);
+              const pricePerHour = 25000;
+              const total = quantity * pricePerHour;
+              
+              document.querySelector('.summary-row.total span:last-child').textContent = `₮${total.toLocaleString()}`;
+              document.querySelector('.summary-row:nth-child(3) span:last-child').textContent = `${quantity} цаг`;
+          }
+          
+          // Checkout button
+          const checkoutBtn = document.querySelector('.checkout-btn');
+          if (checkoutBtn) {
+              checkoutBtn.addEventListener('click', function() {
+                  if (!currentUser) {
+                      alert('Захиалахын тулд эхлээд нэвтэрнэ үү');
+                      window.location.href = './SignIn.html';
+                      return;
+                  }
+                  
+                  // In a real app, you would proceed to checkout
+                  alert('Захиалга амжилттай хийгдлээ! Төлбөр төлөх хуудас руу шилжиж байна...');
+                  // window.location.href = './Checkout.html';
+              });
+          }
+          
+          // Update schedule when selection changes
+          const daySelect = document.querySelector('.day-select');
+          const timeSelect = document.querySelector('.time-select');
+          
+          if (daySelect && timeSelect) {
+              daySelect.addEventListener('change', updateScheduleSummary);
+              timeSelect.addEventListener('change', updateScheduleSummary);
+              
+              function updateScheduleSummary() {
+                  const selectedDay = daySelect.options[daySelect.selectedIndex].text;
+                  const selectedTime = timeSelect.options[timeSelect.selectedIndex].text;
+                  document.querySelector('.summary-row:nth-child(2) span:last-child').textContent = 
+                      `${selectedDay}, ${selectedTime}`;
+              }
+          }
+      });
+    </script>
+</body>
+</html>
