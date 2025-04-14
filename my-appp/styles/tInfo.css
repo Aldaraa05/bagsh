@@ -36,7 +36,7 @@
   
   .zurag11 {
     height: 30rem;
-    background-image: url(../zurag/ma.png);
+    background-image: url(/zurag/ma.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

@@ -416,7 +416,8 @@ nav {
 }
 
 .grid-container {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
   gap: 3rem;
   margin-bottom: 4rem;
@@ -428,6 +429,7 @@ nav {
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition);
+  width: 250px;
 }
 
 .teacher-card-small:hover {

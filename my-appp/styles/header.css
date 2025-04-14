@@ -33,7 +33,7 @@
   .linkContainer {
     width: 15rem;
     height: 5rem;
-    background-image: url("../zurag/teachlink.png");
+    background-image: url("/zurag/teachlink.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

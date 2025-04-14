@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="teacher-info">
-          <h2>О.Мөнх-Алдар</h2>
+          <h2>А.Балданпүрэв</h2>
           <p class="subject">Математикийн багш</p>
           <p class="bio">10+ жилийн туршлагатай математикийн мэргэжилтэн</p>
           
@@ -135,8 +135,11 @@
     </div>
 
     <div class="teachers-grid">
-      <h2>Шилдэг багш нар</h2>
+      <h2>Таны сонгосон багш нар</h2>
       <p>Манай платформ дээр бүртгэлтэй мэргэжлийн багш нар</p>
+      <br>
+      <br>
+      <br>
       
       <div class="grid-container">
         <!-- Teacher Card 1 -->
@@ -248,7 +251,7 @@
     <div class="cta-section">
       <div class="cta-content">
         <h2>Багш болох хүсэлт илгээх</h2>
-        <p>Манай багшийн сандраа бүртгүүлэх бол доорх товч дарна уу</p>
+        <p>Та багш болж бүртгүүлмээр байвал энд дарна уу</p>
         <button class="cta-btn">Бүртгүүлэх</button>
       </div>
     </div>
@@ -303,34 +306,5 @@
       </div>
     </div>
 
-    <script>
-      // Check if user is logged in when page loads
-      document.addEventListener('DOMContentLoaded', function() {
-          const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-          const signLink = document.getElementById('nevtreh');
-          
-          if (currentUser) {
-              // Change "Get started" to user's name or "Profile"
-              if (signLink) {
-                  signLink.textContent = currentUser.fullname.split(' ')[0]; // Show first name
-                  signLink.href = '#';
-                  signLink.addEventListener('click', function(e) {
-                      e.preventDefault();
-                      // Show user dropdown or redirect to profile
-                      if (confirm('Системээс гарах уу?')) {
-                          sessionStorage.removeItem('currentUser');
-                          window.location.reload();
-                      }
-                  });
-              }
-          } else {
-              // Ensure sign in link is correct
-              if (signLink) {
-                  signLink.textContent = 'Нэвтрэх';
-                  signLink.href = './SignIn.html';
-              }
-          }
-      });
-    </script>
   </body>
 </html>
