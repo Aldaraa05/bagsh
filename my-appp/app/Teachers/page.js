@@ -7,12 +7,13 @@ import '../../styles/Teachers.css'
 import '../../styles/global.css'
 import Teacher from '@/components/Teacher'
 import { teachers } from '../data/teachers'
-
+import { Hicheel } from '../data/lessons'
 export default function Teachers() {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeFilter, setActiveFilter] = useState('Бүгд');
     const [visibleTeachers, setVisibleTeachers] = useState(6);
     // bagshiig filter hiine 
+    
     const filteredTeachers = teachers.filter(teacher => {
       const matchesSearch = teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                            teacher.subject.toLowerCase().includes(searchTerm.toLowerCase());
@@ -20,6 +21,14 @@ export default function Teachers() {
       return matchesSearch && matchesFilter;
     });
     
+
+    // const filteredTeachers = Hicheel.filter(hicheel => {
+    //     const matchesSearch = hicheel.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    //     hicheel.subject.toLowerCase().includes(searchTerm.toLowerCase());
+    //     const matchesFilter = activeFilter === 'Бүгд' || hicheel.subject === activeFilter;
+    //     return matchesSearch && matchesFilter;
+    //   });
+      
     return (
         <div>
             <div className="hero-section">
