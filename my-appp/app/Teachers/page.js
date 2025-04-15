@@ -10,24 +10,65 @@ import { teachers } from '../data/teachers'
 import { Hicheel } from '../data/lessons'
 export default function Teachers() {
     const [searchTerm, setSearchTerm] = useState('');
-    const [activeFilter, setActiveFilter] = useState('Бүгд');
     const [visibleTeachers, setVisibleTeachers] = useState(6);
+    const [activeMainCateg, setMainCat] = useState(null);
+    const [activeSubCateg, setSubCat] = useState(null);
     // bagshiig filter hiine 
     
-    const filteredTeachers = teachers.filter(teacher => {
-      const matchesSearch = teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                           teacher.subject.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesFilter = activeFilter === 'Бүгд' || teacher.subject === activeFilter;
-      return matchesSearch && matchesFilter;
-    });
-    
+    // const filteredTeachers = teachers.filter(teacher => {
+    //   const matchesSearch = teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    //                        teacher.subject.toLowerCase().includes(searchTerm.toLowerCase());
+    //   const matchesFilter = activeFilter === 'Бүгд' || teacher.subject === activeFilter;
+    //   return matchesSearch && matchesFilter;
+    // });
 
-    // const filteredTeachers = Hicheel.filter(hicheel => {
-    //     const matchesSearch = hicheel.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    //     hicheel.subject.toLowerCase().includes(searchTerm.toLowerCase());
-    //     const matchesFilter = activeFilter === 'Бүгд' || hicheel.subject === activeFilter;
-    //     return matchesSearch && matchesFilter;
-    //   });
+    const mainCategories = Object.keys(Hicheel)
+
+    const dedCategories = activeMainCateg ? Object.keys(Hicheel[activeMainCateg]) : [];
+
+    const subjectGroups = activeSubCateg && activeMainCateg ? Object.keys(Hicheel[activeMainCateg][activeSubCateg]) : [];
+    
+    const getfilteredTeachers = () => {
+        let teachers = [];
+        
+        if(!activeMainCateg){
+
+            for(const mainCat in Hicheel){
+                for(const subCat in Hicheel[mainCat]){
+                    for(const hicheell in Hicheel[mainCat][subCat]){
+                        teachers = teachers.concat(Hicheel[mainCat][subCat][hicheell])
+                    }
+                }
+            }
+        }
+        else if(!activeSubCateg){
+            for(const subCat in Hicheel[activeMainCateg]){
+                for(const hicheell in Hicheel[subCat]){
+                    teachers = teachers.concat(Hicheel[subCat][hicheell])
+                }
+            }
+        }
+        else if(!subjectGroups.length){
+            for(const subject in Hicheel[activeMainCateg][activeSubCateg]){
+                teachers = teachers.concat(Hicheel[activeMainCateg][activeSubCateg][subject])
+            }
+        }else{
+            for(const subject of subjectGroups){
+                teachers = teachers.concat(Hicheel[activeMainCateg][activeSubCateg][subject])
+            }
+        }
+
+        if (searchTerm) {
+            teachers = teachers.filter(teacher => 
+                teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                teacher.subject.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+        return teachers;
+    }
+
+    const filteredTeachers = getfilteredTeachers();
+
       
     return (
         <div>
@@ -151,16 +192,20 @@ export default function Teachers() {
                 <div className="filter-section">
                 <h3>Ангилалаар хайх</h3>
                 <div className="filter-tags">
-                    {['Бүгд', 'Математик', 'Физик', 'Хими', 'Англи хэл', 'Програмчлал'].map((subject) => (
-                    <button 
-                        key={subject}
-                        className={`filter-tag ${activeFilter === subject ? 'active' : ''}`}
-                        onClick={() => setActiveFilter(subject)}
-                    >
-                        {subject}
-                    </button>
+                    {mainCategories.map((category)=>(
+                        <button
+                            key={category}
+                            className={`filter-tag ${activeMainCateg === category ? 'active' : ''}`}
+                            onClick={()=>{
+                                setMainCat(category);
+                                setSubCat(null);
+                            }}
+                            >
+                                {category.replace(/_/g, ' ')}
+                            </button>
                     ))}
                 </div>
+                
                 </div>
             </div>
 
