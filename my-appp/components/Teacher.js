@@ -8,7 +8,7 @@ export default function Teacher({ teacher }) {
       <div className="teacher-card-small">
         <div className="card-image">
           <Image 
-            src={teacher.image} 
+            src={"/zurag/pro.png"} 
             alt="Teacher" 
             width={150} 
             height={150}

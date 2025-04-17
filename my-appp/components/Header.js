@@ -5,16 +5,17 @@ export default function Navbar() {
   return (
     <div id="navv">
       <nav>
-        <div className="linkContainer" />
+      <Link href="/"><div className="linkContainer" /></Link>
+        
 
         <div id="golNav">
-          <div><Link href="/about">About Us</Link></div>
-          <div><Link href="/how-it-works">How it Works</Link></div>
-          <div><Link href="/teachers">Teachers</Link></div>
-          <div><Link href="/students">Student</Link></div>
+          <div><Link href="/About">Бидний тухай</Link></div>
+          <div><Link href="/how-it-works">Хэрхэн ажилладаг вэ</Link></div>
+          <div><Link href="/Teachers">Багш нар</Link></div>
+          <div><Link href="/students">Profile</Link></div>
         </div>
 
-        <Link className="sign" href="/Signup">Get started</Link>
+        <Link className="sign" href="/Signup">Бүртгүүлэх</Link>
       </nav>
     </div>
   );

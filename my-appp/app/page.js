@@ -13,7 +13,7 @@ export default function Home() {
         <div id="info1">
           <div id="info1_1">
             <h1>Таньд тохирох</h1>
-            <h1>Төгс багшыг ол</h1>
+            <h1>Төгс багшийг ол</h1>
           </div>
           <div className="loremm">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore deserunt nobis in,
@@ -23,10 +23,10 @@ export default function Home() {
           <div id="infoB">
           <Link href="/Teachers" passHref>
             <button className="infoBtn">
-              Find Teacher
+              Багш хайх
             </button>
           </Link>
-            <button className="infoBtn">Learn More</button>
+            <button className="infoBtn">Илүү ихийг...</button>
           </div>
         </div>
       </div>
