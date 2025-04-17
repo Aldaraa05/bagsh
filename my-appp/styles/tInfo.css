@@ -1,0 +1,80 @@
+.fTeacher {
+    background-color: var(--white);
+    padding: 6rem 5%;
+  }
+  
+  .fTeacher_1 {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .fTeacher_1 h2 {
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .fTeacher_1 h1 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    margin-bottom: 1rem;
+  }
+  
+  .fTeacher_1 > span {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 4rem;
+  }
+  
+  .pro {
+    padding: 3rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .zurag11 {
+    height: 30rem;
+    background-image: url(/zurag/ma.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  
+  .pro h2 {
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .pro span {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 2rem;
+  }
+  
+  .pro ul {
+    margin-bottom: 2rem;
+  }
+  
+  .pro ul li {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    list-style-position: inside;
+  }
+  
+  .pro button {
+    font-size: 1.6rem;
+    padding: 1.2rem 3rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 0.8rem;
+    border: none;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  
+  .pro button:hover {
+    background-color: var(--primary-hover);
+  }
+  

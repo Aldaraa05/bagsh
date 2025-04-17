@@ -1,0 +1,625 @@
+/* Teacher Profile Page Styles */
+.teacher-profile-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 5%;
+}
+
+.teacher-header {
+    display: flex;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #eee;
+}
+
+.teacher-avatar {
+    position: relative;
+    width: 25rem;
+    height: 25rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.teacher-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rating-badge {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.8rem 1.5rem;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.rating-badge img {
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+.teacher-info {
+    flex: 1;
+}
+
+.teacher-info h1 {
+    font-size: 3.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.teacher-info .subject {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.teacher-info .experience {
+    font-size: 1.6rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.teacher-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.teacher-stats .stat {
+    text-align: center;
+}
+
+.teacher-stats .stat h3 {
+    font-size: 2.4rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.teacher-stats .stat p {
+    font-size: 1.4rem;
+    color: #666;
+}
+
+.price-section {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.price-section .price {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.add-to-cart-btn {
+    padding: 1.2rem 3rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.teacher-main-content {
+    display: flex;
+    gap: 4rem;
+}
+
+.teacher-left-column {
+    flex: 2;
+}
+
+.teacher-right-column {
+    flex: 1;
+}
+
+.profile-section {
+    background-color: white;
+    border-radius: 0.8rem;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow);
+}
+
+.profile-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.education-item {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.education-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.education-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.education-item .degree {
+    font-size: 1.4rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.education-item .duration {
+    font-size: 1.3rem;
+    color: #999;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--primary-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -3.3rem;
+    top: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    border: 3px solid white;
+}
+
+.timeline-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    font-size: 1.4rem;
+    color: #666;
+}
+
+.achievements-list {
+    list-style-type: none;
+}
+
+.achievements-list li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.achievements-list li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1.5rem;
+}
+
+.certificate-item {
+    border: 1px solid #eee;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.certificate-item:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-item img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.certificate-item p {
+    padding: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.review-item {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 0.8rem;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.reviewer-info img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reviewer-info h4 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.review-rating .stars {
+    color: #FFD700;
+    font-size: 1.4rem;
+}
+
+.review-rating span {
+    font-size: 1.4rem;
+    color: #666;
+}
+
+.review-date {
+    font-size: 1.2rem;
+    color: #999;
+}
+
+.review-content p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.review-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.like-btn, .reply-btn {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.like-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.like-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.reply-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.reply-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.add-review {
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid #eee;
+}
+
+.add-review h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.rating-input {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.rating-input span {
+    font-size: 1.4rem;
+}
+
+.rating-input .stars {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.rating-input .stars i {
+    font-size: 1.8rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.rating-input .stars i:hover, 
+.rating-input .stars i.active {
+    color: #FFD700;
+}
+
+.add-review textarea {
+    width: 100%;
+    height: 10rem;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    font-family: inherit;
+    margin-bottom: 1.5rem;
+    resize: vertical;
+}
+
+.submit-review-btn {
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-review-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.about-content p {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.teaching-style-list {
+    list-style-type: none;
+}
+
+.teaching-style-list li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.teaching-style-list li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.schedule-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    gap: 1.5rem;
+}
+
+.schedule-day {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 0.8rem;
+    text-align: center;
+}
+
+.schedule-day h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.schedule-day p {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.location-content p {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.map-container {
+    width: 100%;
+    height: 20rem;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.teaching-methods {
+    margin-top: 2rem;
+}
+
+.teaching-methods h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.method-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.method-tag {
+    padding: 0.5rem 1.5rem;
+    background-color: #f0f0f0;
+    border-radius: 2rem;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.method-tag.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.subjects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.subject-tag {
+    padding: 0.5rem 1.5rem;
+    background-color: #f0f0f0;
+    border-radius: 2rem;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.contact-teacher-btn {
+    width: 100%;
+    padding: 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 2rem;
+}
+
+.contact-teacher-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.sticky-cart-btn {
+    position: sticky;
+    bottom: 2rem;
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .teacher-header {
+        flex-direction: column;
+    }
+    
+    .teacher-avatar {
+        width: 100%;
+        height: 30rem;
+    }
+    
+    .teacher-stats {
+        justify-content: flex-start;
+    }
+    
+    .price-section {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .teacher-main-content {
+        flex-direction: column;
+    }
+    
+    .teacher-left-column, 
+    .teacher-right-column {
+        width: 100%;
+    }
+    
+    .schedule-container {
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    }
+    
+    .sticky-cart-btn {
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .teacher-avatar {
+        height: 25rem;
+    }
+    
+    .teacher-stats {
+        flex-wrap: wrap;
+    }
+    
+    .price-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    
+    .certificates-grid {
+        grid-template-columns: 1fr;
+    }
+}

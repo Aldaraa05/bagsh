@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Teacher Sign In</title>
-    <link rel="stylesheet" href="/cssFiles/SignIn.css" />
+    <link rel="stylesheet" href="./SignIn.css" />
   </head>
   <body>
-    <a class="back" href="./index.html"><img src="/weeeb2/backIcon.png" /></a>
+    <a class="back" href="./index.html"><img src="./backIcon.png" /></a>
     <div class="container">
       <div class="logo">
         <h1>BAGSH</h1>
@@ -40,23 +41,13 @@
 
         <div class="register-link">
           <p>
-            Don't have an account? <a href="/weeeb2/SignUp.html">Register</a>
+            Don't have an account? <a href="./SignUp.html">Register</a>
           </p>
         </div>
       </form>
     </div>
 
-    <script>
-      document
-        .getElementById("signin-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-
-          console.log("Sign in attempt:", { email, password });
-          alert("Sign in functionality would be implemented here");
-        });
-    </script>
+    <script src="/weeeb2/auth.js"></script>
   </body>
+  
 </html>
