@@ -80,6 +80,7 @@ export const teachers = [
       rating: 4.6,
       price: "₮19,000/цаг",
       image: "/zurag/pro.png"
+      
     },
     {
       id: 10,

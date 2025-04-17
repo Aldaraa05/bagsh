@@ -561,6 +561,7 @@ export const Hicheel = {
             rating: 4.7,
             price: "₮38,000/цаг",
             image: "/zurag/mgmt1.jpg"
+            
           }
         ]
       }
