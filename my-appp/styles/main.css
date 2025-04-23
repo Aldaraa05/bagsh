@@ -55,18 +55,28 @@
     transition: var(--transition);
     cursor: pointer;
   }
+  .infoBtn1 {
+    font-size: 1.6rem;
+    padding: 1.2rem 3rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 0.8rem;
+    border: none;
+    transition: var(--transition);
+    cursor: pointer;
+  }
   
   .infoBtn:hover {
     background-color: var(--primary-hover);
   }
   
-  .infoBtn:last-child {
+  .infoBtn1 {
     background-color: var(--white);
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
   }
   
-  .infoBtn:last-child:hover {
+  .infoBtn1:hover {
     background-color: var(--primary-color);
     color: var(--white);
     border: none;

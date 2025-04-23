@@ -1,24 +1,26 @@
-/* About Page Styles */
+*{
+  font-size: 18px;
+}
 .about-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
   }
   
-  .about-hero {
+  .about {
     background: linear-gradient(135deg, var(--primary-color) 0%, #6a11cb 100%);
     color: white;
     padding: 6rem 2rem;
     text-align: center;
   }
   
-  .about-hero h1 {
+  .about h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: 1.5rem;
     font-weight: 700;
   }
   
-  .about-hero p {
+  .about p {
     font-size: 1.25rem;
     max-width: 800px;
     margin: 0 auto;
@@ -26,61 +28,6 @@
     opacity: 0.9;
   }
   
-
-  .mission-section {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-    padding: 5rem 0;
-  }
-  
-  .mission-content {
-    flex: 1;
-  }
-  
-  .mission-image {
-    flex: 1;
-    min-height: 400px;
-    background-image: url('../public/zurag/pro.png');
-    background-size: cover;
-    background-position: center;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  
-  .values-section {
-    background-color: var(--light-bg);
-    padding: 5rem 0;
-  }
-  
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-  
-  .value-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .value-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-  
-  .value-icon {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
-  
-
   .team-section {
     padding: 5rem 0;
   }
@@ -108,44 +55,15 @@
     background-size: cover;
     background-position: center;
     border: 3px solid var(--primary-color);
+    background-image: url(../public/zurag/pro.png);
   }
   
-
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #6a11cb 100%);
-    color: white;
-    padding: 5rem 2rem;
-    text-align: center;
-    border-radius: 12px;
-    margin: 3rem auto;
-    max-width: 1200px;
-  }
-  
-  .cta-buttons {
+  .about-cta{
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
     justify-content: center;
-    margin-top: 2rem;
+    align-items:  center;
   }
-  
-  .cta-button {
-    padding: 0.75rem 2rem;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-  
-  .primary-button {
-    background: white;
-    color: var(--primary-color);
-  }
-  
-  .secondary-button {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-  
 
   @media (max-width: 768px) {
     .mission-section {
@@ -172,6 +90,3 @@
     to { opacity: 1; transform: translateY(0); }
   }
   
-  .about-section {
-    animation: fadeIn 0.6s ease-out forwards;
-  }

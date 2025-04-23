@@ -8,9 +8,8 @@ import '../../styles/about.css'
 export default function AboutUs() {
   return (
     <div className="main">
-      {/* Hero Section */}
-      <div className="about-hero">
-        <div className="about-hero-content">
+      <div className="about">
+        <div className="about-content">
           <h1>Бидний тухай</h1>
           <p>
             TearnLink нь сурагч болон багшдыг холбож, чанартай боловсролыг хүн бүрт хүртээмжтэй болгох зорилготой платформ юм.
@@ -18,7 +17,6 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* Mission Section */}
       <div className="about-section mission">
         <div className="about-container">
           <div className="about-text">
@@ -34,7 +32,6 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* Values Section */}
       <div className="about-section values">
         <div className="about-container reverse">
           <div className="about-image">
@@ -64,7 +61,6 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* Team Section */}
       <div className="about-section team">
         <div className="about-container">
           <div className="section-header">
@@ -91,7 +87,6 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* CTA Section */}
       <div className="about-cta">
         <h2>Бидэнтэй нэгдэх</h2>
         <p>Хэрэв та манай зорилго, үнэт зүйлстэй нийцэж байгаа бол бидэнтэй хамтран ажиллахыг урьж байна.</p>

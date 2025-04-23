@@ -10,7 +10,7 @@ export default function Navbar() {
 
         <div id="golNav">
           <div><Link href="/About">Бидний тухай</Link></div>
-          <div><Link href="/how-it-works">Хэрхэн ажилладаг вэ</Link></div>
+          <div><Link href="/how">Хэрхэн ажилладаг вэ</Link></div>
           <div><Link href="/Teachers">Багш нар</Link></div>
           <div><Link href="/students">Profile</Link></div>
         </div>

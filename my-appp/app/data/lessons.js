@@ -1,5 +1,5 @@
 export const Hicheel = {
-    Baigaliin_uhaan: { // ID range: 100000-199999
+    Baigaliin_uhaan: { // ID: 100000-199999
       fizik: { // 110000-119999
         klassik_fizik: [ // 111000-111999
           {
@@ -10,6 +10,7 @@ export const Hicheel = {
             rating: 4.8,
             price: "₮32,000/цаг",
             image: "/zurag/phys1.jpg"
+            
           },
           {
             id: 111002,

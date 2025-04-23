@@ -26,7 +26,12 @@ export default function Home() {
               Багш хайх
             </button>
           </Link>
-            <button className="infoBtn">Илүү ихийг...</button>
+
+            <Link href="/how" passHref>
+            <button className="infoBtn1">
+              Илүү ихийг...
+            </button>
+          </Link>
           </div>
         </div>
       </div>
@@ -82,7 +87,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* teacher info */}
       <div className="teacherInfo">
         <div className="teacherInfo_1">
           <div className="zurag2"></div>
@@ -94,27 +98,27 @@ export default function Home() {
                 facilis? Optio beatae tenetur ducimus, minima cum modi repellendus quidem harum
                 fugit, quo magni facere omnis! Repudiandae, quos.
               </span>
-              <span># Experienced Educators</span>
-              <span># Personalized Teaching approach</span>
-              <span># Subject Matter Experts</span>
+              <span># Өндөр турглага</span>
+              <span># Заах чадвар сайн</span>
+              <span># Тухайн сэдэвдээ мангас</span>
             </div>
             <div className="info3_2">
               <div>
-                <h1>Qualification</h1>
+                <h1>Шалгаруулалт</h1>
                 <span>expertise</span>
               </div>
               <div>
-                <h1>Subjects</h1>
+                <h1>Хичээлүүд</h1>
                 <span>Various fields</span>
               </div>
             </div>
             <div className="info3_2">
               <div>
-                <h1>Experienced</h1>
+                <h1>Туршлага</h1>
                 <span>Years of teaching</span>
               </div>
               <div>
-                <h1>Availability</h1>
+                <h1>Боломжтой байдал</h1>
                 <span>Flexible schedule</span>
               </div>
             </div>
@@ -122,7 +126,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* teacher info2 */}
       <div className="teacherInfo2">
         <div className="teacherInfo2_1">
           <h1>Сурагчдын сэтгэгдэл</h1>
@@ -153,20 +156,20 @@ export default function Home() {
             <table>
               <tbody>
                 <tr>
-                  <td>How do I find a teacher?</td>
+                  <td>Хэрхэн багшаа хайж олох вэ?</td>
                 </tr>
                 <tr>
-                  <td>What if I need to change my booking?</td>
+                  <td>Хэрэв багш таалагдаагүй бол яах вэ?</td>
                 </tr>
                 <tr>
-                  <td>Are there any fees involved?</td>
+                  <td>Хэрхэн багш болох вэ?</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <h1>Need more help?</h1>
-          <span>Contact us</span>
-          <button>Get Support</button>
+          <h1>Тусламж?</h1>
+          <span>Бидэнтэй холбогдох</span>
+          <button>Тусламж авах</button>
         </div>
       </div>
 

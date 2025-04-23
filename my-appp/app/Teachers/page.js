@@ -21,8 +21,7 @@ export default function Teachers() {
     
     const getfilteredTeachers = () => {
         let teachers = [];
-        
-        // No filters selected - show all teachers
+
         if (!activeMainCateg && !activeSubCateg && !activeSubjectGroup) {
             for (const mainCat in Hicheel) {
                 for (const subCat in Hicheel[mainCat]) {
@@ -32,7 +31,6 @@ export default function Teachers() {
                 }
             }
         }
-        // Only main category selected
         else if (activeMainCateg && !activeSubCateg && !activeSubjectGroup) {
             for (const subCat in Hicheel[activeMainCateg]) {
                 for (const subjectGroup in Hicheel[activeMainCateg][subCat]) {
@@ -40,18 +38,16 @@ export default function Teachers() {
                 }
             }
         }
-        // Main and sub category selected
         else if (activeMainCateg && activeSubCateg && !activeSubjectGroup) {
             for (const subjectGroup in Hicheel[activeMainCateg][activeSubCateg]) {
                 teachers = teachers.concat(Hicheel[activeMainCateg][activeSubCateg][subjectGroup]);
             }
         }
-        // Specific subject group selected
+
         else if (activeMainCateg && activeSubCateg && activeSubjectGroup) {
             teachers = Hicheel[activeMainCateg][activeSubCateg][activeSubjectGroup];
         }
 
-        // Apply search filter if there's a search term
         if (searchTerm) {
             teachers = teachers.filter(teacher => 
                 teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -66,7 +62,6 @@ export default function Teachers() {
 
     return (
         <div>
-            {/* Hero Section - remains unchanged */}
             <div className="hero-section">
                 <div className="hero-content">
                     <h1>Монголын шилдэг багш нартай танилцах</h1>
@@ -86,7 +81,6 @@ export default function Teachers() {
                 </div>
             </div>
 
-            {/* Featured Teacher - remains unchanged */}
             <div className="featured-teacher">
                 <div className="teacher-card">
                     <div className="teacher-profile">
@@ -169,7 +163,6 @@ export default function Teachers() {
                 </div>
             </div>
 
-            {/* Search and Filter Section */}
             <div className="search-section">
                 <div className="search-container">
                     <input 
@@ -188,8 +181,7 @@ export default function Teachers() {
                 
                 <div className="filter-section">
                     <h3>Ангилалаар хайх</h3>
-                    
-                    {/* Main Categories */}
+
                     <div className="filter-tags">
                         <button
                             className={`filter-tag ${!activeMainCateg ? 'active' : ''}`}
@@ -215,8 +207,7 @@ export default function Teachers() {
                             </button>
                         ))}
                     </div>
-                    
-                    {/* Subcategories */}
+
                     {activeMainCateg && (
                         <div className="filter-section">
                             <h4>Дэд ангилал</h4>
@@ -245,8 +236,7 @@ export default function Teachers() {
                             </div>
                         </div>
                     )}
-                    
-                    {/* Subject Groups */}
+
                     {activeSubCateg && (
                         <div className="filter-section">
                             <h4>Сэдвүүд</h4>
@@ -272,7 +262,6 @@ export default function Teachers() {
                 </div>
             </div>
 
-            {/* Teachers Grid */}
             <div className="teachers-grid">
                 <div className="grid-container">
                     {filteredTeachers.length > 0 ? (
@@ -294,7 +283,6 @@ export default function Teachers() {
                 )}
             </div>
 
-            {/* CTA Section - remains unchanged */}
             <div className="cta-section">
                 <div className="cta-content">
                     <h2>Багш болох хүсэлт илгээх</h2>
