@@ -7,7 +7,8 @@ import Footer from "@/components/Footer";
 export default function Layout({ children }) {
   const pathName = usePathname();
 
-  const page = pathName === '/Signin' || pathName === '/Signup'
+  const page = pathName === '/Signin' || pathName === '/Signup' || pathName === '/songolt' || pathName === '/student-signup' 
+  || pathName === '/Info'
   return (
     <html lang="en"> 
       <body>

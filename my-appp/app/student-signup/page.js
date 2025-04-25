@@ -113,8 +113,7 @@ export default function Signup() {
             <div className="error" id="terms-error">Үйлчилгээний нөхцөлийг зөвшөөрнө үү</div>
           </div>
 
-          <Link href= "/Info"><button type="submit" className="btn">Бүртгүүлэх</button></Link>
-          
+          <button type="submit" className="btn">Бүртгүүлэх</button>
         </form>
 
         <div className="login-link">

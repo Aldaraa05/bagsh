@@ -15,7 +15,7 @@ export default function Navbar() {
           <div><Link href="/students">Profile</Link></div>
         </div>
 
-        <Link className="sign" href="/Signup">Бүртгүүлэх</Link>
+        <Link className="sign" href="/songolt">Бүртгүүлэх</Link>
       </nav>
     </div>
   );
