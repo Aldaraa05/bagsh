@@ -5,7 +5,7 @@ export const Hicheel = {
           {
             id: 111001,
             name: "Ц.Ганбаатар",
-            subject: "Классик Физик",
+            subject: "-",
             experience: "15+ жил",
             rating: 4.8,
             price: "₮32,000/цаг",

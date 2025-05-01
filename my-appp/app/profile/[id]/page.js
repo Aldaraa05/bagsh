@@ -1,13 +1,62 @@
+"use client"
+
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import '../../styles/global.css'
-import '../../styles/profile.css'
-import Bolovsrol from "@/components/bolovsrol";
-import ATurshlaga from "@/components/ajliinTushlaga";
-import Amjiltuud from "@/components/amjiltuud";
-import Gerchilgee from "@/components/gerchilgee";
-export default function Profile() {
+import '../../../styles/profile.css'
+import '../../../styles/global.css'
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+export default function Profile({ params }) {
+    params = useParams();
+    const [teacher, setTeacher] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(()=>{
+        async function fetchTeacherData() {
+            try{
+                const res = await fetch('/api/teachers/search');
+                const data = await res.json();
+
+                let fountTeacher = null;
+                for (const mainCat in data.categories){
+                    for(const subCat in data.categories[mainCat]){
+                        for(const subjectGroup in data.categories[mainCat][subCat]){
+                            const teacherMatch = data.categories[mainCat][subCat][subjectGroup].find(
+                                t => t.id.toString() === params.id
+                            );
+                            if(teacherMatch){
+                                fountTeacher = teacherMatch;
+                                break;
+                            }
+
+                        }
+                        if(fountTeacher) break;
+                    }
+                    if(fountTeacher) break;
+                }
+                if(fountTeacher){
+                    setTeacher(fountTeacher);
+                }else{
+                    console.error("error")
+                }
+            } catch(error){
+                console.error("error", error)
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchTeacherData();
+    }, [params.id])
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (!teacher) {
+        return <div>Teacher not found</div>;
+    }
+    
     return (
         <>
             <div className="teacher-profile-container">
@@ -16,14 +65,14 @@ export default function Profile() {
                     <div className="teacher-avatar">
                         <Image src="/zurag/pro.png" alt="Teacher Avatar" width={150} height={150} />
                         <div className="rating-badge">
-                            <span>4.9</span>
+                            <span>{teacher.rating}</span>
                             <Image src="/zurag/star.webp" alt="Star Rating" width={20} height={20} />
                         </div>
                     </div>
                     <div className="teacher-info">
-                        <h1>А.Балданпүрэв</h1>
-                        <p className="subject">Математикийн багш</p>
-                        <p className="experience">10+ жилийн туршлага</p>
+                        <h1>{teacher.name}</h1>
+                        <p className="subject">{teacher.subject}</p>
+                        <p className="experience">{teacher.experience}</p>
                         <div className="teacher-stats">
                             <div className="stat">
                                 <h3>200+</h3>
@@ -39,7 +88,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className="price-section">
-                            <span className="price">₮25,000/цаг</span>
+                            <span className="price">{teacher.price}</span>
                             <button className="add-to-cart-btn">Сагсанд нэмэх</button>
                         </div>
                     </div>

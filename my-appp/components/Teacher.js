@@ -21,7 +21,7 @@ export default function Teacher({ teacher }) {
           <p className="experience">{teacher.experience}</p>
           <div className="card-footer">
             <span className="price">{teacher.price}</span>
-            <button className="view-btn">Дэлгэрэнгүй</button>
+            <Link href={`/profile/${teacher.id}`}><button className="view-btn">Дэлгэрэнгүй</button></Link>
           </div>
         </div>
       </div>

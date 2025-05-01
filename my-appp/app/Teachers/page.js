@@ -1,12 +1,11 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import '../../styles/Teachers.css'
 import '../../styles/global.css'
 import Teacher from '@/components/Teacher'
-import { Hicheel } from '../data/lessons'
 
 export default function Teachers() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -14,38 +13,59 @@ export default function Teachers() {
     const [activeMainCateg, setMainCat] = useState(null);
     const [activeSubCateg, setSubCat] = useState(null);
     const [activeSubjectGroup, setActiveSubjectGroup] = useState(null);
+    const [hicheelData, setHicheelData] = useState(null);
 
-    const mainCategories = Object.keys(Hicheel);
-    const dedCategories = activeMainCateg ? Object.keys(Hicheel[activeMainCateg]) : [];
-    const subjectGroups = activeSubCateg && activeMainCateg ? Object.keys(Hicheel[activeMainCateg][activeSubCateg]) : [];
+    useEffect(() => {
+        async function fetchData() {
+          try {
+            const res = await fetch('/api/teachers/search');
+            const data = await res.json();
+            console.log(data)
+            setHicheelData(data.categories);
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          } finally {
+          }
+        }
+        
+        fetchData();
+      }, []);
+
+      if (!hicheelData) {
+        return <div>Loading...</div>;
+      } 
+
+    const mainCategories = Object.keys(hicheelData);
+    const dedCategories = activeMainCateg ? Object.keys(hicheelData[activeMainCateg]) : [];
+    const subjectGroups = activeSubCateg && activeMainCateg ? Object.keys(hicheelData[activeMainCateg][activeSubCateg]) : [];
     
     const getfilteredTeachers = () => {
         let teachers = [];
 
         if (!activeMainCateg && !activeSubCateg && !activeSubjectGroup) {
-            for (const mainCat in Hicheel) {
-                for (const subCat in Hicheel[mainCat]) {
-                    for (const subjectGroup in Hicheel[mainCat][subCat]) {
-                        teachers = teachers.concat(Hicheel[mainCat][subCat][subjectGroup]);
+            for (const mainCat in hicheelData) {
+                for (const subCat in hicheelData[mainCat]) {
+                    for (const subjectGroup in hicheelData[mainCat][subCat]) {
+                        teachers = teachers.concat(hicheelData[mainCat][subCat][subjectGroup]);
                     }
                 }
             }
         }
         else if (activeMainCateg && !activeSubCateg && !activeSubjectGroup) {
-            for (const subCat in Hicheel[activeMainCateg]) {
-                for (const subjectGroup in Hicheel[activeMainCateg][subCat]) {
-                    teachers = teachers.concat(Hicheel[activeMainCateg][subCat][subjectGroup]);
+            for (const subCat in hicheelData[activeMainCateg]) {
+                for (const subjectGroup in hicheelData[activeMainCateg][subCat]) {
+                    teachers = teachers.concat(hicheelData[activeMainCateg][subCat][subjectGroup]);
                 }
             }
         }
         else if (activeMainCateg && activeSubCateg && !activeSubjectGroup) {
-            for (const subjectGroup in Hicheel[activeMainCateg][activeSubCateg]) {
-                teachers = teachers.concat(Hicheel[activeMainCateg][activeSubCateg][subjectGroup]);
+            for (const subjectGroup in hicheelData[activeMainCateg][activeSubCateg]) {
+                teachers = teachers.concat(hicheelData[activeMainCateg][activeSubCateg][subjectGroup]);
             }
         }
 
         else if (activeMainCateg && activeSubCateg && activeSubjectGroup) {
-            teachers = Hicheel[activeMainCateg][activeSubCateg][activeSubjectGroup];
+            teachers = hicheelData[activeMainCateg][activeSubCateg][activeSubjectGroup];
         }
 
         if (searchTerm) {
@@ -254,7 +274,7 @@ export default function Teachers() {
                                         onClick={() => setActiveSubjectGroup(subject)}
                                     >
                                         {subject.replace(/_/g, ' ')}
-                                    </button>
+                                    </button>   
                                 ))}
                             </div>
                         </div>
