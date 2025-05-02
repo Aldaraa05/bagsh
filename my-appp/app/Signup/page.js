@@ -11,6 +11,9 @@ export default function Signup() {
     experience: "",
     price: "",
     location: "",
+    gmail: "",
+    password: "",
+    phone: "",
   });
 
   const handleChange = (e) => {
@@ -32,8 +35,6 @@ export default function Signup() {
     if (res.ok) {
       alert("Багш амжилттай бүртгэгдлээ!");
       console.log("Success:", result);
-      // хүсвэл Info page рүү хөтлөөрэй
-      // router.push("/Info");
     } else {
       alert("Алдаа: " + result.error || result.message);
       console.error("Error:", result);
@@ -53,6 +54,7 @@ export default function Signup() {
         </div>
 
         <form id="signup-form" onSubmit={handleSubmit}>
+          {/* Нэр */}
           <div className="form-group">
             <label htmlFor="name">Нэр</label>
             <div className="input-with-icon">
@@ -68,6 +70,7 @@ export default function Signup() {
             </div>
           </div>
 
+          {/* Хичээл */}
           <div className="form-group">
             <label htmlFor="subject">Хичээл</label>
             <div className="input-with-icon">
@@ -83,6 +86,7 @@ export default function Signup() {
             </div>
           </div>
 
+          {/* Туршлага */}
           <div className="form-group">
             <label htmlFor="experience">Туршлага</label>
             <div className="input-with-icon">
@@ -98,6 +102,7 @@ export default function Signup() {
             </div>
           </div>
 
+          {/* Үнэ */}
           <div className="form-group">
             <label htmlFor="price">Үнэ</label>
             <div className="input-with-icon">
@@ -113,6 +118,7 @@ export default function Signup() {
             </div>
           </div>
 
+          {/* Байршил */}
           <div className="form-group">
             <label htmlFor="location">Байршил</label>
             <div className="input-with-icon">
@@ -125,6 +131,54 @@ export default function Signup() {
                 onChange={handleChange}
               />
               <i className="fas fa-map-marker-alt"></i>
+            </div>
+          </div>
+
+          {/* Gmail */}
+          <div className="form-group">
+            <label htmlFor="gmail">Gmail</label>
+            <div className="input-with-icon">
+              <input
+                type="email"
+                id="gmail"
+                name="gmail"
+                placeholder="you@example.com"
+                required
+                onChange={handleChange}
+              />
+              <i className="fas fa-envelope"></i>
+            </div>
+          </div>
+
+          {/* Нууц үг */}
+          <div className="form-group">
+            <label htmlFor="password">Нууц үг</label>
+            <div className="input-with-icon">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Нууц үгээ оруулна уу"
+                required
+                onChange={handleChange}
+              />
+              <i className="fas fa-lock"></i>
+            </div>
+          </div>
+
+          {/* Утасны дугаар */}
+          <div className="form-group">
+            <label htmlFor="phone">Утас</label>
+            <div className="input-with-icon">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="88110000"
+                required
+                onChange={handleChange}
+              />
+              <i className="fas fa-phone"></i>
             </div>
           </div>
 

@@ -3,28 +3,12 @@
 import Teacher from "@/components/Teacher";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../../styles/Teachers.css";
 import "../../styles/global.css";
 import { Hicheel } from "../data/lessons";
 
 export default function Teachers() {
-  const [teachers, setTeachers] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/api/teachers")
-      .then((res) => res.json())
-      .then((data) => {
-        setTeachers(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Алдаа гарлаа:", error);
-        setLoading(false);
-      });
-  }, []);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [visibleTeachers, setVisibleTeachers] = useState(6);
   const [activeMainCateg, setMainCat] = useState(null);
@@ -44,18 +28,20 @@ export default function Teachers() {
     let teachers = [];
 
     if (!activeMainCateg && !activeSubCateg && !activeSubjectGroup) {
-      for (const mainCat in Hicheel) {
-        for (const subCat in Hicheel[mainCat]) {
-          for (const subjectGroup in Hicheel[mainCat][subCat]) {
-            teachers = teachers.concat(Hicheel[mainCat][subCat][subjectGroup]);
+      for (const mainCat in hicheelData) {
+        for (const subCat in hicheelData[mainCat]) {
+          for (const subjectGroup in hicheelData[mainCat][subCat]) {
+            teachers = teachers.concat(
+              hicheelData[mainCat][subCat][subjectGroup]
+            );
           }
         }
       }
     } else if (activeMainCateg && !activeSubCateg && !activeSubjectGroup) {
-      for (const subCat in Hicheel[activeMainCateg]) {
-        for (const subjectGroup in Hicheel[activeMainCateg][subCat]) {
+      for (const subCat in hicheelData[activeMainCateg]) {
+        for (const subjectGroup in hicheelData[activeMainCateg][subCat]) {
           teachers = teachers.concat(
-            Hicheel[activeMainCateg][subCat][subjectGroup]
+            hicheelData[activeMainCateg][subCat][subjectGroup]
           );
         }
       }

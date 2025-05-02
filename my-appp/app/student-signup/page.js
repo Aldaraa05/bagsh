@@ -1,12 +1,62 @@
+"use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import '../../styles/signup.css';
 import '../../styles/global.css'
+
 export default function Signup() {
-  return (  
+  const [formData, setFormData] = useState({
+    name: '',
+    surname: '',
+    gmail: '',
+    number: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      alert("Нууц үг таарахгүй байна");
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          surname: formData.surname,
+          gmail: formData.gmail,
+          number: formData.number,
+          password: formData.password
+        })
+      });
+
+      const result = await res.json();
+      if (res.status === 201) {
+        alert("Амжилттай бүртгэгдлээ!");
+        console.log(result);
+      } else {
+        alert("Бүртгэл амжилтгүй. Алдаа гарлаа.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Сервертэй холбогдоход алдаа гарлаа.");
+    }
+  };
+
+  return (
     <div>
       <Link className="back" href="/">
-      <img src="/backicon.png" alt="Back" />
+        <img src="/backicon.png" alt="Back" />
       </Link>
 
       <div className="container">
@@ -15,66 +65,76 @@ export default function Signup() {
           <p>Та мэдээллээ үнэн зөв оруулна уу</p>
         </div>
 
-        <form id="signup-form">
+        <form id="signup-form" onSubmit={handleSubmit}>
+          {/* Овог */}
           <div className="form-group">
-            <label htmlFor="fullname">Овог </label>
+            <label htmlFor="surname">Овог</label>
             <div className="input-with-icon">
               <input
                 type="text"
-                id="fullname"
-                name="fullname"
+                id="surname"
+                name="surname"
                 placeholder="Овог оруулна уу"
+                value={formData.surname}
+                onChange={handleChange}
                 required
               />
               <i className="fas fa-user"></i>
             </div>
-            <div className="error" id="fullname-error">Овог нэрээ оруулна уу</div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="fullname">нэр</label>
-            <div className="input-with-icon">
-              <input
-                type="text"
-                id="fullname"
-                name="fullname"
-                placeholder="Нэрээ оруулна уу"
-                required
-              />
-              <i className="fas fa-user"></i>
-            </div>
-            <div className="error" id="fullname-error">Овог нэрээ оруулна уу</div>
           </div>
 
+          {/* Нэр */}
           <div className="form-group">
-            <label htmlFor="email">И-мэйл</label>
+            <label htmlFor="name">Нэр</label>
+            <div className="input-with-icon">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Нэрээ оруулна уу"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              <i className="fas fa-user"></i>
+            </div>
+          </div>
+
+          {/* И-мэйл */}
+          <div className="form-group">
+            <label htmlFor="gmail">И-мэйл</label>
             <div className="input-with-icon">
               <input
                 type="email"
-                id="email"
-                name="email"
+                id="gmail"
+                name="gmail"
                 placeholder="И-мэйл хаягаа оруулна уу"
+                value={formData.gmail}
+                onChange={handleChange}
                 required
               />
               <i className="fas fa-envelope"></i>
             </div>
-            <div className="error" id="email-error">Зөв и-мэйл хаяг оруулна уу</div>
           </div>
 
+          {/* Утас */}
           <div className="form-group">
-            <label htmlFor="phone">Утасны дугаар</label>
+            <label htmlFor="number">Утасны дугаар</label>
             <div className="input-with-icon">
               <input
                 type="tel"
-                id="phone"
-                name="phone"
+                id="number"
+                name="number"
                 placeholder="Утасны дугаараа оруулна уу"
+                value={formData.number}
+                onChange={handleChange}
                 required
               />
               <i className="fas fa-phone"></i>
             </div>
-            <div className="error" id="phone-error">Зөв утасны дугаар оруулна уу</div>
           </div>
 
+          {/* Нууц үг */}
           <div className="form-group">
             <label htmlFor="password">Нууц үг</label>
             <div className="input-with-icon">
@@ -83,26 +143,29 @@ export default function Signup() {
                 id="password"
                 name="password"
                 placeholder="Нууц үгээ оруулна уу"
+                value={formData.password}
+                onChange={handleChange}
                 required
               />
               <i className="fas fa-lock"></i>
             </div>
-            <div className="error" id="password-error">Нууц үг доод тал нь 8 тэмдэгт байх ёстой</div>
           </div>
 
+          {/* Баталгаажуулах */}
           <div className="form-group">
-            <label htmlFor="confirm-password">Нууц үг баталгаажуулах</label>
+            <label htmlFor="confirmPassword">Нууц үг баталгаажуулах</label>
             <div className="input-with-icon">
               <input
                 type="password"
-                id="confirm-password"
-                name="confirm-password"
+                id="confirmPassword"
+                name="confirmPassword"
                 placeholder="Нууц үгээ дахин оруулна уу"
+                value={formData.confirmPassword}
+                onChange={handleChange}
                 required
               />
               <i className="fas fa-lock"></i>
             </div>
-            <div className="error" id="confirm-password-error">Нууц үг таарахгүй байна</div>
           </div>
 
           <div className="form-group">
@@ -110,7 +173,6 @@ export default function Signup() {
               <input type="checkbox" id="terms" name="terms" required />
               <label htmlFor="terms">Үйлчилгээний нөхцөл зөвшөөрөх</label>
             </div>
-            <div className="error" id="terms-error">Үйлчилгээний нөхцөлийг зөвшөөрнө үү</div>
           </div>
 
           <button type="submit" className="btn">Бүртгүүлэх</button>
