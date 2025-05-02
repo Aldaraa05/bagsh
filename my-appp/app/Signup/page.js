@@ -1,12 +1,49 @@
-
+"use client";
 import Link from "next/link";
-import '../../styles/signup.css';
-import '../../styles/global.css'
+import { useState } from "react";
+import "../../styles/global.css";
+import "../../styles/signup.css";
+
 export default function Signup() {
-  return (  
+  const [formData, setFormData] = useState({
+    name: "",
+    subject: "",
+    experience: "",
+    price: "",
+    location: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/teachers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await res.json();
+    if (res.ok) {
+      alert("Багш амжилттай бүртгэгдлээ!");
+      console.log("Success:", result);
+      // хүсвэл Info page рүү хөтлөөрэй
+      // router.push("/Info");
+    } else {
+      alert("Алдаа: " + result.error || result.message);
+      console.error("Error:", result);
+    }
+  };
+
+  return (
     <div>
       <Link className="back" href="/">
-      <img src="/backicon.png" alt="Back" />
+        <img src="/backicon.png" alt="Back" />
       </Link>
 
       <div className="container">
@@ -15,106 +52,85 @@ export default function Signup() {
           <p>Та мэдээллээ үнэн зөв оруулна уу</p>
         </div>
 
-        <form id="signup-form">
+        <form id="signup-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="fullname">Овог </label>
+            <label htmlFor="name">Нэр</label>
             <div className="input-with-icon">
               <input
                 type="text"
-                id="fullname"
-                name="fullname"
-                placeholder="Овог оруулна уу"
-                required
-              />
-              <i className="fas fa-user"></i>
-            </div>
-            <div className="error" id="fullname-error">Овог нэрээ оруулна уу</div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="fullname">нэр</label>
-            <div className="input-with-icon">
-              <input
-                type="text"
-                id="fullname"
-                name="fullname"
+                id="name"
+                name="name"
                 placeholder="Нэрээ оруулна уу"
                 required
+                onChange={handleChange}
               />
               <i className="fas fa-user"></i>
             </div>
-            <div className="error" id="fullname-error">Овог нэрээ оруулна уу</div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">И-мэйл</label>
+            <label htmlFor="subject">Хичээл</label>
             <div className="input-with-icon">
               <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="И-мэйл хаягаа оруулна уу"
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Заах хичээл"
                 required
+                onChange={handleChange}
               />
-              <i className="fas fa-envelope"></i>
+              <i className="fas fa-book"></i>
             </div>
-            <div className="error" id="email-error">Зөв и-мэйл хаяг оруулна уу</div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone">Утасны дугаар</label>
+            <label htmlFor="experience">Туршлага</label>
             <div className="input-with-icon">
               <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Утасны дугаараа оруулна уу"
+                type="text"
+                id="experience"
+                name="experience"
+                placeholder="Жишээ: 5 жилийн туршлага"
                 required
+                onChange={handleChange}
               />
-              <i className="fas fa-phone"></i>
+              <i className="fas fa-briefcase"></i>
             </div>
-            <div className="error" id="phone-error">Зөв утасны дугаар оруулна уу</div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Нууц үг</label>
+            <label htmlFor="price">Үнэ</label>
             <div className="input-with-icon">
               <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Нууц үгээ оруулна уу"
+                type="text"
+                id="price"
+                name="price"
+                placeholder="₮30,000/цаг"
                 required
+                onChange={handleChange}
               />
-              <i className="fas fa-lock"></i>
+              <i className="fas fa-money-bill"></i>
             </div>
-            <div className="error" id="password-error">Нууц үг доод тал нь 8 тэмдэгт байх ёстой</div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="confirm-password">Нууц үг баталгаажуулах</label>
+            <label htmlFor="location">Байршил</label>
             <div className="input-with-icon">
               <input
-                type="password"
-                id="confirm-password"
-                name="confirm-password"
-                placeholder="Нууц үгээ дахин оруулна уу"
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Улаанбаатар"
                 required
+                onChange={handleChange}
               />
-              <i className="fas fa-lock"></i>
+              <i className="fas fa-map-marker-alt"></i>
             </div>
-            <div className="error" id="confirm-password-error">Нууц үг таарахгүй байна</div>
           </div>
 
-          <div className="form-group">
-            <div className="checkbox-container">
-              <input type="checkbox" id="terms" name="terms" required />
-              <label htmlFor="terms">Үйлчилгээний нөхцөл зөвшөөрөх</label>
-            </div>
-            <div className="error" id="terms-error">Үйлчилгээний нөхцөлийг зөвшөөрнө үү</div>
-          </div>
-
-          <Link href= "/Info"><button type="submit" className="btn">Бүртгүүлэх</button></Link>
-          
+          <button type="submit" className="btn">
+            Бүртгүүлэх
+          </button>
         </form>
 
         <div className="login-link">
