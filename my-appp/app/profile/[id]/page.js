@@ -89,7 +89,7 @@ export default function Profile({ params }) {
                         </div>
                         <div className="price-section">
                             <span className="price">{teacher.price}</span>
-                            <button className="add-to-cart-btn">Сагсанд нэмэх</button>
+                            <Link href="/basket"><button className="add-to-cart-btn">Сагсанд нэмэх</button></Link>
                         </div>
                     </div>
                 </div>
