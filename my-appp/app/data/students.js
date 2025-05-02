@@ -1,3 +1,5 @@
+import { basketItems } from "./basket";
+
 export const students = [
   {
     id: 1,
@@ -7,6 +9,7 @@ export const students = [
     phone: "99999999",
     password: "12345678",
     age: 20,
+    basketItems: [basketItems[0], basketItems[1], basketItems[2]],
   },
   {
     id: 2,

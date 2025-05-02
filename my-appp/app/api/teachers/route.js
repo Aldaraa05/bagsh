@@ -1,6 +1,5 @@
 import { teachers } from "@/app/data/teachers";
 
-// Runtime дээр өөрчлөгдөх хувьсагч
 let teacherList = [...teachers];
 
 export async function GET() {
