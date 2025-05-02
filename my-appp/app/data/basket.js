@@ -5,6 +5,7 @@ export const basketItems = [
     subject: "Математикийн багш",
     rating: 4.9,
     price: "₮30,000/цаг",
+    studentId: 1,
   },
   {
     id: 2,
