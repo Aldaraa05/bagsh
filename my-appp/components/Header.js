@@ -1,14 +1,8 @@
 "use client";
 import Link from "next/link";
-<<<<<<< HEAD
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import "../styles/header.css";
-=======
-import { useState, useEffect } from "react";
-import '../styles/header.css';
-import { useRouter } from "next/navigation";
->>>>>>> 3b6e7e671e84706ca9f5216a9e78e3d4cc60a23a
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
@@ -16,60 +10,33 @@ export default function Navbar() {
   const router = useRouter();
 
   useEffect(() => {
-<<<<<<< HEAD
-    async function loadSession() {
-      try {
-        const response = await fetch("/api/auth", {
-          credentials: "include",
-        });
-        const data = await response.json();
-        setSession(data.session);
-      } catch (error) {
-        console.error("Failed to load session:", error);
-      } finally {
-        setLoading(false);
-=======
-    if (typeof window !== 'undefined') {
-      const savedData = localStorage.getItem('signUpData');
+    if (typeof window !== "undefined") {
+      const savedData = localStorage.getItem("signUpData");
       if (savedData) {
         try {
-          console.log(savedData)
+          console.log(savedData);
           const userData = JSON.parse(savedData);
           if (userData.name && userData.surname) {
             setUser({
               name: userData.name,
               surname: userData.surname,
-              role: userData.role || 'user'
+              role: userData.role || "user",
             });
           } else {
-            console.warn('Incomplete user data in localStorage:', userData);
-            localStorage.removeItem('signUpData');
+            console.warn("Incomplete user data in localStorage:", userData);
+            localStorage.removeItem("signUpData");
           }
         } catch (error) {
-          console.error('Error parsing user data:', error);
-          localStorage.removeItem('signUpData');
+          console.error("Error parsing user data:", error);
+          localStorage.removeItem("signUpData");
         }
->>>>>>> 3b6e7e671e84706ca9f5216a9e78e3d4cc60a23a
       }
     }
   }, []);
 
-<<<<<<< HEAD
-  const handleSignOut = async () => {
-    try {
-      await fetch("/api/auth", {
-        method: "DELETE",
-        credentials: "include",
-      });
-      setSession(null);
-      router.refresh();
-    } catch (error) {
-      console.error("Logout failed:", error);
-=======
   const handleSignOut = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('signUpData');
->>>>>>> 3b6e7e671e84706ca9f5216a9e78e3d4cc60a23a
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("signUpData");
     }
     setUser(null);
     router.refresh();
@@ -119,16 +86,11 @@ export default function Navbar() {
                 >
                   Мэдээлэл нэмэх
                 </Link>
-<<<<<<< HEAD
-                {session.user.role === "teacher" && (
+                {user.role === "teacher" && (
                   <Link
                     href="/teacherinfo/edit"
                     onClick={() => setDropdownOpen(false)}
                   >
-=======
-                {user.role === 'teacher' && (
-                  <Link href="/teacherinfo/edit" onClick={() => setDropdownOpen(false)}>
->>>>>>> 3b6e7e671e84706ca9f5216a9e78e3d4cc60a23a
                     Мэдээлэл засах
                   </Link>
                 )}
