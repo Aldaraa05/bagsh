@@ -60,7 +60,6 @@ export default function Profile({ params }) {
     return (
         <>
             <div className="teacher-profile-container">
-                {/* Teacher Header Section */}
                 <div className="teacher-header">
                     <div className="teacher-avatar">
                         <Image src="/zurag/pro.png" alt="Teacher Avatar" width={150} height={150} />
@@ -118,7 +117,6 @@ export default function Profile({ params }) {
                             </div>
                         </section>
 
-                        {/* Work Experience Section */}
                         <section className="profile-section">
                             <h2><i className="fas fa-briefcase"></i> Ажлын туршлага</h2>
                             <div className="timeline">
@@ -153,7 +151,7 @@ export default function Profile({ params }) {
                             </div>
                         </section>
 
-                        {/* Achievements Section */}
+                        {/* Achievements*/}
                         <section className="profile-section">
                             <h2><i className="fas fa-trophy"></i> Амжилтууд</h2>
                             <ul className="achievements-list">
@@ -163,7 +161,7 @@ export default function Profile({ params }) {
                             </ul>
                         </section>
 
-                        {/* Certificates Section */}
+                        {/* Certificates */}
                         <section className="profile-section">
                             <h2><i className="fas fa-certificate"></i> Гэрчилгээ</h2>
                             <div className="certificates-grid">
@@ -182,7 +180,7 @@ export default function Profile({ params }) {
                             </div>
                         </section>
 
-                        {/* Reviews Section */}
+                        {/* Reviews */}
                         <section className="profile-section">
                             <h2><i className="fas fa-comments"></i> Сэтгэгдлүүд</h2>
                             <div className="reviews-container">
@@ -357,7 +355,7 @@ export default function Profile({ params }) {
                             </div>
                         </section>
 
-                        {/* Contact Button */}
+                        {/* Contact */}
                         <button className="contact-teacher-btn">Багштай холбогдох</button>
 
                         <div className="sticky-cart-btn">

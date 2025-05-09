@@ -1,19 +1,19 @@
 "use client";
-import Link from "next/link";
+
 import { useState } from "react";
-import "../../styles/global.css";
-import "../../styles/signup.css";
+import Link from "next/link";
+import '../../styles/signup.css';
+import '../../styles/global.css'
 
 export default function Signup() {
   const [formData, setFormData] = useState({
-    name: "",
-    subject: "",
-    experience: "",
-    price: "",
-    location: "",
-    gmail: "",
-    password: "",
-    phone: "",
+    name: '',
+    surname: '',
+    gmail: '',
+    number: '',
+    password: '',
+    confirmPassword: '',
+    role: 'teacher',
   });
 
   const handleChange = (e) => {
@@ -23,21 +23,35 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/api/teachers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    if (formData.password !== formData.confirmPassword) {
+      alert("Нууц үг таарахгүй байна");
+      return;
+    }
 
-    const result = await res.json();
-    if (res.ok) {
-      alert("Багш амжилттай бүртгэгдлээ!");
-      console.log("Success:", result);
-    } else {
-      alert("Алдаа: " + result.error || result.message);
-      console.error("Error:", result);
+    try {
+      const res = await fetch('/api/signup', {  
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          surname: formData.surname,
+          gmail: formData.gmail,
+          number: formData.number,
+          password: formData.password,
+          role: formData.role
+        })
+      });
+
+      const result = await res.json();
+      if (res.status === 201) {
+        alert("Амжилттай бүртгэгдлээ!");
+        console.log(result);
+      } else {
+        alert("Бүртгэл амжилтгүй. Алдаа гарлаа.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Сервертэй холбогдоход алдаа гарлаа.");
     }
   };
 
@@ -54,6 +68,23 @@ export default function Signup() {
         </div>
 
         <form id="signup-form" onSubmit={handleSubmit}>
+          {/* Овог */}
+          <div className="form-group">
+            <label htmlFor="surname">Овог</label>
+            <div className="input-with-icon">
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                placeholder="Овог оруулна уу"
+                value={formData.surname}
+                onChange={handleChange}
+                required
+              />
+              <i className="fas fa-user"></i>
+            </div>
+          </div>
+
           {/* Нэр */}
           <div className="form-group">
             <label htmlFor="name">Нэр</label>
@@ -63,90 +94,45 @@ export default function Signup() {
                 id="name"
                 name="name"
                 placeholder="Нэрээ оруулна уу"
-                required
+                value={formData.name}
                 onChange={handleChange}
+                required
               />
               <i className="fas fa-user"></i>
             </div>
           </div>
 
-          {/* Хичээл */}
+          {/* И-мэйл */}
           <div className="form-group">
-            <label htmlFor="subject">Хичээл</label>
-            <div className="input-with-icon">
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                placeholder="Заах хичээл"
-                required
-                onChange={handleChange}
-              />
-              <i className="fas fa-book"></i>
-            </div>
-          </div>
-
-          {/* Туршлага */}
-          <div className="form-group">
-            <label htmlFor="experience">Туршлага</label>
-            <div className="input-with-icon">
-              <input
-                type="text"
-                id="experience"
-                name="experience"
-                placeholder="Жишээ: 5 жилийн туршлага"
-                required
-                onChange={handleChange}
-              />
-              <i className="fas fa-briefcase"></i>
-            </div>
-          </div>
-
-          {/* Үнэ */}
-          <div className="form-group">
-            <label htmlFor="price">Үнэ</label>
-            <div className="input-with-icon">
-              <input
-                type="text"
-                id="price"
-                name="price"
-                placeholder="₮30,000/цаг"
-                required
-                onChange={handleChange}
-              />
-              <i className="fas fa-money-bill"></i>
-            </div>
-          </div>
-
-          {/* Байршил */}
-          <div className="form-group">
-            <label htmlFor="location">Байршил</label>
-            <div className="input-with-icon">
-              <input
-                type="text"
-                id="location"
-                name="location"
-                placeholder="Улаанбаатар"
-                required
-                onChange={handleChange}
-              />
-              <i className="fas fa-map-marker-alt"></i>
-            </div>
-          </div>
-
-          {/* Gmail */}
-          <div className="form-group">
-            <label htmlFor="gmail">Gmail</label>
+            <label htmlFor="gmail">И-мэйл</label>
             <div className="input-with-icon">
               <input
                 type="email"
                 id="gmail"
                 name="gmail"
-                placeholder="you@example.com"
-                required
+                placeholder="И-мэйл хаягаа оруулна уу"
+                value={formData.gmail}
                 onChange={handleChange}
+                required
               />
               <i className="fas fa-envelope"></i>
+            </div>
+          </div>
+
+          {/* Утас */}
+          <div className="form-group">
+            <label htmlFor="number">Утасны дугаар</label>
+            <div className="input-with-icon">
+              <input
+                type="tel"
+                id="number"
+                name="number"
+                placeholder="Утасны дугаараа оруулна уу"
+                value={formData.number}
+                onChange={handleChange}
+                required
+              />
+              <i className="fas fa-phone"></i>
             </div>
           </div>
 
@@ -159,34 +145,43 @@ export default function Signup() {
                 id="password"
                 name="password"
                 placeholder="Нууц үгээ оруулна уу"
-                required
+                value={formData.password}
                 onChange={handleChange}
+                required
               />
               <i className="fas fa-lock"></i>
             </div>
           </div>
 
-          {/* Утасны дугаар */}
+          {/* Баталгаажуулах */}
           <div className="form-group">
-            <label htmlFor="phone">Утас</label>
+            <label htmlFor="confirmPassword">Нууц үг баталгаажуулах</label>
             <div className="input-with-icon">
               <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="88110000"
-                required
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Нууц үгээ дахин оруулна уу"
+                value={formData.confirmPassword}
                 onChange={handleChange}
+                required
               />
-              <i className="fas fa-phone"></i>
+              <i className="fas fa-lock"></i>
             </div>
           </div>
 
-          <button type="submit" className="btn">
-            Бүртгүүлэх
-          </button>
-        </form>
+          <div className="form-group">
+            <div className="checkbox-container">
+              <input type="checkbox" id="terms" name="terms" required />
+              <label htmlFor="terms">Үйлчилгээний нөхцөл зөвшөөрөх</label>
+            </div>
+          </div>
 
+          <button type="submit" className="btn">Бүртгүүлэх</button>
+        </form>
+        <div className="login-link">
+          <Link href="/Info">Мэдээлэл оруулах</Link>
+        </div>
         <div className="login-link">
           Бүртгэлтэй юу? <Link href="../Signin">Нэвтрэх</Link>
         </div>

@@ -13,7 +13,9 @@ export default function Signup() {
     number: '',
     password: '',
     confirmPassword: '',
+    role: 'student',
   });
+  const router = useRouter();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,7 +30,7 @@ export default function Signup() {
     }
 
     try {
-      const res = await fetch('/api/signup', {
+      const res = await fetch('/api/signup', {  
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -36,16 +38,18 @@ export default function Signup() {
           surname: formData.surname,
           gmail: formData.gmail,
           number: formData.number,
-          password: formData.password
-        })
+          password: formData.password,
+          role: formData.role
+        }),
+        credentials: 'include' 
       });
 
       const result = await res.json();
       if (res.status === 201) {
         alert("Амжилттай бүртгэгдлээ!");
-        console.log(result);
+        router.push('/'); 
       } else {
-        alert("Бүртгэл амжилтгүй. Алдаа гарлаа.");
+        alert(result.error || "Бүртгэл амжилтгүй. Алдаа гарлаа.");
       }
     } catch (err) {
       console.error(err);

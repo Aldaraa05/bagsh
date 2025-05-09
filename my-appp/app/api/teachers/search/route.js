@@ -1,4 +1,4 @@
-import { Hicheel } from "@/app/api/teachers/Hicheel";
+import { Hicheel } from "../../../data/lessons";
 export async function GET(Request) {
   const allTeachers = [];
   for (const mainCat in Hicheel) {

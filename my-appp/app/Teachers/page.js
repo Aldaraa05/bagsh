@@ -23,25 +23,25 @@ export default function Teachers() {
     activeSubCateg && activeMainCateg
       ? Object.keys(Hicheel[activeMainCateg][activeSubCateg])
       : [];
-
+  
   const getfilteredTeachers = () => {
     let teachers = [];
 
     if (!activeMainCateg && !activeSubCateg && !activeSubjectGroup) {
-      for (const mainCat in hicheelData) {
-        for (const subCat in hicheelData[mainCat]) {
-          for (const subjectGroup in hicheelData[mainCat][subCat]) {
+      for (const mainCat in Hicheel) {
+        for (const subCat in Hicheel[mainCat]) {
+          for (const subjectGroup in Hicheel[mainCat][subCat]) {
             teachers = teachers.concat(
-              hicheelData[mainCat][subCat][subjectGroup]
+              Hicheel[mainCat][subCat][subjectGroup]
             );
           }
         }
       }
     } else if (activeMainCateg && !activeSubCateg && !activeSubjectGroup) {
-      for (const subCat in hicheelData[activeMainCateg]) {
-        for (const subjectGroup in hicheelData[activeMainCateg][subCat]) {
+      for (const subCat in Hicheel[activeMainCateg]) {
+        for (const subjectGroup in Hicheel[activeMainCateg][subCat]) {
           teachers = teachers.concat(
-            hicheelData[activeMainCateg][subCat][subjectGroup]
+            Hicheel[activeMainCateg][subCat][subjectGroup]
           );
         }
       }
