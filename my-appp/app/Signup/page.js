@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import Link from "next/link";
 import '../../styles/signup.css';
 import '../../styles/global.css'
@@ -16,6 +16,21 @@ export default function Signup() {
     role: 'teacher',
   });
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedData = localStorage.getItem('signUpData');
+      if (savedData) {
+        setFormData(JSON.parse(savedData));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('signUpData', JSON.stringify(formData));
+    }
+  }, [formData]);
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation';
 import "./globals.css";
 import Navbar from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Providers } from './providers';
 export default function Layout({ children }) {
   const pathName = usePathname();
 
@@ -13,11 +12,9 @@ export default function Layout({ children }) {
   return (
     <html lang="en"> 
       <body>
-        <Providers>
         {!page && <Navbar />}
         {children}
         {!page && <Footer />}
-        </Providers>
       </body>
     </html>
   );

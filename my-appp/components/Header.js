@@ -1,46 +1,46 @@
 'use client';
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation';
 import '../styles/header.css';
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const [session, setSession] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    async function loadSession() {
-      try {
-        const response = await fetch('/api/auth', {
-          credentials: 'include'
-        });
-        const data = await response.json();
-        setSession(data.session);
-      } catch (error) {
-        console.error('Failed to load session:', error);
-      } finally {
-        setLoading(false);
+    if (typeof window !== 'undefined') {
+      const savedData = localStorage.getItem('signUpData');
+      if (savedData) {
+        try {
+          console.log(savedData)
+          const userData = JSON.parse(savedData);
+          if (userData.name && userData.surname) {
+            setUser({
+              name: userData.name,
+              surname: userData.surname,
+              role: userData.role || 'user'
+            });
+          } else {
+            console.warn('Incomplete user data in localStorage:', userData);
+            localStorage.removeItem('signUpData');
+          }
+        } catch (error) {
+          console.error('Error parsing user data:', error);
+          localStorage.removeItem('signUpData');
+        }
       }
     }
-    loadSession();
   }, []);
 
-  const handleSignOut = async () => {
-    try {
-      await fetch('/api/auth', {
-        method: 'DELETE',
-        credentials: 'include'
-      });
-      setSession(null);
-      router.refresh();
-    } catch (error) {
-      console.error('Logout failed:', error);
+  const handleSignOut = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('signUpData');
     }
+    setUser(null);
+    router.refresh();
   };
-
-  if (loading) return <div className="loading-indicator">Loading...</div>;
 
   return (
     <div id="navv">
@@ -54,13 +54,14 @@ export default function Navbar() {
           <div><Link href="/students">Profile</Link></div>
         </div>
 
-        {session ? (
+        {user ? (
           <div className="user-menu-container">
             <button 
               className="user-button"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              {session.user.name} {session.user.surname}
+              {user.name} {user.surname}
+              {console.log(user.name)}
             </button>
             
             {dropdownOpen && (
@@ -69,7 +70,7 @@ export default function Navbar() {
                 <Link href="/teacherinfo" onClick={() => setDropdownOpen(false)}>
                   Мэдээлэл нэмэх
                 </Link>
-                {session.user.role === 'teacher' && (
+                {user.role === 'teacher' && (
                   <Link href="/teacherinfo/edit" onClick={() => setDropdownOpen(false)}>
                     Мэдээлэл засах
                   </Link>
