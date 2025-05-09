@@ -1,16 +1,22 @@
 "use client";
 import Link from "next/link";
+<<<<<<< HEAD
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import "../styles/header.css";
+=======
+import { useState, useEffect } from "react";
+import '../styles/header.css';
+import { useRouter } from "next/navigation";
+>>>>>>> 3b6e7e671e84706ca9f5216a9e78e3d4cc60a23a
 
 export default function Navbar() {
-  const [session, setSession] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+<<<<<<< HEAD
     async function loadSession() {
       try {
         const response = await fetch("/api/auth", {
@@ -22,11 +28,33 @@ export default function Navbar() {
         console.error("Failed to load session:", error);
       } finally {
         setLoading(false);
+=======
+    if (typeof window !== 'undefined') {
+      const savedData = localStorage.getItem('signUpData');
+      if (savedData) {
+        try {
+          console.log(savedData)
+          const userData = JSON.parse(savedData);
+          if (userData.name && userData.surname) {
+            setUser({
+              name: userData.name,
+              surname: userData.surname,
+              role: userData.role || 'user'
+            });
+          } else {
+            console.warn('Incomplete user data in localStorage:', userData);
+            localStorage.removeItem('signUpData');
+          }
+        } catch (error) {
+          console.error('Error parsing user data:', error);
+          localStorage.removeItem('signUpData');
+        }
+>>>>>>> 3b6e7e671e84706ca9f5216a9e78e3d4cc60a23a
       }
     }
-    loadSession();
   }, []);
 
+<<<<<<< HEAD
   const handleSignOut = async () => {
     try {
       await fetch("/api/auth", {
@@ -37,10 +65,15 @@ export default function Navbar() {
       router.refresh();
     } catch (error) {
       console.error("Logout failed:", error);
+=======
+  const handleSignOut = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('signUpData');
+>>>>>>> 3b6e7e671e84706ca9f5216a9e78e3d4cc60a23a
     }
+    setUser(null);
+    router.refresh();
   };
-
-  if (loading) return <div className="loading-indicator">Loading...</div>;
 
   return (
     <div id="navv">
@@ -67,13 +100,14 @@ export default function Navbar() {
           </div>
         </div>
 
-        {session ? (
+        {user ? (
           <div className="user-menu-container">
             <button
               className="user-button"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              {session.user.name} {session.user.surname}
+              {user.name} {user.surname}
+              {console.log(user.name)}
             </button>
 
             {dropdownOpen && (
@@ -85,11 +119,16 @@ export default function Navbar() {
                 >
                   Мэдээлэл нэмэх
                 </Link>
+<<<<<<< HEAD
                 {session.user.role === "teacher" && (
                   <Link
                     href="/teacherinfo/edit"
                     onClick={() => setDropdownOpen(false)}
                   >
+=======
+                {user.role === 'teacher' && (
+                  <Link href="/teacherinfo/edit" onClick={() => setDropdownOpen(false)}>
+>>>>>>> 3b6e7e671e84706ca9f5216a9e78e3d4cc60a23a
                     Мэдээлэл засах
                   </Link>
                 )}

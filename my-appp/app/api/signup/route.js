@@ -1,5 +1,4 @@
 import clientPromise from "@/app/lib/mongodb";
-import { serialize } from 'cookie';
 import { NextResponse } from 'next/server';
 
 export async function GET( Request) {
@@ -44,34 +43,26 @@ export async function GET( Request) {
         surname: body.surname,
         gmail: body.gmail,
         number: body.number || null,
-        password: body.password, // Note: Hash this in production!
+        password: body.password, 
         createdAt: new Date(),
         role: body.role || 'student',
       };
   
       const result = await db.collection('users').insertOne(newUser);
       
-      // Create session immediately after signup
-      const sessionToken = newUser.gmail; // Simplified - use JWT in production
-      
-      const cookie = serialize('sessionToken', sessionToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-        maxAge: 60 * 60 * 24 * 7, // 1 week
-        path: '/',
-      });
   
       const responseData = {
         id: result.insertedId.toString(),
-        ...newUser,
-        password: undefined // Don't send password back
-      };
+        name: newUser.name,
+        surname: newUser.surname,
+        gmail: newUser.gmail,
+        number: newUser.number,
+        role: newUser.role,
+        createdAt: newUser.createdAt
+    };
   
-      return NextResponse.json(responseData, {
-        status: 201,
-        headers: { 'Set-Cookie': cookie }
-      });
+    return NextResponse.json(responseData, { status: 201 });
+
   
     } catch (error) {
       console.error('Signup error:', error);
