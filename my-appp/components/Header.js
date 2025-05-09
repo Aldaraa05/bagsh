@@ -1,8 +1,8 @@
-'use client';
+"use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation';
-import '../styles/header.css';
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import "../styles/header.css";
 
 export default function Navbar() {
   const [session, setSession] = useState(null);
@@ -13,13 +13,13 @@ export default function Navbar() {
   useEffect(() => {
     async function loadSession() {
       try {
-        const response = await fetch('/api/auth', {
-          credentials: 'include'
+        const response = await fetch("/api/auth", {
+          credentials: "include",
         });
         const data = await response.json();
         setSession(data.session);
       } catch (error) {
-        console.error('Failed to load session:', error);
+        console.error("Failed to load session:", error);
       } finally {
         setLoading(false);
       }
@@ -29,14 +29,14 @@ export default function Navbar() {
 
   const handleSignOut = async () => {
     try {
-      await fetch('/api/auth', {
-        method: 'DELETE',
-        credentials: 'include'
+      await fetch("/api/auth", {
+        method: "DELETE",
+        credentials: "include",
       });
       setSession(null);
       router.refresh();
     } catch (error) {
-      console.error('Logout failed:', error);
+      console.error("Logout failed:", error);
     }
   };
 
@@ -45,32 +45,51 @@ export default function Navbar() {
   return (
     <div id="navv">
       <nav>
-        <Link href="/"><div className="linkContainer" /></Link>
+        <Link href="/">
+          <div className="linkContainer" />
+        </Link>
 
         <div id="golNav">
-          <div><Link href="/About">Бидний тухай</Link></div>
-          <div><Link href="/how">Хэрхэн ажилладаг вэ</Link></div>
-          <div><Link href="/Teachers">Багш нар</Link></div>
-          <div><Link href="/students">Profile</Link></div>
+          <div>
+            <Link href="/About">Бидний тухай</Link>
+          </div>
+          <div>
+            <Link href="/Infos">Мэдээлэл</Link>
+          </div>
+          <div>
+            <Link href="/how">Хэрхэн ажилладаг вэ</Link>
+          </div>
+          <div>
+            <Link href="/Teachers">Багш нар</Link>
+          </div>
+          <div>
+            <Link href="/students">Profile</Link>
+          </div>
         </div>
 
         {session ? (
           <div className="user-menu-container">
-            <button 
+            <button
               className="user-button"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               {session.user.name} {session.user.surname}
             </button>
-            
+
             {dropdownOpen && (
               <div className="dropdown-menu">
                 <button onClick={handleSignOut}>Гарах</button>
-                <Link href="/teacherinfo" onClick={() => setDropdownOpen(false)}>
+                <Link
+                  href="/teacherinfo"
+                  onClick={() => setDropdownOpen(false)}
+                >
                   Мэдээлэл нэмэх
                 </Link>
-                {session.user.role === 'teacher' && (
-                  <Link href="/teacherinfo/edit" onClick={() => setDropdownOpen(false)}>
+                {session.user.role === "teacher" && (
+                  <Link
+                    href="/teacherinfo/edit"
+                    onClick={() => setDropdownOpen(false)}
+                  >
                     Мэдээлэл засах
                   </Link>
                 )}
@@ -78,7 +97,9 @@ export default function Navbar() {
             )}
           </div>
         ) : (
-          <Link className="sign" href="/songolt">Бүртгүүлэх</Link>
+          <Link className="sign" href="/songolt">
+            Бүртгүүлэх
+          </Link>
         )}
       </nav>
     </div>
