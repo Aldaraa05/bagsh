@@ -1,8 +1,8 @@
-'use client';
+"use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import '../styles/header.css';
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import "../styles/header.css";
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
@@ -14,21 +14,21 @@ export default function Navbar() {
       const savedData = localStorage.getItem('userData');
       if (savedData) {
         try {
-          console.log(savedData)
+          console.log(savedData);
           const userData = JSON.parse(savedData);
           if (userData.name && userData.surname) {
             setUser({
               name: userData.name,
               surname: userData.surname,
-              role: userData.role || 'user'
+              role: userData.role || "user",
             });
           } else {
-            console.warn('Incomplete user data in localStorage:', userData);
-            localStorage.removeItem('signUpData');
+            console.warn("Incomplete user data in localStorage:", userData);
+            localStorage.removeItem("signUpData");
           }
         } catch (error) {
-          console.error('Error parsing user data:', error);
-          localStorage.removeItem('signUpData');
+          console.error("Error parsing user data:", error);
+          localStorage.removeItem("signUpData");
         }
       }
     }
@@ -45,33 +45,49 @@ export default function Navbar() {
   return (
     <div id="navv">
       <nav>
-        <Link href="/"><div className="linkContainer" /></Link>
+        <Link href="/">
+          <div className="linkContainer" />
+        </Link>
 
         <div id="golNav">
-          <div><Link href="/About">Бидний тухай</Link></div>
-          <div><Link href="/how">Хэрхэн ажилладаг вэ</Link></div>
-          <div><Link href="/Teachers">Багш нар</Link></div>
-          <div><Link href="/students">Profile</Link></div>
+          <div>
+            <Link href="/About">Бидний тухай</Link>
+          </div>
+          <div>
+            <Link href="/Infos">Мэдээлэл</Link>
+          </div>
+          <div>
+            <Link href="/how">Хэрхэн ажилладаг вэ</Link>
+          </div>
+          <div>
+            <Link href="/Teachers">Багш нар</Link>
+          </div>
+          <div>
+            <Link href="/students">Profile</Link>
+          </div>
         </div>
 
         {user ? (
           <div className="user-menu-container">
-            <button 
+            <button
               className="user-button"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               {user.name} {user.surname}
               {console.log(user.name)}
             </button>
-            
+
             {dropdownOpen && (
               <div className="dropdown-menu">
                 <button onClick={handleSignOut}>Гарах</button>
                 <Link href="/Info" onClick={() => setDropdownOpen(false)}>
                   Мэдээлэл нэмэх
                 </Link>
-                {user.role === 'teacher' && (
-                  <Link href="/teacherinfo/edit" onClick={() => setDropdownOpen(false)}>
+                {user.role === "teacher" && (
+                  <Link
+                    href="/teacherinfo/edit"
+                    onClick={() => setDropdownOpen(false)}
+                  >
                     Мэдээлэл засах
                   </Link>
                 )}
@@ -79,7 +95,9 @@ export default function Navbar() {
             )}
           </div>
         ) : (
-          <Link className="sign" href="/songolt">Бүртгүүлэх</Link>
+          <Link className="sign" href="/songolt">
+            Бүртгүүлэх
+          </Link>
         )}
       </nav>
     </div>

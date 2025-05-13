@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 80%;
+  margin-inline: 10%;
+  margin-block: 4%;
+}
+.infoContainer {
+  width: 60%;
+  height: 200px;
+  border-radius: 0px 20px 20px 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  cursor: pointer;
+  padding-left: 20px;
+  padding-right: 50px;
+}
+.infoContainer1 {
+  width: 60%;
+  height: 200px;
+  border-radius: 20px 0px 20px 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  cursor: pointer;
+  padding-left: 20px;
+  padding-right: 50px;
+  align-self: flex-end;
+}
+
+.infoContainer:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.infoContainer1:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.infoRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+.infoColumn {
+  width: 70%;
+}
+.blueText {
+  color: #0078f6;
+  font-weight: bold;
+  font-size: 13px;
+}
+h1 {
+  font-size: 21px;
+  font-weight: bold;
+}
+img {
+  width: 120;
+  height: 120px;
+  border-radius: 50%;
+}
