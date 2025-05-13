@@ -3,10 +3,9 @@
 import Teacher from "@/components/Teacher";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../styles/Teachers.css";
 import "../../styles/global.css";
-import { Hicheel } from "../data/lessons";
 
 export default function Teachers() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,59 +13,109 @@ export default function Teachers() {
   const [activeMainCateg, setMainCat] = useState(null);
   const [activeSubCateg, setSubCat] = useState(null);
   const [activeSubjectGroup, setActiveSubjectGroup] = useState(null);
+  const [teachers, setTeachers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const mainCategories = Object.keys(Hicheel);
-  const dedCategories = activeMainCateg
-    ? Object.keys(Hicheel[activeMainCateg])
-    : [];
-  const subjectGroups =
-    activeSubCateg && activeMainCateg
-      ? Object.keys(Hicheel[activeMainCateg][activeSubCateg])
-      : [];
-  
-  const getfilteredTeachers = () => {
-    let teachers = [];
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        const response = await fetch('/api/teachers/search');
+        const data = await response.json();
+        setTeachers(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching teachers:', error);
+        setLoading(false);
+      }
+    };
 
-    if (!activeMainCateg && !activeSubCateg && !activeSubjectGroup) {
-      for (const mainCat in Hicheel) {
-        for (const subCat in Hicheel[mainCat]) {
-          for (const subjectGroup in Hicheel[mainCat][subCat]) {
-            teachers = teachers.concat(
-              Hicheel[mainCat][subCat][subjectGroup]
-            );
+    fetchTeachers();
+  }, []);
+
+const extractCategories = () => {
+  const categories = {
+    main: new Set(),
+    sub: {},
+    subjectGroups: {}
+  };
+
+  teachers.forEach(teacher => {
+    if (teacher.info?.subjectPath) {
+      const pathParts = teacher.info.subjectPath.split('.');
+      if (pathParts.length > 0) {
+        categories.main.add(pathParts[0]);
+        
+        // Initialize subcategory object for this main category if not exists
+        if (!categories.sub[pathParts[0]]) {
+          categories.sub[pathParts[0]] = new Set();
+        }
+        
+        if (pathParts.length > 1) {
+          categories.sub[pathParts[0]].add(pathParts[1]);
+          
+          // Initialize subject group object for this subcategory if not exists
+          const subKey = `${pathParts[0]}.${pathParts[1]}`;
+          if (!categories.subjectGroups[subKey]) {
+            categories.subjectGroups[subKey] = new Set();
+          }
+          
+          if (pathParts.length > 2) {
+            categories.subjectGroups[subKey].add(pathParts[2]);
           }
         }
       }
-    } else if (activeMainCateg && !activeSubCateg && !activeSubjectGroup) {
-      for (const subCat in Hicheel[activeMainCateg]) {
-        for (const subjectGroup in Hicheel[activeMainCateg][subCat]) {
-          teachers = teachers.concat(
-            Hicheel[activeMainCateg][subCat][subjectGroup]
-          );
-        }
-      }
-    } else if (activeMainCateg && activeSubCateg && !activeSubjectGroup) {
-      for (const subjectGroup in Hicheel[activeMainCateg][activeSubCateg]) {
-        teachers = teachers.concat(
-          Hicheel[activeMainCateg][activeSubCateg][subjectGroup]
-        );
-      }
-    } else if (activeMainCateg && activeSubCateg && activeSubjectGroup) {
-      teachers = Hicheel[activeMainCateg][activeSubCateg][activeSubjectGroup];
     }
+  });
 
-    if (searchTerm) {
-      teachers = teachers.filter(
-        (teacher) =>
-          teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          teacher.subject.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
+    return {
+      mainCategories: Array.from(categories.main),
+      subCategories: categories.sub, // Now an object mapping main categories to their subcategories
+      subjectGroups: categories.subjectGroups // Now an object mapping subcategories to their subject groups
+    };
+};
 
-    return teachers;
+  const { mainCategories, subCategories, subjectGroups } = extractCategories();
+  // Then when rendering subcategories, use:
+  const currentSubCategories = activeMainCateg 
+    ? Array.from(subCategories[activeMainCateg] || []) 
+    : [];
+
+  // And when rendering subject groups:
+  const currentSubjectGroups = activeMainCateg && activeSubCateg
+    ? Array.from(subjectGroups[`${activeMainCateg}.${activeSubCateg}`] || [])
+  : [];
+
+  const getfilteredTeachers = () => {
+    let filtered = teachers.filter(teacher => {
+      // Filter by search term
+      const matchesSearch = searchTerm 
+        ? teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+          (teacher.info?.subjects?.join(' ') || '').toLowerCase().includes(searchTerm.toLowerCase())
+        : true;
+
+      // Filter by category
+      const matchesCategory = !activeMainCateg || 
+        (teacher.info?.subjectPath?.startsWith(activeMainCateg) ?? false);
+      
+      // Filter by subcategory
+      const matchesSubCategory = !activeSubCateg || 
+        (teacher.info?.subjectPath?.includes(`${activeMainCateg}.${activeSubCateg}`) ?? false);
+      
+      // Filter by subject group
+      const matchesSubjectGroup = !activeSubjectGroup || 
+        (teacher.info?.subjectPath?.endsWith(activeSubjectGroup) ?? false);
+
+      return matchesSearch && matchesCategory && matchesSubCategory && matchesSubjectGroup;
+    });
+
+    return filtered;
   };
 
   const filteredTeachers = getfilteredTeachers();
+
+  if (loading) {
+    return <div className="loading">Loading teachers...</div>;
+  }
 
   return (
     <div>
@@ -240,7 +289,7 @@ export default function Teachers() {
                 >
                   Бүгд
                 </button>
-                {dedCategories.map((subCategory) => (
+                {currentSubCategories.map((subCategory) => (
                   <button
                     key={subCategory}
                     className={`filter-tag ${
@@ -270,7 +319,7 @@ export default function Teachers() {
                 >
                   Бүгд
                 </button>
-                {subjectGroups.map((subject) => (
+                {currentSubjectGroups.map((subject) => (
                   <button
                     key={subject}
                     className={`filter-tag ${
@@ -292,7 +341,21 @@ export default function Teachers() {
           {filteredTeachers.length > 0 ? (
             filteredTeachers
               .slice(0, visibleTeachers)
-              .map((teacher) => <Teacher key={teacher.id} teacher={teacher} />)
+              .map((teacher) => (
+                <Teacher 
+                  key={teacher._id} 
+                  teacher={{
+                    real_id: teacher._id,
+                    id: teacher.info?.id,
+                    name: `${teacher.name} ${teacher.surname}`,
+                    subject: teacher.info?.subjects?.[0] || "No subject",
+                    experience: teacher.info?.experience?.join(", ") || "No experience",
+                    rating: teacher.info?.rating || 4.0,
+                    price: teacher.info?.price || "₮25,000/цаг",
+                    image: teacher.picture?.url || "/zurag/pro.png"
+                  }} 
+                />
+              ))
           ) : (
             <p className="no-results">Илэрц олдсонгүй</p>
           )}

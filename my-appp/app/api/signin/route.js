@@ -5,7 +5,7 @@ export async function POST(req) {
   try {
       const client = await clientPromise;
       const db = client.db();
-      const body = await request.json();
+      const body = await req.json();
     const { gmail, password } = body;
     console.log(body)
     console.log('Received login request:', { gmail, password }); // Debug log

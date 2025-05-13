@@ -1,14 +1,13 @@
 import Link from "next/link";
-import Image from "next/image"; // Added this import
+import Image from "next/image";
 import '../styles/global.css'
-
 
 export default function Teacher({ teacher }) {
     return (
       <div className="teacher-card-small">
         <div className="card-image">
           <Image 
-            src={"/zurag/pro.png"} 
+            src={teacher.image || "/zurag/pro.png"} 
             alt="Teacher" 
             width={150} 
             height={150}
@@ -21,9 +20,11 @@ export default function Teacher({ teacher }) {
           <p className="experience">{teacher.experience}</p>
           <div className="card-footer">
             <span className="price">{teacher.price}</span>
-            <Link href={`/profile/${teacher.id}`}><button className="view-btn">Дэлгэрэнгүй</button></Link>
+            <Link href={`/profile/${teacher.id}`}>
+              <button className="view-btn">Дэлгэрэнгүй</button>
+            </Link>
           </div>
         </div>
       </div>
     );
-  }
+}

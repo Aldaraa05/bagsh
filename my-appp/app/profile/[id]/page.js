@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import Head from "next/head";
@@ -7,47 +7,46 @@ import '../../../styles/profile.css'
 import '../../../styles/global.css'
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-export default function Profile({ params }) {
-    params = useParams();
+
+export default function Profile() {
+    const params = useParams();
     const [teacher, setTeacher] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(()=>{
+    useEffect(() => {
         async function fetchTeacherData() {
-            try{
+            try {
                 const res = await fetch('/api/teachers/search');
                 const data = await res.json();
-
-                let fountTeacher = null;
-                for (const mainCat in data.categories){
-                    for(const subCat in data.categories[mainCat]){
-                        for(const subjectGroup in data.categories[mainCat][subCat]){
-                            const teacherMatch = data.categories[mainCat][subCat][subjectGroup].find(
-                                t => t.id.toString() === params.id
-                            );
-                            if(teacherMatch){
-                                fountTeacher = teacherMatch;
-                                break;
-                            }
-
-                        }
-                        if(fountTeacher) break;
-                    }
-                    if(fountTeacher) break;
+                
+                // Find teacher by ID in the flat array
+                const foundTeacher = data.find(t => 
+                    t._id === params.id || 
+                    (t.info && t.info.id && t.info.id.toString() === params.id)
+                );
+                
+                if (foundTeacher) {
+                    setTeacher({
+                        id: foundTeacher._id,
+                        name: `${foundTeacher.name} ${foundTeacher.surname}`,
+                        subject: foundTeacher.info?.subjects?.[0] || "No subject",
+                        experience: foundTeacher.info?.experience?.join(", ") || "No experience",
+                        rating: foundTeacher.info?.rating || 4.0,
+                        price: foundTeacher.info?.price || "₮25,000/цаг",
+                        image: foundTeacher.picture?.url || "/zurag/pro.png",
+                        // Add other fields as needed
+                    });
+                } else {
+                    console.error("Teacher not found");
                 }
-                if(fountTeacher){
-                    setTeacher(fountTeacher);
-                }else{
-                    console.error("error")
-                }
-            } catch(error){
-                console.error("error", error)
+            } catch (error) {
+                console.error("Error fetching teacher:", error);
             } finally {
                 setLoading(false);
             }
         }
         fetchTeacherData();
-    }, [params.id])
+    }, [params.id]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -56,7 +55,6 @@ export default function Profile({ params }) {
     if (!teacher) {
         return <div>Teacher not found</div>;
     }
-    
     return (
         <>
             <div className="teacher-profile-container">

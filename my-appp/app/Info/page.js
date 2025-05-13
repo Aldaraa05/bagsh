@@ -22,101 +22,203 @@ export default function TeacherInfoPage() {
 
   const router = useRouter();
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleArrayChange = (field, index, value) => {
-    const updated = [...form[field]];
-    updated[index] = value;
-    setForm({ ...form, [field]: updated });
+    setForm(prev => ({
+      ...prev,
+      [field]: prev[field].map((item, i) => 
+        i === index ? value : item
+      )
+    }));
   };
 
-  const addArrayField = (field) => {
-    setForm({ ...form, [field]: [...form[field], ''] });
+    const addArrayField = (field) => {
+    setForm(prev => ({
+      ...prev,
+      [field]: [...prev[field], '']
+    }));
+  };
+
+    const removeArrayField = (field, index) => {
+    setForm(prev => ({
+      ...prev,
+      [field]: prev[field].filter((_, i) => i !== index)
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Get user data directly from localStorage
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    
     if (!form.mainCategory || !form.subcategory || !form.specificSubject) {
-      alert('Please select your subject area completely');
+      alert('Бүх шаардлагатай талбарыг бөглөнө үү');
       return;
     }
 
     const subjectPath = `${form.mainCategory}.${form.subcategory}.${form.specificSubject}`;
-    const teacherGmail = ''; // Replace with actual user's email from session
-
-    const teacherInfo = {
-      gmail: teacherGmail,
-      subjectPath,
-      experience: form.experience.filter(Boolean),
-      certificates: form.certificates.filter(Boolean),
-      subjects: form.subjects.filter(Boolean),
-      achievements: form.achievements.filter(Boolean),
-      schedule: form.schedule.filter(Boolean),
-      teachingMethods: form.teachingMethods,
-      history: form.history,
-      location: form.location,
-      teamsLink: form.teamsLink,
-    };
 
     try {
       const res = await fetch('/api/infos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(teacherInfo),
+        body: JSON.stringify({
+          gmail: userData.gmail, // From localStorage
+          subjectPath,
+          experience: form.experience.filter(Boolean),
+          certificates: form.certificates.filter(Boolean),
+          achievements: form.achievements.filter(Boolean),
+          schedule: form.schedule.filter(Boolean),
+          teachingMethods: form.teachingMethods,
+          history: form.history,
+          location: form.location,
+          teamsLink: form.teamsLink,
+        }),
       });
 
       const result = await res.json();
       if (res.ok) {
-        alert(`Profile saved successfully! Your teacher ID: ${result.teacherId}`);
+        // Update local storage with new teacher info
+        const updatedUser = { ...userData, info: result.info };
+        localStorage.setItem('userData', JSON.stringify(updatedUser));
+
+        alert(`Амжилттай хадгалагдлаа! Багшийн дугаар: ${result.teacherId}`);
         router.push('/');
       } else {
-        alert(result.error || 'Failed to save profile');
+        alert(result.error || 'Хадгалахад алдаа гарлаа');
       }
     } catch (err) {
       console.error(err);
-      alert('Failed to connect to server');
+      alert('Сервертэй холбогдоход алдаа гарлаа');
     }
   };
 
+
   // Available options for subject selection
-  const mainCategories = [
-    { value: 'Baigaliin_uhaan', label: 'Байгалийн ухаан' },
-    { value: 'IT', label: 'IT' },
-    { value: 'Sport', label: 'Спорт' },
-    // Add other categories
-  ];
+const mainCategories = [
+  { value: 'Baigaliin_uhaan', label: 'Байгалийн ухаан' },
+  { value: 'IT', label: 'IT' },
+  { value: 'Sport', label: 'Спорт' },
+  { value: 'Niigmiin_uhaan', label: 'Нийгмийн ухаан' },
+  { value: 'Humuunlegiin_uhaan', label: 'Хүмүүнлэгийн ухаан' },
+  { value: 'Business', label: 'Бизнес' }
+];
 
-  const subcategories = {
-    'Baigaliin_uhaan': [
-      { value: 'fizik', label: 'Физик' },
-      { value: 'Himi', label: 'Хими' },
-      { value: 'Biology', label: 'Биологи' },
-      // Add other subcategories
-    ],
-    'IT': [
-      { value: 'Programchlal', label: 'Програмчлал' },
-      { value: 'UgugdliinSan', label: 'Өгөгдлийн сан' },
-      // Add other subcategories
-    ],
-    // Add other categories
-  };
+const subcategories = {
+  'Baigaliin_uhaan': [
+    { value: 'fizik', label: 'Физик' },
+    { value: 'Himi', label: 'Хими' },
+    { value: 'Biology', label: 'Биологи' },
+    { value: 'Math', label: 'Математик' },
+    { value: 'Astronomi', label: 'Астрономи' }
+  ],
+  'IT': [
+    { value: 'Programchlal', label: 'Програмчлал' },
+    { value: 'UgugdliinSan', label: 'Өгөгдлийн сан' },
+    { value: 'Cybersecurity', label: 'Кибер аюулгүй байдал' }
+  ],
+  'Sport': [
+    { value: 'fitness', label: 'Фитнес' },
+    { value: 'bumbug', label: 'Бөмбөгний спорт' },
+    { value: 'hooliin_sport', label: 'Хөлний спорт' }
+  ],
+  'Niigmiin_uhaan': [
+    { value: 'Tuuh', label: 'Түүх' },
+    { value: 'Ediin_zasag', label: 'Эдийн засаг' }
+  ],
+  'Humuunlegiin_uhaan': [
+    { value: 'Philosopy', label: 'Философи' }
+  ],
+  'Business': [
+    { value: 'Marketing', label: 'Маркетинг' },
+    { value: 'Management', label: 'Менежмент' }
+  ]
+};
 
-  const specificSubjects = {
-    'fizik': [
-      { value: 'klassik_fizik', label: 'Классик Физик' },
-      { value: 'kvant_fizik', label: 'Квант Физик' },
-      // Add other subjects
-    ],
-    'Himi': [
-      { value: 'organik_himi', label: 'Органик Хими' },
-      { value: 'analitik_himi', label: 'Аналитик Хими' },
-      // Add other subjects
-    ],
-    // Add other subcategories
-  };
+const specificSubjects = {
+  // Physics subjects
+  'fizik': [
+    { value: 'klassik_fizik', label: 'Классик Физик' },
+    { value: 'kvant_fizik', label: 'Квант Физик' },
+    { value: 'atom_fizik', label: 'Атомын Физик' },
+    { value: 'elektronik', label: 'Электроник' }
+  ],
+  
+  'Himi': [
+    { value: 'organik_himi', label: 'Органик Хими' },
+    { value: 'analitik_himi', label: 'Аналитик Хими' },
+    { value: 'biokhimi', label: 'Биохими' }
+  ],
+  
+  'Biology': [
+    { value: 'amid_biology', label: 'Амьд Биологи' },
+    { value: 'genetik', label: 'Генетик' },
+    { value: 'ekologi', label: 'Экологи' }
+  ],
+  
+  'Math': [
+    { value: 'yoronhii_math', label: 'Ерөнхий Математик' },
+    { value: 'discret_math', label: 'Дискрет Математик' },
+    { value: 'matrix_analiz', label: 'Матриц Анализ' },
+    { value: 'tootsoolol', label: 'Тооцоолол' }
+  ],
+  'Astronomi': [
+    { value: 'gurvan_biyet', label: 'Гурван Биет' },
+    { value: 'odiin_astronomi', label: 'Оддын Астрономи' }
+  ],
+  'Programchlal': [
+    { value: 'web_dev', label: 'Веб Хөгжүүлэлт' },
+    { value: 'mobile_dev', label: 'Мобайл Хөгжүүлэлт' },
+    { value: 'ai_programming', label: 'Хиймэл Оюун' }
+  ],
+  'UgugdliinSan': [
+    { value: 'database_design', label: 'Өгөгдлийн сангийн дизайн' },
+    { value: 'sql_mongo', label: 'SQL & MongoDB' }
+  ],
+  'Cybersecurity': [
+    { value: 'ethical_hacking', label: 'Этик Хакерчлал' },
+    { value: 'network_security', label: 'Сүлжээний Аюулгүй Байдал' }
+  ],
+  'fitness': [
+    { value: 'powerlift', label: 'Пауэрлифтинг' },
+    { value: 'yoga', label: 'Йога' },
+    { value: 'crossfit', label: 'Кроссфит' }
+  ],
+  'bumbug': [
+    { value: 'sagsan_bumbug', label: 'Сагсан Бөмбөг' },
+    { value: 'hulbumbug', label: 'Хөлбөмбөг' }
+  ],
+  'hooliin_sport': [
+    { value: 'volleyball', label: 'Волейбол' },
+    { value: 'tennis', label: 'Теннис' }
+  ],
+  'Tuuh': [
+    { value: 'mongol_tuuh', label: 'Монголын Түүх' },
+    { value: 'deed_tuuh', label: 'Дэлхийн Түүх' }
+  ],
+  'Ediin_zasag': [
+    { value: 'mikro_ediin', label: 'Микро Эдийн Засаг' },
+    { value: 'makro_ediin', label: 'Макро Эдийн Засаг' }
+  ],
+  'Philosopy': [
+    { value: 'uran_zohiol', label: 'Уран Зохиол' },
+    { value: 'filosofi', label: 'Философи' }
+  ],
+  'Marketing': [
+    { value: 'digital_marketing', label: 'Цахим Маркетинг' }
+  ],
+  'Management': [
+    { value: 'project_management', label: 'Төслийн Удирдлага' }
+  ]
+};
 
   return (
     <form onSubmit={handleSubmit} className="info-form">

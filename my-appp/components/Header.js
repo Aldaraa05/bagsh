@@ -11,7 +11,7 @@ export default function Navbar() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedData = localStorage.getItem('signUpData');
+      const savedData = localStorage.getItem('userData');
       if (savedData) {
         try {
           console.log(savedData)
@@ -36,7 +36,7 @@ export default function Navbar() {
 
   const handleSignOut = () => {
     if (typeof window !== 'undefined') {
-      localStorage.removeItem('signUpData');
+      localStorage.removeItem('userData');
     }
     setUser(null);
     router.refresh();
@@ -67,7 +67,7 @@ export default function Navbar() {
             {dropdownOpen && (
               <div className="dropdown-menu">
                 <button onClick={handleSignOut}>Гарах</button>
-                <Link href="/teacherinfo" onClick={() => setDropdownOpen(false)}>
+                <Link href="/Info" onClick={() => setDropdownOpen(false)}>
                   Мэдээлэл нэмэх
                 </Link>
                 {user.role === 'teacher' && (
