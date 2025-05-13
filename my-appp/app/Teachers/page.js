@@ -69,18 +69,16 @@ const extractCategories = () => {
 
     return {
       mainCategories: Array.from(categories.main),
-      subCategories: categories.sub, // Now an object mapping main categories to their subcategories
-      subjectGroups: categories.subjectGroups // Now an object mapping subcategories to their subject groups
+      subCategories: categories.sub, 
+      subjectGroups: categories.subjectGroups 
     };
 };
 
   const { mainCategories, subCategories, subjectGroups } = extractCategories();
-  // Then when rendering subcategories, use:
   const currentSubCategories = activeMainCateg 
     ? Array.from(subCategories[activeMainCateg] || []) 
     : [];
 
-  // And when rendering subject groups:
   const currentSubjectGroups = activeMainCateg && activeSubCateg
     ? Array.from(subjectGroups[`${activeMainCateg}.${activeSubCateg}`] || [])
   : [];
