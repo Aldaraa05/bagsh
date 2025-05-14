@@ -559,10 +559,24 @@
     background-color: var(--primary-hover);
 }
 
-.sticky-cart-btn {
-    position: sticky;
-    bottom: 2rem;
-    display: none;
+.stars {
+  display: flex;
+  gap: 8px;
+  font-size: 24px;
+  color: #ccc; /* default (unfilled) star color */
+}
+
+.stars .fas {
+  color: #f5a623; /* filled star color */
+}
+
+.stars i {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.stars i:hover {
+  transform: scale(1.2);
+  color: #ffd700; /* hover color */
 }
 
 /* Responsive Design */

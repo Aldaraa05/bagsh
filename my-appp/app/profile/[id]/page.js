@@ -1,5 +1,5 @@
 "use client";
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
@@ -12,6 +12,122 @@ export default function Profile() {
     const params = useParams();
     const [teacher, setTeacher] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [newReview, setNewReview] = useState({
+        comment: '',
+        rating: 0
+    });
+    const [currentUser, setCurrentUser] = useState(null);
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+        async function fetchReviews() {
+            try {
+            const res = await fetch(`/api/reviews?teacherId=${params.id}`);
+            const data = await res.json();
+            setReviews(data);
+            } catch (error) {
+            console.error("Error fetching reviews:", error);
+            }
+        }
+
+        // Check if user is logged in
+        if (typeof window !== 'undefined') {
+            const user = JSON.parse(localStorage.getItem('userData'));
+            setCurrentUser(user);
+        }
+
+        fetchReviews();
+        }, [params.id]);
+
+        const handleDeleteReview = async (reviewId) => {
+            if (!window.confirm('Та энэ сэтгэгдлийг устгахдаа итгэлтэй байна уу?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/reviews?_id=${reviewId}`, {
+                    method: 'DELETE'
+                });
+
+                const data = await response.json();
+                
+                console.log(data)
+                console.log(response)
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to delete review');
+                }
+
+                setReviews(reviews.filter(review => review._id !== reviewId));
+                alert('Сэтгэгдэл устгагдлаа');
+            } catch (error) {
+                console.error('Error deleting review:', error);
+                alert(`Сэтгэгдэл устгахэд алдаа гарлаа: ${error.message}`);
+            }
+        };
+        // Add this function to handle review submission
+        const handleSubmitReview = async () => {
+        if (!currentUser) {
+            alert('Сэтгэгдэл үлдээхийн тулд эхлээд нэвтэрнэ үү');
+            return;
+        }
+
+          if (!newReview.comment || !newReview.comment.trim()) {
+            alert('Сэтгэгдэл бичнэ үү');
+            return;
+        }
+
+        if (newReview.rating < 1 || newReview.rating > 5) {
+            alert('1-5 хооронд үнэлгээ өгнө үү');
+            return;
+        }
+
+        try {
+                console.log('Submitting review with:', {
+                teacherId: params.id,
+                studentId: currentUser._id || currentUser.id,
+                studentName: currentUser.name || currentUser.fullname || 'Хэрэглэгч',
+                comment: newReview.comment,
+                rating: newReview.rating
+                });
+                console.log(localStorage)
+                console.log(localStorage.getItem("userData"))
+            const response = await fetch('/api/reviews', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                teacherId: params.id,
+                studentId: currentUser._id || currentUser.id,
+                studentName: currentUser.name || currentUser.fullname || 'Хэрэглэгч',
+                comment: newReview.comment,
+                rating: newReview.rating
+            })
+            
+            });
+            console.log(response)
+            if (response.ok) {
+                const result = await response.json();
+                setReviews([result, ...reviews]);
+                setNewReview({ comment: '', rating: 0 });
+                alert('Сэтгэгдэл амжилттай илгээгдлээ!');
+            } else {
+            throw new Error('Failed to submit review');
+            }
+        } catch (error) {
+            console.error('Error submitting review:', error);
+            alert('Сэтгэгдэл илгээхэд алдаа гарлаа');
+        }
+    };
+
+        // Add this function to handle rating selection
+    const handleRatingSelect = (rating) => {
+        setNewReview(prev => ({
+            ...prev,
+            rating: rating
+        }));
+    };
+
     const addToBasket = () => {
         if (typeof window !== 'undefined') {
             // Get current basket from localStorage or create new one
@@ -213,77 +329,40 @@ export default function Profile() {
                         <section className="profile-section">
                             <h2><i className="fas fa-comments"></i> Сэтгэгдлүүд</h2>
                             <div className="reviews-container">
-                                {/* Review 1 */}
-                                <div className="review-item">
+                                {reviews.map((review) => (
+                                <div key={review._id} className="review-item">
                                     <div className="review-header">
-                                        <div className="reviewer-info">
-                                            <Image src="/images/student1.jpg" alt="Student 1" width={40} height={40} />
-                                            <div>
-                                                <h4>Б.Бат-Эрдэнэ</h4>
-                                                <div className="review-rating">
-                                                    <span className="stars">★★★★★</span>
-                                                    <span>5.0</span>
-                                                </div>
-                                            </div>
+                                    <div className="reviewer-info">
+                                        <Image src="/images/student1.jpg" alt="Student" width={40} height={40} />
+                                        <div>
+                                        <h4>{review.studentName}</h4>
+                                        <div className="review-rating">
+                                            <span className="stars">
+                                            {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+                                            </span>
+                                            <span>{review.rating.toFixed(1)}</span>
                                         </div>
-                                        <span className="review-date">2023-12-15</span>
+                                        </div>
+                                    </div>
+                                    <span className="review-date">
+                                        {new Date(review.createdAt).toLocaleDateString()}
+                                    </span>
                                     </div>
                                     <div className="review-content">
-                                        <p>Манай багш бол зүгээрл ална үнэхээр ааш муутайч гэсэн хичээлийг бол тултал нь заана шүү басал янзтай багш шүү.</p>
+                                    <p>{review.comment}</p>
                                     </div>
                                     <div className="review-actions">
-                                        <button className="like-btn"><i className="far fa-thumbs-up"></i> 24</button>
-                                        <button className="reply-btn">Хариулах</button>
+                                    <button className="like-btn">
+                                        <i className="far fa-thumbs-up"></i> {review.likes || 0}
+                                    </button>
+                                    {currentUser?._id === review.studentId && (
+                                        <button className="delete-btn" onClick={() => handleDeleteReview(review._id)}>
+                                        Устгах
+                                        </button>
+                                    )}
                                     </div>
                                 </div>
-
-                                {/* Review 2 */}
-                                <div className="review-item">
-                                    <div className="review-header">
-                                        <div className="reviewer-info">
-                                            <Image src="/images/student2.jpg" alt="Student 2" width={40} height={40} />
-                                            <div>
-                                                <h4>Ц.Гэрэлмаа</h4>
-                                                <div className="review-rating">
-                                                    <span className="stars">★★★★☆</span>
-                                                    <span>4.5</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span className="review-date">2023-11-20</span>
-                                    </div>
-                                    <div className="review-content">
-                                        <p>Багш нь хичээл бүртээ маш сайн бэлтгэлтэй ирдэг. Гэхдээ заримдаа хэтэрхий хурдан ярьдаг. Хэрэв та математикт суурь мэдлэгтэй бол энэ багшийн хичээл танд тохирох байхаа.</p>
-                                    </div>
-                                    <div className="review-actions">
-                                        <button className="like-btn"><i className="far fa-thumbs-up"></i> 12</button>
-                                        <button className="reply-btn">Хариулах</button>
-                                    </div>
-                                </div>
-
-                                {/* Review 3 */}
-                                <div className="review-item">
-                                    <div className="review-header">
-                                        <div className="reviewer-info">
-                                            <Image src="/images/student3.jpg" alt="Student 3" width={40} height={40} />
-                                            <div>
-                                                <h4>Д.Энхтайван</h4>
-                                                <div className="review-rating">
-                                                    <span className="stars">★★★★★</span>
-                                                    <span>5.0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span className="review-date">2023-10-05</span>
-                                    </div>
-                                    <div className="review-content">
-                                        <p>Би математикийн хичээлээс маш их айдаг байсан. Гэхдээ энэ багшийн хичээлд орсоноор математик хийхэд амархан гэдгийг ойлгосон. Тэр маш олон жишээ тайлбарлаж, бодлого бодох арга замыг сайтар заадаг.</p>
-                                    </div>
-                                    <div className="review-actions">
-                                        <button className="like-btn"><i className="far fa-thumbs-up"></i> 35</button>
-                                        <button className="reply-btn">Хариулах</button>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
 
                             <div className="add-review">
@@ -291,15 +370,28 @@ export default function Profile() {
                                 <div className="rating-input">
                                     <span>Үнэлгээ:</span>
                                     <div className="stars">
-                                        <i className="far fa-star" data-rating="1"></i>
-                                        <i className="far fa-star" data-rating="2"></i>
-                                        <i className="far fa-star" data-rating="3"></i>
-                                        <i className="far fa-star" data-rating="4"></i>
-                                        <i className="far fa-star" data-rating="5"></i>
+                                        {[1, 2, 3, 4, 5].map((star) => (
+                                            <i 
+                                            key={star}
+                                            className={star <= newReview.rating ? "fas fa-star" : "far fa-star"}
+                                            onClick={() => handleRatingSelect(star)}
+                                            style={{ cursor: 'pointer' }}
+                                            data-rating={star} 
+                                            />
+                                        ))}
                                     </div>
                                 </div>
-                                <textarea placeholder="Сэтгэгдлээ бичнэ үү..."></textarea>
-                                <button className="submit-review-btn">Илгээх</button>
+                                <textarea 
+                                placeholder="Сэтгэгдлээ бичнэ үү..."
+                                value={newReview.comment}
+                                onChange={(e) => setNewReview(prev => ({ ...prev, comment: e.target.value }))}
+                                />
+                                <button 
+                                className="submit-review-btn"
+                                onClick={handleSubmitReview}
+                                >
+                                Илгээх
+                                </button>
                             </div>
                         </section>
                     </div>
@@ -396,89 +488,79 @@ export default function Profile() {
             </div>
 
             <script dangerouslySetInnerHTML={{
-                __html: `
-                    // Check if user is logged in when page loads
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-                        const signLink = document.getElementById('nevtreh');
-                        
-                        if (currentUser) {
-                            // Change "Get started" to user's name or "Profile"
-                            if (signLink) {
-                                signLink.textContent = currentUser.fullname.split(' ')[0]; // Show first name
-                                signLink.href = '#';
-                                signLink.addEventListener('click', function(e) {
-                                    e.preventDefault();
-                                    // Show user dropdown or redirect to profile
-                                    if (confirm('Системээс гарах уу?')) {
-                                        sessionStorage.removeItem('currentUser');
-                                        window.location.reload();
-                                    }
-                                });
-                            }
-                        } else {
-                            // Ensure sign in link is correct
-                            if (signLink) {
-                                signLink.textContent = 'Нэвтрэх';
-                                signLink.href = './SignIn.html';
-                            }
+            __html: `
+                document.addEventListener('DOMContentLoaded', function() {
+                    const currentUser = JSON.parse(localStorage.getItem('signUpData'));
+                    const signLink = document.getElementById('nevtreh');
+                    
+                    if (currentUser) {
+                        if (signLink) {
+                            signLink.textContent = currentUser.name || currentUser.fullname?.split(' ')[0] || 'Хэрэглэгч';
+                            signLink.href = '#';
+                            signLink.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                if (confirm('Системээс гарах уу?')) {
+                                    localStorage.removeItem('signUpData');
+                                    window.location.reload();
+                                }
+                            });
                         }
+                    } else {
+                        if (signLink) {
+                            signLink.textContent = 'Нэвтрэх';
+                            signLink.href = './SignIn.html';
+                        }
+                    }
 
-                        // Star rating interaction
-                        const stars = document.querySelectorAll('.stars i');
-                        stars.forEach(star => {
-                            star.addEventListener('click', function() {
-                                const rating = this.getAttribute('data-rating');
-                                stars.forEach((s, index) => {
-                                    if (index < rating) {
-                                        s.classList.remove('far');
-                                        s.classList.add('fas');
-                                    } else {
-                                        s.classList.remove('fas');
-                                        s.classList.add('far');
-                                    }
-                                });
-                            });
-                        });
-
-                        // Like button functionality
-                        const likeButtons = document.querySelectorAll('.like-btn');
-                        likeButtons.forEach(button => {
-                            button.addEventListener('click', function() {
-                                const icon = this.querySelector('i');
-                                if (icon.classList.contains('far')) {
-                                    icon.classList.remove('far');
-                                    icon.classList.add('fas');
-                                    const count = parseInt(this.textContent.match(/\\d+/)[0]);
-                                    this.innerHTML = \`<i class="fas fa-thumbs-up"></i> \${count + 1}\`;
+                    // Rest of your script remains the same...
+                    const stars = document.querySelectorAll('.stars i');
+                    stars.forEach(star => {
+                        star.addEventListener('click', function() {
+                            const rating = this.getAttribute('data-rating');
+                            stars.forEach((s, index) => {
+                                if (index < rating) {
+                                    s.classList.remove('far');
+                                    s.classList.add('fas');
                                 } else {
-                                    icon.classList.remove('fas');
-                                    icon.classList.add('far');
-                                    const count = parseInt(this.textContent.match(/\\d+/)[0]);
-                                    this.innerHTML = \`<i class="far fa-thumbs-up"></i> \${count - 1}\`;
+                                    s.classList.remove('fas');
+                                    s.classList.add('far');
                                 }
-                            });
-                        });
-
-                        // Add to cart functionality
-                        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-                        addToCartButtons.forEach(button => {
-                            button.addEventListener('click', function() {
-                                if (!currentUser) {
-                                    alert('Сагсанд нэмэхийн тулд эхлээд нэвтэрнэ үү');
-                                    window.location.href = './SignIn.html';
-                                    return;
-                                }
-                                
-                                // In a real app, you would add the teacher to the cart here
-                                alert('Багш амжилттай сагсанд нэмэгдлээ!');
-                                
-                                // You would typically update cart count in the navbar here
                             });
                         });
                     });
-                `
-            }} />
+
+                    const likeButtons = document.querySelectorAll('.like-btn');
+                    likeButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const icon = this.querySelector('i');
+                            if (icon.classList.contains('far')) {
+                                icon.classList.remove('far');
+                                icon.classList.add('fas');
+                                const count = parseInt(this.textContent.match(/\\d+/)[0]);
+                                this.innerHTML = \`<i class="fas fa-thumbs-up"></i> \${count + 1}\`;
+                            } else {
+                                icon.classList.remove('fas');
+                                icon.classList.add('far');
+                                const count = parseInt(this.textContent.match(/\\d+/)[0]);
+                                this.innerHTML = \`<i class="far fa-thumbs-up"></i> \${count - 1}\`;
+                            }
+                        });
+                    });
+
+                    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+                    addToCartButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            if (!currentUser) {
+                                alert('Сагсанд нэмэхийн тулд эхлээд нэвтэрнэ үү');
+                                window.location.href = './SignIn.html';
+                                return;
+                            }
+                            alert('Багш амжилттай сагсанд нэмэгдлээ!');
+                        });
+                    });
+                });
+            `
+        }} />
         </>
     );
 }
