@@ -63,7 +63,7 @@ export default function Navbar() {
             <Link href="/Teachers">Багш нар</Link>
           </div>
           <div>
-            <Link href="/students">Profile</Link>
+            <Link href="/basket">Сагс</Link>
           </div>
         </div>
 

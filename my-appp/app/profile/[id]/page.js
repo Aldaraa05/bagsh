@@ -12,6 +12,36 @@ export default function Profile() {
     const params = useParams();
     const [teacher, setTeacher] = useState(null);
     const [loading, setLoading] = useState(true);
+    const addToBasket = () => {
+        if (typeof window !== 'undefined') {
+            // Get current basket from localStorage or create new one
+            const currentBasket = JSON.parse(localStorage.getItem('basket')) || [];
+            
+            // Check if teacher is already in basket
+            const alreadyInBasket = currentBasket.some(item => item.id === teacher.id);
+            
+            if (alreadyInBasket) {
+            alert('Энэ багш аль хэдийн сагсанд нэмэгдсэн байна');
+            return;
+            }
+            
+            // Get the full teacher data from localStorage
+            const fullTeacherData = JSON.parse(localStorage.getItem('currentTeacher')) || teacher;
+            
+            // Add teacher to basket with all details
+            const teacherToAdd = {
+            ...fullTeacherData,
+            quantity: 1,
+            selectedDay: 'Даваа',
+            selectedTime: '09:00 - 12:00',
+            // Add any additional basket-specific fields
+            };
+            
+            // Update basket in localStorage
+            localStorage.setItem('basket', JSON.stringify([...currentBasket, teacherToAdd]));
+            alert(`${teacher.name} багш амжилттай сагсанд нэмэгдлээ!`);
+        }
+    };
 
     useEffect(() => {
         async function fetchTeacherData() {
@@ -86,7 +116,8 @@ export default function Profile() {
                         </div>
                         <div className="price-section">
                             <span className="price">{teacher.price}</span>
-                            <Link href="/basket"><button className="add-to-cart-btn">Сагсанд нэмэх</button></Link>
+                            <button className="add-to-cart-btn" onClick={addToBasket}>Сагсанд нэмэх</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -357,7 +388,8 @@ export default function Profile() {
                         <button className="contact-teacher-btn">Багштай холбогдох</button>
 
                         <div className="sticky-cart-btn">
-                            <button className="add-to-cart-btn">Сагсанд нэмэх - ₮25,000/цаг</button>
+                            <Link href='/basket'><button className="add-to-cart-btn">Сагсанд нэмэх - ₮25,000/цаг</button></Link>
+                            
                         </div>
                     </div>
                 </div>

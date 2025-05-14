@@ -20,10 +20,16 @@ export default function Teacher({ teacher }) {
           <p className="experience">{teacher.experience}</p>
           <div className="card-footer">
             <span className="price">{teacher.price}</span>
-            <Link href={`/profile/${teacher.id}`}>
-              <button className="view-btn">Дэлгэрэнгүй</button>
-            </Link>
-          </div>
+            <button 
+                className="view-btn"
+                onClick={() => {
+                  localStorage.setItem('currentTeacher', JSON.stringify(teacher));
+                  window.location.href = `/profile/${teacher.id}`;
+                }}
+              >
+                Дэлгэрэнгүй
+            </button>
+        </div>
         </div>
       </div>
     );

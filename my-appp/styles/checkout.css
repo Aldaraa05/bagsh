@@ -1,0 +1,403 @@
+/* checkout.css */
+.checkout-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.checkout-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.checkout-container h1 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkout-container h1 i {
+  color: #4CAF50;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.empty-checkout {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.empty-checkout h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.empty-checkout p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+/* Order Summary Styles */
+.order-summary {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.order-summary h2 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.order-items {
+  margin-bottom: 1.5rem;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.teacher-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.teacher-info img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.teacher-info h4 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.teacher-info p {
+  margin: 0.3rem 0 0;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.item-price {
+  text-align: right;
+}
+
+.item-price span {
+  display: block;
+}
+
+.item-price span:first-child {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.item-price span:last-child {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-top: 0.3rem;
+}
+
+.order-total {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Payment Form Styles */
+.payment-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.payment-form h2 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+/* Payment Methods */
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-method:hover {
+  border-color: #bbb;
+}
+
+.payment-method.active {
+  border-color: #4CAF50;
+  background-color: #f8f9fa;
+}
+
+.method-radio {
+  margin-right: 1rem;
+}
+
+.method-radio input {
+  accent-color: #4CAF50;
+}
+
+.method-logo {
+  margin-right: 1rem;
+  width: 50px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.method-logo img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.method-info {
+  flex: 1;
+}
+
+.method-info h4 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.method-info p {
+  margin: 0.3rem 0 0;
+  color: #7f8c8d;
+  font-size: 0.85rem;
+}
+
+/* Payment Instructions */
+.payment-instructions {
+  padding: 1.2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  color: #2c3e50;
+}
+
+.payment-instructions p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.qpay-qr {
+  text-align: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 5px;
+}
+
+.monpay-number {
+  text-align: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 5px;
+}
+
+.monpay-number span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  letter-spacing: 1px;
+}
+
+.bank-details {
+  margin-top: 1rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.bank-row {
+  display: flex;
+  margin-bottom: 0.7rem;
+}
+
+.bank-row span:first-child {
+  font-weight: 600;
+  width: 120px;
+  color: #2c3e50;
+}
+
+/* Terms Agreement */
+.terms-agreement {
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.terms-agreement input {
+  margin-top: 0.2rem;
+  accent-color: #4CAF50;
+}
+
+.terms-agreement label {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.terms-agreement a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.terms-agreement a:hover {
+  text-decoration: underline;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.submit-btn:hover {
+  background-color: #3e8e41;
+}
+
+.submit-btn:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+.submit-btn i.fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkout-container {
+    padding: 1rem;
+  }
+  
+  .payment-method {
+    padding: 0.8rem;
+  }
+  
+  .method-logo {
+    width: 40px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-page {
+    padding: 1rem;
+  }
+  
+  .teacher-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .item-price {
+    text-align: left;
+    margin-top: 0.5rem;
+  }
+  
+  .bank-row {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .bank-row span:first-child {
+    width: auto;
+  }
+}
