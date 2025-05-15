@@ -201,6 +201,12 @@
     background-color: var(--primary-hover);
 }
 
+.qr-modal {
+  position: fixed;
+  background: rgba(0,0,0,0.5);
+  /* ... */
+}
+
 /* Responsive Design for Basket */
 @media (max-width: 1024px) {
     .basket-item {

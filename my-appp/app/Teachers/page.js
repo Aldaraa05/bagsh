@@ -45,7 +45,6 @@ const extractCategories = () => {
       if (pathParts.length > 0) {
         categories.main.add(pathParts[0]);
         
-        // Initialize subcategory object for this main category if not exists
         if (!categories.sub[pathParts[0]]) {
           categories.sub[pathParts[0]] = new Set();
         }
@@ -53,7 +52,6 @@ const extractCategories = () => {
         if (pathParts.length > 1) {
           categories.sub[pathParts[0]].add(pathParts[1]);
           
-          // Initialize subject group object for this subcategory if not exists
           const subKey = `${pathParts[0]}.${pathParts[1]}`;
           if (!categories.subjectGroups[subKey]) {
             categories.subjectGroups[subKey] = new Set();
@@ -85,21 +83,18 @@ const extractCategories = () => {
 
   const getfilteredTeachers = () => {
     let filtered = teachers.filter(teacher => {
-      // Filter by search term
+ 
       const matchesSearch = searchTerm 
         ? teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
           (teacher.info?.subjects?.join(' ') || '').toLowerCase().includes(searchTerm.toLowerCase())
         : true;
 
-      // Filter by category
       const matchesCategory = !activeMainCateg || 
         (teacher.info?.subjectPath?.startsWith(activeMainCateg) ?? false);
-      
-      // Filter by subcategory
+
       const matchesSubCategory = !activeSubCateg || 
         (teacher.info?.subjectPath?.includes(`${activeMainCateg}.${activeSubCateg}`) ?? false);
-      
-      // Filter by subject group
+
       const matchesSubjectGroup = !activeSubjectGroup || 
         (teacher.info?.subjectPath?.endsWith(activeSubjectGroup) ?? false);
 

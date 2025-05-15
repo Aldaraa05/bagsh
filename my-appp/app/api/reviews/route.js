@@ -29,7 +29,6 @@ export async function POST(request) {
         const db = client.db();
         const body = await request.json();
         console.log(body)
-        // Validate required fields
         if (!body.teacherId || !body.studentId || !body.comment || !body.rating) {
             return NextResponse.json(
                 { error: 'Missing required fields' },
@@ -37,7 +36,6 @@ export async function POST(request) {
             );
         }
 
-        // Validate rating is between 1-5
         if (body.rating < 1 || body.rating > 5) {
             return NextResponse.json(
                 { error: 'Rating must be between 1 and 5' },
@@ -90,13 +88,12 @@ export async function DELETE(request) {
         let result;
         
         try {
-            // First try with ObjectId
+
             result = await db.collection('reviews').deleteOne({ 
                 _id: new ObjectId(id) 
             });
         } catch (mongodbError) {
             console.log('ObjectId conversion failed, trying string ID');
-            // If ObjectId fails, try with string directly
             result = await db.collection('reviews').deleteOne({ 
                 _id: id 
             });

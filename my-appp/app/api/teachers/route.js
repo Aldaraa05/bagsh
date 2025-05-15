@@ -3,7 +3,7 @@ import { teachers } from "@/app/data/teachers";
 let teacherList = [...teachers];
 
 export async function GET() {
-  return Response.json(teacherList); // бүх багшийг буцаана
+  return Response.json(teacherList); 
 }
 
 export async function POST(req) {
@@ -25,7 +25,6 @@ export async function POST(req) {
     teamsLink,
   } = body;
 
-  // Шаардлагатай талбарууд
   if (!name || !subject || !experience || !price || !location) {
     return new Response(
       JSON.stringify({

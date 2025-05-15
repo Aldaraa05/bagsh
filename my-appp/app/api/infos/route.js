@@ -14,7 +14,6 @@ const categoryBases = {
 };
 
 const subcategoryOffsets = {
-  // Baigaliin_uhaan subcategories
   'fizik': 10000,
   'Himi': 20000,
   'Biology': 30000,
@@ -34,7 +33,6 @@ const subcategoryOffsets = {
 };
 
 const subjectOffsets = {
-  // Physics subjects
   'klassik_fizik': 1000,
   'kvant_fizik': 2000,
   'atom_fizik': 3000,
@@ -79,7 +77,6 @@ const subjectOffsets = {
                 subcategoryOffsets[subcategory] + 
                 subjectOffsets[specificSubject];
 
-  // Find the highest existing ID in this subject range
   const highestTeacher = await db.collection('users').findOne(
     { 
       'info.id': { $gte: baseId, $lt: baseId + 1000 },

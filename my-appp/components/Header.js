@@ -17,18 +17,18 @@ export default function Navbar() {
           console.log(savedData);
           const userData = JSON.parse(savedData);
           if (userData.name && userData.surname) {
-            setUser({
+            setUser({ 
               name: userData.name,
               surname: userData.surname,
               role: userData.role || "user",
             });
           } else {
             console.warn("Incomplete user data in localStorage:", userData);
-            localStorage.removeItem("signUpData");
+            localStorage.removeItem("userData");
           }
         } catch (error) {
           console.error("Error parsing user data:", error);
-          localStorage.removeItem("signUpData");
+          localStorage.removeItem("userData");
         }
       }
     }
@@ -45,6 +45,9 @@ export default function Navbar() {
   return (
     <div id="navv">
       <nav>
+      <Link  href="../" className="back">
+        <img src="/backicon.png" alt="Back" />
+      </Link>
         <Link href="/">
           <div className="linkContainer" />
         </Link>

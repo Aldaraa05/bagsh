@@ -174,3 +174,6 @@
     background: #f0f0f0;
     color: var(--primary-color);
   }
+  .back img{
+    width: 50px;
+  }

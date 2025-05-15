@@ -6,26 +6,26 @@ export async function POST(req) {
       const client = await clientPromise;
       const db = client.db();
       const body = await req.json();
-    const { gmail, password } = body;
-    console.log(body)
-    console.log('Received login request:', { gmail, password }); // Debug log
+      const { gmail, password } = body;
+      console.log(body)
+      console.log('Received login request:', { gmail, password }); 
 
-    if (!gmail || !password) {
-      return NextResponse.json(
-        { error: "Email and password are required" },
-        { status: 400 }
-      );
-    }
+      if (!gmail || !password) {
+        return NextResponse.json(
+          { error: "Email and password are required" },
+          { status: 400 }
+        );
+      }
 
     const user = await db.collection('users').findOne({ 
-      gmail: { $regex: new RegExp(`^${gmail.trim()}$`, 'i') } // Case-insensitive
+      gmail: { $regex: new RegExp(`^${gmail.trim()}$`, 'i') } 
     });
 
-    console.log('Found user in DB:', user); // Debug log
+    console.log('Found user in DB:', user); 
 
     if (!user) {
       return NextResponse.json(
-        { error: "User not found" }, // More specific error
+        { error: "User not found" }, 
         { status: 401 }
       );
     }
@@ -33,11 +33,11 @@ export async function POST(req) {
     console.log('Comparing passwords:', {
       inputPassword: password,
       storedPassword: user.password
-    }); // Debug log
+    }); 
 
     if (user.password !== password.trim()) {
       return NextResponse.json(
-        { error: "Password incorrect" }, // More specific error
+        { error: "Password incorrect" }, 
         { status: 401 }
       );
     }

@@ -8,10 +8,8 @@ export async function GET(req) {
   const studentId = searchParams.get("studentId");
 
   if (studentId) {
-    // Студентийн ID-ийг ашиглан холбогдох сагсыг хайж байна
     const student = students.find((student) => student.id === studentId);
     if (student) {
-      // Студент олдсон бол түүнд холбогдох сагсийг буцааж байна
       const basket = basketItemsList.find(
         (item) => item.studentId === studentId
       );
@@ -53,7 +51,7 @@ export async function POST(req) {
     subject,
     rating,
     price,
-    studentId, // Студентийн ID-ийг сагсанд хадгалж байна
+    studentId, 
   };
 
   basketItemsList.push(newBasket);
