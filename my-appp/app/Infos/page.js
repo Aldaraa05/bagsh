@@ -1,16 +1,18 @@
-"use client"
+"use client";
 
+import { useRouter } from "next/navigation"; // navigation hook
+import { useEffect, useState } from "react";
 import "../../styles/infos.css";
-import { useState, useEffect } from "react";
 
 export default function Infos() {
+  const router = useRouter(); // navigation ашиглах
   const [showAddForm, setShowAddForm] = useState(false);
   const [infos, setInfos] = useState([]);
   const [newInfo, setNewInfo] = useState({
     infoid: "",
     title: "",
     desc: "",
-    image: ""
+    image: "",
   });
 
   const [isAdminUser, setIsAdminUser] = useState(false);
@@ -18,86 +20,90 @@ export default function Infos() {
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
     setIsAdminUser(userData?.gmail === "a@gmail.com");
-    
+
     fetchInfos();
   }, []);
 
   const fetchInfos = async () => {
     try {
-      const response = await fetch('/api/infos2');
+      const response = await fetch("/api/infos2");
       const data = await response.json();
       setInfos(data);
     } catch (error) {
-      console.error('Error fetching infos:', error);
+      console.error("Error fetching infos:", error);
     }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewInfo(prev => ({
+    setNewInfo((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-      const response = await fetch('/api/infos2', {
-        method: 'POST',
+      const response = await fetch("/api/infos2", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(newInfo),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to add info');
+        throw new Error("Failed to add info");
       }
       setNewInfo({
         title: "",
         desc: "",
-        image: ""
+        image: "",
       });
       setShowAddForm(false);
       fetchInfos();
-      
     } catch (error) {
-      console.error('Error adding info:', error);
-      alert('Failed to add info');
+      console.error("Error adding info:", error);
+      alert("Failed to add info");
     }
   };
+
   const handleDelete = async (id) => {
-  if (!window.confirm("Та энэ мэдээллийг устгахдаа итгэлтэй байна уу?")) {
-    return;
-  }
-  
-  try {
-    const response = await fetch(`/api/infos2?id=${id}`, {
-      method: 'DELETE',
-    });
-    console.log(response)
-    if (!response.ok) {
-      throw new Error('Failed to delete');
+    if (!window.confirm("Та энэ мэдээллийг устгахдаа итгэлтэй байна уу?")) {
+      return;
     }
-    fetchInfos();
-  } catch (error) {
-    console.error('Error deleting info:', error);
-    alert('Устгах явцад алдаа гарлаа');
-  }
-};
+
+    try {
+      const response = await fetch(`/api/infos2?id=${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Failed to delete");
+      }
+      fetchInfos();
+    } catch (error) {
+      console.error("Error deleting info:", error);
+      alert("Устгах явцад алдаа гарлаа");
+    }
+  };
+
+  const handleInfoClick = (id) => {
+    router.push(`/Infos/${id}`);
+  };
+
   return (
     <div className="container">
       {isAdminUser && (
         <div className="admin-controls">
-          <button 
+          <button
             onClick={() => setShowAddForm(!showAddForm)}
             className="add-info-btn"
           >
             {showAddForm ? "Cancel" : "Мэдээлэл нэмэх"}
           </button>
-          
+
           {showAddForm && (
             <form onSubmit={handleSubmit} className="add-info-form">
               <h3>Шинэ мэдээ нэмэх</h3>
@@ -137,27 +143,36 @@ export default function Infos() {
           )}
         </div>
       )}
-      
-      
-        {infos.map((info, index) => (
-          <div className={ index % 2 === 1 ? "infoContainer1" : "infoContainer"}>
-          <div className="infoRow" key={info._id}>
+
+      {infos.map((info, index) => (
+        <div
+          key={info._id}
+          className={index % 2 === 1 ? "infoContainer1" : "infoContainer"}
+          onClick={() => handleInfoClick(info._id)}
+          style={{ cursor: "pointer" }}
+        >
+          <div className="infoRow">
             <div className="infoColumn">
               <p className="blueText">{info.title}</p>
               <h1>{info.desc}</h1>
             </div>
-            {info.image && <img src={info.image} alt={info.title} className="image"/>}
-            
+            {info.image && (
+              <img src={info.image} alt={info.title} className="image" />
+            )}
           </div>
-           <button 
+          {isAdminUser && (
+            <button
               className="delete-btn"
-              onClick={() => handleDelete(info._id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(info._id);
+              }}
             >
               Устгах
-          </button>
-          </div>
-        ))}
-      
+            </button>
+          )}
+        </div>
+      ))}
     </div>
   );
 }
