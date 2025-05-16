@@ -68,3 +68,56 @@ export async function POST(req) {
     { status: 201 }
   );
 }
+export async function PUT(req) {
+  const body = await req.json();
+  const { id, fName, lName, gmail, phone, password, age } = body;
+
+  if (!id) {
+    return new Response(JSON.stringify({ error: "id заавал оруулна уу." }), {
+      status: 400,
+    });
+  }
+
+  const index = studentsList.findIndex((s) => s.id === id);
+
+  if (index === -1) {
+    return new Response(
+      JSON.stringify({ error: "Ийм ID-тай оюутан олдсонгүй." }),
+      { status: 404 }
+    );
+  }
+
+  // Давхардлыг шалгана (бусад сурагчидтай харьцуулж)
+  const isDuplicate = studentsList.some(
+    (s, i) => i !== index && (s.gmail === gmail || s.phone === phone)
+  );
+
+  if (isDuplicate) {
+    return new Response(
+      JSON.stringify({
+        error: "Энэ gmail эсвэл утасны дугаар аль хэдийн бүртгэлтэй байна",
+      }),
+      { status: 409 }
+    );
+  }
+
+  const updatedStudent = {
+    ...studentsList[index],
+    fName: fName ?? studentsList[index].fName,
+    lName: lName ?? studentsList[index].lName,
+    gmail: gmail ?? studentsList[index].gmail,
+    phone: phone ?? studentsList[index].phone,
+    password: password ?? studentsList[index].password,
+    age: age ?? studentsList[index].age,
+  };
+
+  studentsList[index] = updatedStudent;
+
+  return new Response(
+    JSON.stringify({
+      message: "Оюутны мэдээлэл амжилттай шинэчлэгдлээ!",
+      student: updatedStudent,
+    }),
+    { status: 200 }
+  );
+}
