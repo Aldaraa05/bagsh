@@ -1,10 +1,11 @@
-'use client'
+"use client"
 
 import "../../styles/infos.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Infos() {
   const [showAddForm, setShowAddForm] = useState(false);
+  const [infos, setInfos] = useState([]);
   const [newInfo, setNewInfo] = useState({
     infoid: "",
     title: "",
@@ -12,9 +13,24 @@ export default function Infos() {
     image: ""
   });
 
-  // Check localStorage for user data
-  const userData = JSON.parse(localStorage.getItem("userData"));
-  const isAdminUser = userData && userData.gmail === "a@gmail.com";
+  const [isAdminUser, setIsAdminUser] = useState(false);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    setIsAdminUser(userData?.gmail === "a@gmail.com");
+    
+    fetchInfos();
+  }, []);
+
+  const fetchInfos = async () => {
+    try {
+      const response = await fetch('/api/infos2');
+      const data = await response.json();
+      setInfos(data);
+    } catch (error) {
+      console.error('Error fetching infos:', error);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -24,21 +40,53 @@ export default function Infos() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log("New info to add:", newInfo);
-    // Reset form
-    setNewInfo({
-      infoid: "",
-      title: "",
-      desc: "",
-      image: ""
-    });
-    setShowAddForm(false);
-    // You might want to refresh the infos list here
-  };
+    
+    try {
+      const response = await fetch('/api/infos2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newInfo),
+      });
 
+      if (!response.ok) {
+        throw new Error('Failed to add info');
+      }
+      setNewInfo({
+        title: "",
+        desc: "",
+        image: ""
+      });
+      setShowAddForm(false);
+      fetchInfos();
+      
+    } catch (error) {
+      console.error('Error adding info:', error);
+      alert('Failed to add info');
+    }
+  };
+  const handleDelete = async (id) => {
+  if (!window.confirm("Та энэ мэдээллийг устгахдаа итгэлтэй байна уу?")) {
+    return;
+  }
+  
+  try {
+    const response = await fetch(`/api/infos2?id=${id}`, {
+      method: 'DELETE',
+    });
+    console.log(response)
+    if (!response.ok) {
+      throw new Error('Failed to delete');
+    }
+    fetchInfos();
+  } catch (error) {
+    console.error('Error deleting info:', error);
+    alert('Устгах явцад алдаа гарлаа');
+  }
+};
   return (
     <div className="container">
       {isAdminUser && (
@@ -53,16 +101,6 @@ export default function Infos() {
           {showAddForm && (
             <form onSubmit={handleSubmit} className="add-info-form">
               <h3>Шинэ мэдээ нэмэх</h3>
-              <div className="form-group">
-                <label>Мэдээллийн ID:</label>
-                <input
-                  type="text"
-                  name="infoid"
-                  value={newInfo.infoid}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
               <div className="form-group">
                 <label>Гарчиг:</label>
                 <input
@@ -93,24 +131,33 @@ export default function Infos() {
                 />
               </div>
               <button type="submit" className="submit-btn">
-                Submit
+                Илгээх
               </button>
             </form>
           )}
         </div>
       )}
       
-      <div className="infoContainer">
-        <div className="infoRow">
-          <div className="infoColumn">
-            <p className="blueText">Тогтвортой хөгжил</p>
-            <h1>
-              Юнител группийн "Тогтвортой байдлын тайлан 2024"-өөс онцлох ажлууд
-            </h1>
+      
+        {infos.map((info, index) => (
+          <div className={ index % 2 === 1 ? "infoContainer1" : "infoContainer"}>
+          <div className="infoRow" key={info._id}>
+            <div className="infoColumn">
+              <p className="blueText">{info.title}</p>
+              <p>{info.desc}</p>
+            </div>
+            {info.image && <img src={info.image} alt={info.title} className="image"/>}
+            
           </div>
-          <img src="https://unread.today/files/969a1aed-77a4-45e9-b7b7-3ee2709aaf31/c88200a93f3a73f06149e88537ddaa00_square.jpg" />
-        </div>
-      </div>
+           <button 
+              className="delete-btn"
+              onClick={() => handleDelete(info._id)}
+            >
+              Устгах
+          </button>
+          </div>
+        ))}
+      
     </div>
   );
 }
