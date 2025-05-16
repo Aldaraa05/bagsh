@@ -46,14 +46,7 @@
   height: 100%;
 }
 .infoColumn {
-  width: 70%;
-  height: auto;
-  flex-wrap: wrap !important;
-}
-.infoColumn p {
-  display: block;
-  width: 100px;
-  text-wrap: wrap;
+  width: 80%;
 
 }
 .blueText {

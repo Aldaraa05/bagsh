@@ -144,7 +144,7 @@ export default function Infos() {
           <div className="infoRow" key={info._id}>
             <div className="infoColumn">
               <p className="blueText">{info.title}</p>
-              <p>{info.desc}</p>
+              <h1>{info.desc}</h1>
             </div>
             {info.image && <img src={info.image} alt={info.title} className="image"/>}
             
