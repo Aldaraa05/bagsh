@@ -1,20 +1,163 @@
-import "../../styles/global.css";
+"use client"
+
 import "../../styles/infos.css";
+import { useState, useEffect } from "react";
+
 export default function Infos() {
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [infos, setInfos] = useState([]);
+  const [newInfo, setNewInfo] = useState({
+    infoid: "",
+    title: "",
+    desc: "",
+    image: ""
+  });
+
+  const [isAdminUser, setIsAdminUser] = useState(false);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    setIsAdminUser(userData?.gmail === "a@gmail.com");
+    
+    fetchInfos();
+  }, []);
+
+  const fetchInfos = async () => {
+    try {
+      const response = await fetch('/api/infos2');
+      const data = await response.json();
+      setInfos(data);
+    } catch (error) {
+      console.error('Error fetching infos:', error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewInfo(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await fetch('/api/infos2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newInfo),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add info');
+      }
+      setNewInfo({
+        title: "",
+        desc: "",
+        image: ""
+      });
+      setShowAddForm(false);
+      fetchInfos();
+      
+    } catch (error) {
+      console.error('Error adding info:', error);
+      alert('Failed to add info');
+    }
+  };
+  const handleDelete = async (id) => {
+  if (!window.confirm("Та энэ мэдээллийг устгахдаа итгэлтэй байна уу?")) {
+    return;
+  }
+  
+  try {
+    const response = await fetch(`/api/infos2?id=${id}`, {
+      method: 'DELETE',
+    });
+    console.log(response)
+    if (!response.ok) {
+      throw new Error('Failed to delete');
+    }
+    fetchInfos();
+  } catch (error) {
+    console.error('Error deleting info:', error);
+    alert('Устгах явцад алдаа гарлаа');
+  }
+};
   return (
     <div className="container">
-      <div className="infoContainer">
-        <div className="infoRow">
-          <div className="infoColumn">
-            <p className="blueText">Тогтвортой хөгжил</p>
-            <h1>
-              Юнител группийн “Тогтвортой байдлын тайлан 2024”-өөс онцлох ажлууд
-              Юнител группийн “Тогтвортой байдлын тайлан 2024”-өөс онцлох ажлууд
-            </h1>
-          </div>
-          <img src="https://unread.today/files/969a1aed-77a4-45e9-b7b7-3ee2709aaf31/c88200a93f3a73f06149e88537ddaa00_square.jpg" />
+      {isAdminUser && (
+        <div className="admin-controls">
+          <button 
+            onClick={() => setShowAddForm(!showAddForm)}
+            className="add-info-btn"
+          >
+            {showAddForm ? "Cancel" : "Мэдээлэл нэмэх"}
+          </button>
+          
+          {showAddForm && (
+            <form onSubmit={handleSubmit} className="add-info-form">
+              <h3>Шинэ мэдээ нэмэх</h3>
+              <div className="form-group">
+                <label>Гарчиг:</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={newInfo.title}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Тайлбар:</label>
+                <textarea
+                  name="desc"
+                  value={newInfo.desc}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Зурагны URL:</label>
+                <input
+                  type="text"
+                  name="image"
+                  value={newInfo.image}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <button type="submit" className="submit-btn">
+                Илгээх
+              </button>
+            </form>
+          )}
         </div>
-      </div>
+      )}
+      
+      
+        {infos.map((info, index) => (
+          <div className={ index % 2 === 1 ? "infoContainer1" : "infoContainer"}>
+          <div className="infoRow" key={info._id}>
+            <div className="infoColumn">
+              <p className="blueText">{info.title}</p>
+              <h1>{info.desc}</h1>
+            </div>
+            {info.image && <img src={info.image} alt={info.title} className="image"/>}
+            
+          </div>
+           <button 
+              className="delete-btn"
+              onClick={() => handleDelete(info._id)}
+            >
+              Устгах
+          </button>
+          </div>
+        ))}
+      
     </div>
   );
 }

@@ -1,4 +1,4 @@
-/* Basket Page Styles */
+
 .basket-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -204,10 +204,8 @@
 .qr-modal {
   position: fixed;
   background: rgba(0,0,0,0.5);
-  /* ... */
 }
 
-/* Responsive Design for Basket */
 @media (max-width: 1024px) {
     .basket-item {
         flex-wrap: wrap;
