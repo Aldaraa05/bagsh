@@ -9,18 +9,17 @@ export default function Infos() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [infos, setInfos] = useState([]);
   const [newInfo, setNewInfo] = useState({
-    infoid: "",
     title: "",
     desc: "",
+    info: "",
     image: "",
   });
-
+  const [editingInfo, setEditingInfo] = useState(null);
   const [isAdminUser, setIsAdminUser] = useState(false);
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
     setIsAdminUser(userData?.gmail === "a@gmail.com");
-
     fetchInfos();
   }, []);
 
@@ -44,29 +43,33 @@ export default function Infos() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch("/api/infos2", {
-        method: "POST",
+      const url = editingInfo ? "/api/infos2" : "/api/infos2";
+      const method = editingInfo ? "PUT" : "POST";
+
+      const response = await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newInfo),
+        body: JSON.stringify(
+          editingInfo ? { id: editingInfo._id, ...newInfo } : newInfo
+        ),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to add info");
+        throw new Error(
+          editingInfo ? "Failed to update info" : "Failed to add info"
+        );
       }
-      setNewInfo({
-        title: "",
-        desc: "",
-        image: "",
-      });
+
+      setNewInfo({ title: "", desc: "", image: "", info: "" });
       setShowAddForm(false);
+      setEditingInfo(null);
       fetchInfos();
     } catch (error) {
-      console.error("Error adding info:", error);
-      alert("Failed to add info");
+      console.error("Error:", error);
+      alert(error.message);
     }
   };
 
@@ -74,7 +77,6 @@ export default function Infos() {
     if (!window.confirm("Та энэ мэдээллийг устгахдаа итгэлтэй байна уу?")) {
       return;
     }
-
     try {
       const response = await fetch(`/api/infos2?id=${id}`, {
         method: "DELETE",
@@ -89,16 +91,35 @@ export default function Infos() {
     }
   };
 
+  const startEditing = (info) => {
+    setEditingInfo(info);
+    setNewInfo({
+      title: info.title,
+      desc: info.desc,
+      image: info.image,
+      info: info.info,
+    });
+    setShowAddForm(true);
+  };
+
+  const cancelEditing = () => {
+    setEditingInfo(null);
+    setNewInfo({ title: "", desc: "", image: "", info: "" });
+    setShowAddForm(false);
+  };
   const handleInfoClick = (id) => {
     router.push(`/Infos/${id}`);
   };
-
   return (
     <div className="container">
       {isAdminUser && (
         <div className="admin-controls">
           <button
-            onClick={() => setShowAddForm(!showAddForm)}
+            onClick={() => {
+              setEditingInfo(null);
+              setNewInfo({ title: "", desc: "", image: "", info: "" });
+              setShowAddForm(!showAddForm);
+            }}
             className="add-info-btn"
           >
             {showAddForm ? "Cancel" : "Мэдээлэл нэмэх"}
@@ -106,7 +127,7 @@ export default function Infos() {
 
           {showAddForm && (
             <form onSubmit={handleSubmit} className="add-info-form">
-              <h3>Шинэ мэдээ нэмэх</h3>
+              <h3>{editingInfo ? "Мэдээлэл засах" : "Шинэ мэдээ нэмэх"}</h3>
               <div className="form-group">
                 <label>Гарчиг:</label>
                 <input
@@ -136,9 +157,30 @@ export default function Infos() {
                   required
                 />
               </div>
-              <button type="submit" className="submit-btn">
-                Илгээх
-              </button>
+              <div className="form-group">
+                <label>Мэдээлэл:</label>
+                <input
+                  type="text"
+                  name="info"
+                  value={newInfo.info}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="form-actions">
+                <button type="submit" className="submit-btn">
+                  {editingInfo ? "Хадгалах" : "Илгээх"}
+                </button>
+                {editingInfo && (
+                  <button
+                    type="button"
+                    onClick={cancelEditing}
+                    className="cancel-btn"
+                  >
+                    Цуцлах
+                  </button>
+                )}
+              </div>
             </form>
           )}
         </div>
@@ -146,8 +188,8 @@ export default function Infos() {
 
       {infos.map((info, index) => (
         <div
-          key={info._id}
           className={index % 2 === 1 ? "infoContainer1" : "infoContainer"}
+          key={info._id}
           onClick={() => handleInfoClick(info._id)}
           style={{ cursor: "pointer" }}
         >
@@ -161,15 +203,17 @@ export default function Infos() {
             )}
           </div>
           {isAdminUser && (
-            <button
-              className="delete-btn"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleDelete(info._id);
-              }}
-            >
-              Устгах
-            </button>
+            <div className="action-buttons">
+              <button className="edit-btn" onClick={() => startEditing(info)}>
+                Засах
+              </button>
+              <button
+                className="delete-btn"
+                onClick={() => handleDelete(info._id)}
+              >
+                Устгах
+              </button>
+            </div>
           )}
         </div>
       ))}

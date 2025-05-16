@@ -3,9 +3,9 @@ import clientPromise from "@/app/lib/mongodb";
 import { ObjectId } from 'mongodb';
 export async function POST(request) {
   try {
-    const { title, desc, image } = await request.json();
+    const { title, desc, image, info } = await request.json();
 
-    if ( !title || !desc || !image) {
+    if ( !title || !desc || !image || info) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
@@ -19,6 +19,7 @@ export async function POST(request) {
       title,
       desc,
       image,
+      info,
       createdAt: new Date()
     };
 
@@ -89,6 +90,54 @@ export async function DELETE(request) {
 
   } catch (error) {
     console.error('Error deleting info:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(request) {
+  try {
+    const { id, title, desc, image, info } = await request.json();
+
+    if (!id || !title || !desc || !image) {
+      return NextResponse.json(
+        { error: 'All fields including ID are required' },
+        { status: 400 }
+      );
+    }
+
+    const client = await clientPromise;
+    const db = client.db();
+
+    const result = await db.collection('infos').updateOne(
+      { _id: new ObjectId(id) },
+      {
+        $set: {
+          title,
+          desc,
+          image,
+          info,
+          updatedAt: new Date()
+        }
+      }
+    );
+
+    if (result.matchedCount === 0) {
+      return NextResponse.json(
+        { error: 'Info not found' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { success: true },
+      { status: 200 }
+    );
+
+  } catch (error) {
+    console.error('Error updating info:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
