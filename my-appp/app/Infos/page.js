@@ -1,8 +1,8 @@
+import "../../styles/global.css";
 import "../../styles/infos.css";
 export default function Infos() {
   return (
     <div className="container">
-        
       <div className="infoContainer">
         <div className="infoRow">
           <div className="infoColumn">
