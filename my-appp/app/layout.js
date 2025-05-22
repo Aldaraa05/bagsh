@@ -9,7 +9,7 @@ export default function Layout({ children }) {
 
   const page = pathName === '/Signin' || pathName === '/Signup' || pathName === '/songolt' || pathName === '/student-signup' 
   const page2 = pathName === '/Checkout/success' || pathName === '/Signin' || pathName === '/Signup' || pathName === '/songolt' || pathName === '/student-signup' 
-  || pathName === '/Info' || pathName === '/basket' || pathName === '/Checkout'
+  || pathName === '/Info' || pathName === '/basket' || pathName === '/Checkout' || pathName === '/infoUp'
   return (
     <html lang="en"> 
       <body>

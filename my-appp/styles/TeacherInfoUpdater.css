@@ -1,0 +1,200 @@
+*{
+    font-size: large;
+}
+.teacher-profile-updater {
+  width: 70%;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.teacher-profile-updater h1 {
+  color: #2d3748;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #e2e8f0;
+}
+
+.profile-section {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-section h2 {
+  color: #4a5568;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.items-list {
+  margin-bottom: 1.5rem;
+}
+
+.item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7fafc;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.item-card span {
+  color: #2d3748;
+  flex-grow: 1;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add {
+  background-color: #48bb78;
+  color: white;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+}
+
+.btn-add:hover {
+  background-color: #38a169;
+}
+
+.btn-update {
+  background-color: #4299e1;
+  color: white;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+}
+
+.btn-update:hover {
+  background-color: #3182ce;
+}
+
+.btn-remove {
+  background-color: transparent;
+  background-color: #e53e3e;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+.btn-remove:hover {
+  background-color: #c53030;
+  transform: scale(1.1);
+}
+
+.btn-cancel {
+  background-color: #a0aec0;
+  color: white;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+}
+
+.btn-cancel:hover {
+  background-color: #718096;
+}
+
+.edit-form {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+.form-input {
+  flex-grow: 1;
+  padding: 1rem 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  height: 3.5rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.2);
+}
+
+.loading-message,
+.error-message,
+.not-found-message {
+  text-align: center;
+  padding: 3rem 0;
+  font-size: 1.5rem;
+}
+
+.error-message {
+  color: #e53e3e;
+}
+
+@media (max-width: 1200px) {
+  .teacher-profile-updater {
+    width: 80%;
+  }
+}
+
+@media (max-width: 992px) {
+  .teacher-profile-updater {
+    width: 90%;
+    padding: 1.5rem;
+  }
+  
+  .profile-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .teacher-profile-updater {
+    width: 95%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  
+  .teacher-profile-updater h1 {
+    font-size: 2rem;
+  }
+  
+  .profile-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .edit-form {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  .form-input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}

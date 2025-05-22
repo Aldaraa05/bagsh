@@ -88,7 +88,7 @@ export default function Navbar() {
                 </Link>
                 {user.role === "teacher" && (
                   <Link
-                    href="/teacherinfo/edit"
+                    href="/infoUp"
                     onClick={() => setDropdownOpen(false)}
                   >
                     Мэдээлэл засах
