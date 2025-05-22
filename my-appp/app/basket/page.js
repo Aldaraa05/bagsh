@@ -13,7 +13,6 @@ export default function Basket() {
   const [loading, setLoading] = useState(true);
   console.log(localStorage)
   useEffect(() => {
-    // Load basket items from localStorage
     const items = typeof window !== 'undefined' 
       ? JSON.parse(localStorage.getItem('basket')) || []
       : [];

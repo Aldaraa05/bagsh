@@ -126,16 +126,16 @@ export default function CheckoutPage() {
 
   return (
     <div className="checkout-container">
-      <h1 className="checkout-title">Checkout</h1>
+      <h1 className="checkout-title">Хэтэвч</h1>
       
       <div className="checkout-card">
-        <h2>Your E-Wallet</h2>
+        <h2>Таны хэтэвч</h2>
         <div className="checkout-balance-container">
-          <p>Current Balance: <span className="checkout-balance">₮{balance.toLocaleString()}</span></p>
+          <p>Одоогын баланс: <span className="checkout-balance">₮{balance.toLocaleString()}</span></p>
         </div>
         
         <form onSubmit={handleChargeBalance} className="checkout-charge-form">
-          <h3>Charge Your Balance</h3>
+          <h3>Баланс аа өөрчлөх</h3>
           <div className="checkout-charge-input-group">
             <input
               type="number"
@@ -145,25 +145,25 @@ export default function CheckoutPage() {
               className="checkout-charge-input"
             />
             <button type="submit" className="checkout-charge-button">
-              Charge
+              цэнэглэх
             </button>
           </div>
         </form>
       </div>
 
       <div className="checkout-card">
-        <h2>Order Summary</h2>
+        <h2>Захиалгын мэдээлэл</h2>
         {basket.map((item, index) => (
           <div key={index} className="checkout-order-item">
             <p className="checkout-item-title">{item.name} - {item.subject}</p>
-            <p>Time: {item.selectedDay}, {item.selectedTime}</p>
-            <p>Price: {item.price}</p>
+            <p>Цаг: {item.selectedDay}, {item.selectedTime}</p>
+            <p>Үнэ: {item.price}</p>
           </div>
         ))}
         
         <div className="checkout-total-container">
           <p className="checkout-total-text">
-            Total: ₮{basket.reduce((sum, item) => {
+            Нийт: ₮{basket.reduce((sum, item) => {
               const price = Number(item.price.replace(/[^0-9]/g, ''));
               return sum + price;
             }, 0).toLocaleString()}
@@ -175,7 +175,7 @@ export default function CheckoutPage() {
           disabled={!basket.length}
           className={`checkout-purchase-button ${!basket.length ? 'checkout-disabled-button' : ''}`}
         >
-          Complete Purchase
+          Худалдаж авах
         </button>
       </div>
 

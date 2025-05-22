@@ -8,13 +8,14 @@ export default function Layout({ children }) {
   const pathName = usePathname();
 
   const page = pathName === '/Signin' || pathName === '/Signup' || pathName === '/songolt' || pathName === '/student-signup' 
-  || pathName === '/Info'
+  const page2 = pathName === '/Checkout/success' || pathName === '/Signin' || pathName === '/Signup' || pathName === '/songolt' || pathName === '/student-signup' 
+  || pathName === '/Info' || pathName === '/basket' || pathName === '/Checkout'
   return (
     <html lang="en"> 
       <body>
         {!page && <Navbar />}
         {children}
-        {!page && <Footer />}
+        {!page2 && <Footer />}
       </body>
     </html>
   );
