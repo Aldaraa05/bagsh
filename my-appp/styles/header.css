@@ -177,3 +177,24 @@
   .back img{
     width: 50px;
   }
+  .back{
+    border: none;
+    background-color: white;
+  }
+  .signin{
+    margin-left: 30px;
+    padding: 1rem 2rem;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: white;
+    font-size: 1.6rem;
+    color: var(--white);
+    border-radius: 0.8rem;
+    transition: var(--transition);
+    white-space: nowrap;
+    color: black;
+  }
+  .signin:hover {
+    background-color: var(--primary-hover);
+    color: white;
+  }

@@ -45,9 +45,9 @@ export default function Navbar() {
   return (
     <div id="navv">
       <nav>
-      <Link  href="../" className="back">
-        <img src="/backicon.png" alt="Back" />
-      </Link>
+      <button onClick={() => router.back()} className="back">
+      <img src="/backicon.png" alt="Back" />
+      </button>
         <Link href="/">
           <div className="linkContainer" />
         </Link>
@@ -98,9 +98,15 @@ export default function Navbar() {
             )}
           </div>
         ) : (
+          <div>
           <Link className="sign" href="/songolt">
             Бүртгүүлэх
           </Link>
+          <Link className="signin" href="/Signin">
+            Нэвтрэх
+          </Link>
+          </div>
+
         )}
       </nav>
     </div>

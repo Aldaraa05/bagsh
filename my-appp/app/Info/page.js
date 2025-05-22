@@ -56,7 +56,6 @@ export default function TeacherInfoPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Get user data directly from localStorage
     const userData = JSON.parse(localStorage.getItem('userData'));
     
     if (!form.mainCategory || !form.subcategory || !form.specificSubject) {
@@ -221,10 +220,13 @@ const specificSubjects = {
 };
 
   return (
+    
     <form onSubmit={handleSubmit} className="info-form">
+      <button onClick={() => router.back()} className="back">
+      <img src="/backicon.png" alt="Back" />
+      </button> 
       <h2>Багшийн мэдээлэл бөглөх</h2>
 
-      {/* Subject Selection */}
       <div className="form-group">
         <label>Үндсэн ангилал</label>
         <select
@@ -274,7 +276,6 @@ const specificSubjects = {
         </div>
       )}
 
-      {/* Dynamic Array Fields */}
       {['experience', 'certificates', 'achievements', 'schedule'].map((field) => (
         <div key={field} className="dynamic-field-container">
           <label className="field-label">
@@ -302,7 +303,6 @@ const specificSubjects = {
         </div>
       ))}
 
-      {/* Other Fields */}
       <div className="form-group">
         <label>Заах арга</label>
         <textarea

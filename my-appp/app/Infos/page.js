@@ -1,13 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation"; // navigation hook
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import "../../styles/infos.css";
 
 export default function Infos() {
-  const router = useRouter(); // navigation ашиглах
+  const router = useRouter(); 
   const [showAddForm, setShowAddForm] = useState(false);
   const [infos, setInfos] = useState([]);
+  const [imagePreview, setImagePreview] = useState("");
   const [newInfo, setNewInfo] = useState({
     title: "",
     desc: "",
@@ -31,6 +32,7 @@ export default function Infos() {
     } catch (error) {
       console.error("Error fetching infos:", error);
     }
+    
   };
 
   const handleInputChange = (e) => {
@@ -39,6 +41,9 @@ export default function Infos() {
       ...prev,
       [name]: value,
     }));
+    if (name === "image") {
+      setImagePreview(value);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -99,12 +104,14 @@ export default function Infos() {
       image: info.image,
       info: info.info,
     });
+    setImagePreview(info.image);
     setShowAddForm(true);
   };
 
   const cancelEditing = () => {
     setEditingInfo(null);
     setNewInfo({ title: "", desc: "", image: "", info: "" });
+    setImagePreview("");
     setShowAddForm(false);
   };
   const handleInfoClick = (id) => {
@@ -156,6 +163,24 @@ export default function Infos() {
                   onChange={handleInputChange}
                   required
                 />
+                {imagePreview && (
+                  <div className="image-preview" style={{ marginTop: '10px' }}>
+                    <img 
+                      src={imagePreview} 
+                      alt="Preview" 
+                      style={{ 
+                        maxWidth: '100%', 
+                        maxHeight: '200px',
+                        border: '1px solid #ddd',
+                        borderRadius: '4px'
+                      }}
+                      onError={(e) => {
+                        e.target.onerror = null; 
+                        e.target.src = '/zurag/1.png';
+                      }}
+                    />
+                  </div>
+                )}
               </div>
               <div className="form-group">
                 <label>Мэдээлэл:</label>

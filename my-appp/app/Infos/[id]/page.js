@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import "../../../styles/infoDetails.css"
 export default function InfoDetailPage() {
   const { id } = useParams();
   const [info, setInfo] = useState(null);
@@ -27,29 +27,29 @@ export default function InfoDetailPage() {
   }, [id]);
 
   if (loading) {
-    return <div>Уншиж байна...</div>;
+    return <div className="loading-state">Уншиж байна...</div>;
   }
 
   if (!info) {
-    return <div>Мэдээлэл олдсонгүй</div>;
+    return <div className="not-found-state">Мэдээлэл олдсонгүй</div>;
   }
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1 style={{ fontSize: "2rem", color: "#1e40af" }}>{info.title}</h1>
-      <p style={{ marginTop: "1rem", fontSize: "1.2rem" }}>{info.desc}</p>
+    <div className="info-detail-container">
+      <h1 className="info-detail-title">{info.title}</h1>
+      <p className="info-detail-desc">{info.desc}</p>
       {info.image && (
         <img
           src={info.image}
           alt={info.title}
-          style={{
-            width: "100%",
-            maxWidth: "600px",
-            marginTop: "2rem",
-            borderRadius: "8px",
+          className="info-detail-image"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = '/zurag/pro.png';
           }}
         />
       )}
+      <div className="info-detail-content">{info.info}</div>
     </div>
   );
 }

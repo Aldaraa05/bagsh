@@ -5,7 +5,7 @@ export async function POST(request) {
   try {
     const { title, desc, image, info } = await request.json();
 
-    if ( !title || !desc || !image || info) {
+    if ( !title || !desc || !image || !info) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
@@ -96,12 +96,11 @@ export async function DELETE(request) {
     );
   }
 }
-
 export async function PUT(request) {
   try {
-    const { id, title, desc, image, info } = await request.json();
+    const { id, title, desc, image, info } = await request.json(); 
 
-    if (!id || !title || !desc || !image) {
+    if (!id || !title || !desc || !image || !info) { 
       return NextResponse.json(
         { error: 'All fields including ID are required' },
         { status: 400 }
