@@ -164,7 +164,6 @@ export default function Infos() {
                   name="info"
                   value={newInfo.info}
                   onChange={handleInputChange}
-                  required
                 />
               </div>
               <div className="form-actions">
@@ -204,12 +203,16 @@ export default function Infos() {
           </div>
           {isAdminUser && (
             <div className="action-buttons">
-              <button className="edit-btn" onClick={() => startEditing(info)}>
+              <button className="edit-btn" onClick={(e) => {
+                e.stopPropagation();
+                startEditing(info)}}>
                 Засах
               </button>
               <button
                 className="delete-btn"
-                onClick={() => handleDelete(info._id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(info._id)}}
               >
                 Устгах
               </button>
